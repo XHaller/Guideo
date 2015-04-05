@@ -1,10 +1,10 @@
 # Guideo
 
----
-
 #### 1. What is Guideo
 
 **Guideo** is an application focusing on offering structured-information-based intelligent traveling advices for users.
+
+![Guideo](http://weixc1234.qiniudn.com/GuideoSingleNote.png)
 
 #### 2. The Main Features About Guideo
 
