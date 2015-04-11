@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B62EEB471AD0D10E00989DBB"
+               BlueprintIdentifier = "B6F53C011AD97890002E2AD3"
                BuildableName = "Guideo.app"
                BlueprintName = "Guideo"
                ReferencedContainer = "container:Guideo.xcodeproj">
@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B62EEB631AD0D10E00989DBB"
+               BlueprintIdentifier = "B6F53C1D1AD97890002E2AD3"
                BuildableName = "GuideoTests.xctest"
                BlueprintName = "GuideoTests"
                ReferencedContainer = "container:Guideo.xcodeproj">
@@ -46,7 +46,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B62EEB631AD0D10E00989DBB"
+               BlueprintIdentifier = "B6F53C1D1AD97890002E2AD3"
                BuildableName = "GuideoTests.xctest"
                BlueprintName = "GuideoTests"
                ReferencedContainer = "container:Guideo.xcodeproj">
@@ -56,7 +56,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B62EEB471AD0D10E00989DBB"
+            BlueprintIdentifier = "B6F53C011AD97890002E2AD3"
             BuildableName = "Guideo.app"
             BlueprintName = "Guideo"
             ReferencedContainer = "container:Guideo.xcodeproj">
@@ -75,7 +75,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B62EEB471AD0D10E00989DBB"
+            BlueprintIdentifier = "B6F53C011AD97890002E2AD3"
             BuildableName = "Guideo.app"
             BlueprintName = "Guideo"
             ReferencedContainer = "container:Guideo.xcodeproj">
@@ -93,7 +93,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B62EEB471AD0D10E00989DBB"
+            BlueprintIdentifier = "B6F53C011AD97890002E2AD3"
             BuildableName = "Guideo.app"
             BlueprintName = "Guideo"
             ReferencedContainer = "container:Guideo.xcodeproj">
