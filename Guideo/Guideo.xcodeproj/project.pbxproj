@@ -15,6 +15,7 @@
 		B6F53C161AD97890002E2AD3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6F53C151AD97890002E2AD3 /* Images.xcassets */; };
 		B6F53C191AD97890002E2AD3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6F53C171AD97890002E2AD3 /* LaunchScreen.xib */; };
 		B6F53C251AD97890002E2AD3 /* GuideoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B6F53C241AD97890002E2AD3 /* GuideoTests.m */; };
+		D78BE67D1AD996F60004EBC6 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D78BE67C1AD996F60004EBC6 /* HomeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,8 @@
 		B6F53C1E1AD97890002E2AD3 /* GuideoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GuideoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6F53C231AD97890002E2AD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B6F53C241AD97890002E2AD3 /* GuideoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GuideoTests.m; sourceTree = "<group>"; };
+		D78BE67B1AD996F60004EBC6 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		D78BE67C1AD996F60004EBC6 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,10 +86,12 @@
 		B6F53C041AD97890002E2AD3 /* Guideo */ = {
 			isa = PBXGroup;
 			children = (
-				B6F53C091AD97890002E2AD3 /* AppDelegate.h */,
-				B6F53C0A1AD97890002E2AD3 /* AppDelegate.m */,
+				D78BE67B1AD996F60004EBC6 /* HomeViewController.h */,
+				D78BE67C1AD996F60004EBC6 /* HomeViewController.m */,
 				B6F53C0F1AD97890002E2AD3 /* ViewController.h */,
 				B6F53C101AD97890002E2AD3 /* ViewController.m */,
+				B6F53C091AD97890002E2AD3 /* AppDelegate.h */,
+				B6F53C0A1AD97890002E2AD3 /* AppDelegate.m */,
 				B6F53C121AD97890002E2AD3 /* Main.storyboard */,
 				B6F53C151AD97890002E2AD3 /* Images.xcassets */,
 				B6F53C171AD97890002E2AD3 /* LaunchScreen.xib */,
@@ -225,6 +230,7 @@
 				B6F53C0E1AD97890002E2AD3 /* Guideo.xcdatamodeld in Sources */,
 				B6F53C0B1AD97890002E2AD3 /* AppDelegate.m in Sources */,
 				B6F53C111AD97890002E2AD3 /* ViewController.m in Sources */,
+				D78BE67D1AD996F60004EBC6 /* HomeViewController.m in Sources */,
 				B6F53C081AD97890002E2AD3 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -416,6 +422,7 @@
 				B6F53C2A1AD97890002E2AD3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B6F53C2B1AD97890002E2AD3 /* Build configuration list for PBXNativeTarget "GuideoTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +431,7 @@
 				B6F53C2D1AD97890002E2AD3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
