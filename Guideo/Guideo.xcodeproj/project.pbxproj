@@ -17,7 +17,10 @@
 		B6F53C161AD97890002E2AD3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6F53C151AD97890002E2AD3 /* Images.xcassets */; };
 		B6F53C191AD97890002E2AD3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6F53C171AD97890002E2AD3 /* LaunchScreen.xib */; };
 		B6F53C251AD97890002E2AD3 /* GuideoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B6F53C241AD97890002E2AD3 /* GuideoTests.m */; };
+		D71EBB7B1ADA06BF009D34A4 /* SiteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D71EBB7A1ADA06BF009D34A4 /* SiteViewController.m */; };
+		D71EBB841ADA08C7009D34A4 /* ExpandHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = D71EBB831ADA08C7009D34A4 /* ExpandHeader.m */; };
 		D78BE67D1AD996F60004EBC6 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D78BE67C1AD996F60004EBC6 /* HomeViewController.m */; };
+		D7D12DFB1ADA12FF0056D739 /* header1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D7D12DFA1ADA12FF0056D739 /* header1.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,8 +52,13 @@
 		B6F53C1E1AD97890002E2AD3 /* GuideoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GuideoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6F53C231AD97890002E2AD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B6F53C241AD97890002E2AD3 /* GuideoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GuideoTests.m; sourceTree = "<group>"; };
+		D71EBB791ADA06BF009D34A4 /* SiteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SiteViewController.h; sourceTree = "<group>"; };
+		D71EBB7A1ADA06BF009D34A4 /* SiteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SiteViewController.m; sourceTree = "<group>"; };
+		D71EBB821ADA08C7009D34A4 /* ExpandHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpandHeader.h; sourceTree = "<group>"; };
+		D71EBB831ADA08C7009D34A4 /* ExpandHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpandHeader.m; sourceTree = "<group>"; };
 		D78BE67B1AD996F60004EBC6 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		D78BE67C1AD996F60004EBC6 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		D7D12DFA1ADA12FF0056D739 /* header1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = header1.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +100,11 @@
 		B6F53C041AD97890002E2AD3 /* Guideo */ = {
 			isa = PBXGroup;
 			children = (
+				D7D12DFA1ADA12FF0056D739 /* header1.jpg */,
+				D71EBB821ADA08C7009D34A4 /* ExpandHeader.h */,
+				D71EBB831ADA08C7009D34A4 /* ExpandHeader.m */,
+				D71EBB791ADA06BF009D34A4 /* SiteViewController.h */,
+				D71EBB7A1ADA06BF009D34A4 /* SiteViewController.m */,
 				D78BE67B1AD996F60004EBC6 /* HomeViewController.h */,
 				D78BE67C1AD996F60004EBC6 /* HomeViewController.m */,
 				B6F53C0F1AD97890002E2AD3 /* ViewController.h */,
@@ -217,6 +230,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7D12DFB1ADA12FF0056D739 /* header1.jpg in Resources */,
 				B6F53C141AD97890002E2AD3 /* Main.storyboard in Resources */,
 				B6F53C191AD97890002E2AD3 /* LaunchScreen.xib in Resources */,
 				B6F53C161AD97890002E2AD3 /* Images.xcassets in Resources */,
@@ -240,6 +254,8 @@
 				B6F53C0E1AD97890002E2AD3 /* Guideo.xcdatamodeld in Sources */,
 				B6F53C0B1AD97890002E2AD3 /* AppDelegate.m in Sources */,
 				B6F53C111AD97890002E2AD3 /* ViewController.m in Sources */,
+				D71EBB7B1ADA06BF009D34A4 /* SiteViewController.m in Sources */,
+				D71EBB841ADA08C7009D34A4 /* ExpandHeader.m in Sources */,
 				B6A9059A1AD9B379000304F0 /* MJCollectionViewCell.m in Sources */,
 				D78BE67D1AD996F60004EBC6 /* HomeViewController.m in Sources */,
 				B6F53C081AD97890002E2AD3 /* main.m in Sources */,
