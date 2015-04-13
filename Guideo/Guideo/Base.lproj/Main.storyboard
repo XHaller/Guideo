@@ -144,25 +144,55 @@
             </objects>
             <point key="canvasLocation" x="1035.5" y="705.5"/>
         </scene>
-        <!--Explore-->
-        <scene sceneID="IjA-E2-5gT">
+        <!--Explore View Controller-->
+        <scene sceneID="jIL-8p-dxC">
             <objects>
-                <viewController id="z7O-Fy-Ld8" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="currentContext" id="zMt-os-URk" customClass="ExploreViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="9Oc-Am-M0T"/>
-                        <viewControllerLayoutGuide type="bottom" id="3eT-Yl-ATQ"/>
+                        <viewControllerLayoutGuide type="top" id="Uh9-ZD-dfn"/>
+                        <viewControllerLayoutGuide type="bottom" id="zRf-Io-m0j"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="HN5-ea-8oL">
+                    <view key="view" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="infinite" id="8lr-rl-QHf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MCCardPickerCollectionViewController" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bbi-TB-YS7">
+                                <rect key="frame" x="30" y="176" width="316" height="22"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b63-A5-6JD">
+                                <rect key="frame" x="99" y="264" width="190" height="35"/>
+                                <color key="backgroundColor" red="0.098039215690000001" green="0.65098039220000004" blue="0.69411764710000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="190" id="6Ge-PR-Jbq"/>
+                                    <constraint firstAttribute="height" constant="35" id="osi-IG-bbR"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <state key="normal" title="Pick one">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showPicker:" destination="zMt-os-URk" eventType="touchUpInside" id="6jC-ed-Mfo"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="b63-A5-6JD" firstAttribute="top" secondItem="bbi-TB-YS7" secondAttribute="bottom" constant="40" id="98D-Nb-b97"/>
+                            <constraint firstAttribute="centerX" secondItem="b63-A5-6JD" secondAttribute="centerX" id="Del-JK-MoR"/>
+                            <constraint firstAttribute="centerY" secondItem="bbi-TB-YS7" secondAttribute="centerY" constant="90" id="hsg-6m-S1l"/>
+                            <constraint firstAttribute="centerX" secondItem="bbi-TB-YS7" secondAttribute="centerX" id="npk-r8-Fsb"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Explore" image="explore" id="uqB-Fc-vbu"/>
+                    <navigationItem key="navigationItem" id="leM-u6-Yti"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="40p-Sy-yyN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hqH-JO-aSU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1035.5" y="1737.5"/>
+            <point key="canvasLocation" x="1714" y="1738"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="ynN-Hm-CBc">
@@ -277,7 +307,7 @@
                         <segue destination="uIZ-yK-kpl" kind="relationship" relationship="viewControllers" id="Kz5-2F-l21"/>
                         <segue destination="Go5-ke-pEK" kind="relationship" relationship="viewControllers" id="5Ee-rC-Df1"/>
                         <segue destination="Gd5-xq-iKB" kind="relationship" relationship="viewControllers" id="4ki-1U-3SL"/>
-                        <segue destination="z7O-Fy-Ld8" kind="relationship" relationship="viewControllers" id="mx1-s8-XVH"/>
+                        <segue destination="u4a-fO-KJX" kind="relationship" relationship="viewControllers" id="mx1-s8-XVH"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W9U-yC-vgM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -287,6 +317,7 @@
         <!--Notes-->
         <scene sceneID="GN4-3G-Abb">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yb7-rh-AVz" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uIZ-yK-kpl" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Notes" image="notes" id="DDb-W4-40c"/>
                     <toolbarItems/>
@@ -299,9 +330,27 @@
                         <segue destination="CT4-iT-3Wu" kind="relationship" relationship="rootViewController" id="Cfq-wM-lKX"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yb7-rh-AVz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="931.5" y="-262.5"/>
+        </scene>
+        <!--Explore-->
+        <scene sceneID="uiD-FX-6dt">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="u4a-fO-KJX" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Explore" image="explore" id="uqB-Fc-vbu"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="I8H-8r-ZG3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="zMt-os-URk" kind="relationship" relationship="rootViewController" id="qFK-gr-KbQ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Gw-9V-oP3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1035.5" y="1737.5"/>
         </scene>
     </scenes>
     <resources>

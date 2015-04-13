@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B635295B1ADB5051003C9877 /* MCCardPickerCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63529581ADB5051003C9877 /* MCCardPickerCollectionViewController.m */; };
+		B635295C1ADB5051003C9877 /* MCCardPickerCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = B635295A1ADB5051003C9877 /* MCCardPickerCollectionViewFlowLayout.m */; };
+		B635295F1ADB508D003C9877 /* ExploreCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B635295E1ADB508D003C9877 /* ExploreCollectionViewCell.m */; };
+		B63529621ADB50BD003C9877 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = B63529611ADB50BD003C9877 /* UIImage+ImageEffects.m */; };
+		B63529651ADB5115003C9877 /* ExploreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63529641ADB5115003C9877 /* ExploreViewController.m */; };
 		B6A9059A1AD9B379000304F0 /* MJCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A905971AD9B379000304F0 /* MJCollectionViewCell.m */; };
 		B6A9059B1AD9B379000304F0 /* MJRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A905991AD9B379000304F0 /* MJRootViewController.m */; };
 		B6F53C081AD97890002E2AD3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B6F53C071AD97890002E2AD3 /* main.m */; };
@@ -34,6 +39,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B63529571ADB5051003C9877 /* MCCardPickerCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCCardPickerCollectionViewController.h; sourceTree = "<group>"; };
+		B63529581ADB5051003C9877 /* MCCardPickerCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCCardPickerCollectionViewController.m; sourceTree = "<group>"; };
+		B63529591ADB5051003C9877 /* MCCardPickerCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCCardPickerCollectionViewFlowLayout.h; sourceTree = "<group>"; };
+		B635295A1ADB5051003C9877 /* MCCardPickerCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCCardPickerCollectionViewFlowLayout.m; sourceTree = "<group>"; };
+		B635295D1ADB507D003C9877 /* ExploreCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExploreCollectionViewCell.h; sourceTree = "<group>"; };
+		B635295E1ADB508D003C9877 /* ExploreCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExploreCollectionViewCell.m; sourceTree = "<group>"; };
+		B63529601ADB50BD003C9877 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		B63529611ADB50BD003C9877 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
+		B63529631ADB510A003C9877 /* ExploreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExploreViewController.h; sourceTree = "<group>"; };
+		B63529641ADB5115003C9877 /* ExploreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExploreViewController.m; sourceTree = "<group>"; };
 		B6A905961AD9B379000304F0 /* MJCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJCollectionViewCell.h; sourceTree = "<group>"; };
 		B6A905971AD9B379000304F0 /* MJCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJCollectionViewCell.m; sourceTree = "<group>"; };
 		B6A905981AD9B379000304F0 /* MJRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRootViewController.h; sourceTree = "<group>"; };
@@ -115,11 +130,19 @@
 				B6A905971AD9B379000304F0 /* MJCollectionViewCell.m */,
 				B6A905981AD9B379000304F0 /* MJRootViewController.h */,
 				B6A905991AD9B379000304F0 /* MJRootViewController.m */,
+				B63529571ADB5051003C9877 /* MCCardPickerCollectionViewController.h */,
+				B63529581ADB5051003C9877 /* MCCardPickerCollectionViewController.m */,
+				B63529591ADB5051003C9877 /* MCCardPickerCollectionViewFlowLayout.h */,
+				B635295A1ADB5051003C9877 /* MCCardPickerCollectionViewFlowLayout.m */,
 				B6F53C121AD97890002E2AD3 /* Main.storyboard */,
 				B6F53C151AD97890002E2AD3 /* Images.xcassets */,
 				B6F53C171AD97890002E2AD3 /* LaunchScreen.xib */,
 				B6F53C0C1AD97890002E2AD3 /* Guideo.xcdatamodeld */,
 				B6F53C051AD97890002E2AD3 /* Supporting Files */,
+				B635295D1ADB507D003C9877 /* ExploreCollectionViewCell.h */,
+				B635295E1ADB508D003C9877 /* ExploreCollectionViewCell.m */,
+				B63529631ADB510A003C9877 /* ExploreViewController.h */,
+				B63529641ADB5115003C9877 /* ExploreViewController.m */,
 			);
 			path = Guideo;
 			sourceTree = "<group>";
@@ -127,6 +150,8 @@
 		B6F53C051AD97890002E2AD3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B63529601ADB50BD003C9877 /* UIImage+ImageEffects.h */,
+				B63529611ADB50BD003C9877 /* UIImage+ImageEffects.m */,
 				B6F53C061AD97890002E2AD3 /* Info.plist */,
 				B6F53C071AD97890002E2AD3 /* main.m */,
 			);
@@ -251,12 +276,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B635295B1ADB5051003C9877 /* MCCardPickerCollectionViewController.m in Sources */,
+				B63529621ADB50BD003C9877 /* UIImage+ImageEffects.m in Sources */,
 				B6F53C0E1AD97890002E2AD3 /* Guideo.xcdatamodeld in Sources */,
 				B6F53C0B1AD97890002E2AD3 /* AppDelegate.m in Sources */,
 				B6F53C111AD97890002E2AD3 /* ViewController.m in Sources */,
 				D71EBB7B1ADA06BF009D34A4 /* SiteViewController.m in Sources */,
+				B63529651ADB5115003C9877 /* ExploreViewController.m in Sources */,
 				D71EBB841ADA08C7009D34A4 /* ExpandHeader.m in Sources */,
+				B635295C1ADB5051003C9877 /* MCCardPickerCollectionViewFlowLayout.m in Sources */,
 				B6A9059A1AD9B379000304F0 /* MJCollectionViewCell.m in Sources */,
+				B635295F1ADB508D003C9877 /* ExploreCollectionViewCell.m in Sources */,
 				D78BE67D1AD996F60004EBC6 /* HomeViewController.m in Sources */,
 				B6F53C081AD97890002E2AD3 /* main.m in Sources */,
 				B6A9059B1AD9B379000304F0 /* MJRootViewController.m in Sources */,
