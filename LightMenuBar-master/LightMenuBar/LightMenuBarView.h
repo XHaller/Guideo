@@ -13,10 +13,10 @@
 
 @interface LightMenuBarView : UIView {
 
-    id<LightMenuBarDelegate> _delegate;
+    //id<LightMenuBarDelegate> _delegate;
     NSUInteger _selectedItemIndex;
     
-    LightMenuBar *_menuBar; //< Weak Reference
+    //LightMenuBar *_menuBar; //< Weak Reference
     
     //< Parameters
     NSUInteger itemCount;

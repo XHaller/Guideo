@@ -2,7 +2,7 @@
 //  SiteDetailsViewController.m
 //  Guideo
 //
-//  Created by 亮亮 李 on 15/4/14.
+//  Created by 亮亮 李 on 15/4/15.
 //  Copyright (c) 2015年 Guideo. All rights reserved.
 //
 
@@ -12,13 +12,10 @@
 
 @end
 
-@implementation SiteDetailsViewController{
-    
-}
+@implementation SiteDetailsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     // Do any additional setup after loading the view.
 }
 
