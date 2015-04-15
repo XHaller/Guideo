@@ -7,6 +7,7 @@
 //
 
 #import "SiteViewController.h"
+#import "SiteDetailsViewController.h"
 #import "ExpandHeader.h"
 
 @interface SiteViewController () <UIScrollViewDelegate>
@@ -19,9 +20,26 @@
     __weak UIImageView *_expandView;
 }
 
+@synthesize tableTopic;
+@synthesize tableContent;
+@synthesize tableImage;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    tableTopic = [[NSMutableArray alloc] init];
+    tableContent = [[NSMutableArray alloc] init];
+    tableImage = [[NSMutableArray alloc] init];
+    
+    for(int i = 0; i < 5; i++)
+    {
+        [tableTopic addObject:@"Statue of Liberty"];
+        [tableContent addObject:@"The Statue of Liberty is a colossal neoclassical sculpture on Liberty Island in New York Harbor in New York City, in the United States. "];
+        NSString *imageName = [NSString stringWithFormat:@"image%d.jpg", i+1];
+        UIImage *image = [UIImage imageNamed:imageName];
+        [tableImage addObject:image];
+    }
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 420, 180)];
     [imageView setImage:[UIImage imageNamed:@"header1"]];
@@ -39,21 +57,43 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 20;
+    return 5;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    
+    static NSString *cellIdentifier = @"cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    [cell.textLabel setText:[NSString  stringWithFormat:@"this is row :%ld",(long)indexPath.row]];
+    cell.imageView.image = [tableImage objectAtIndex:indexPath.row];
+    cell.textLabel.text = [tableTopic objectAtIndex: indexPath.row];
+    cell.detailTextLabel.numberOfLines = 2000;
+    cell.detailTextLabel.text = [tableContent objectAtIndex:indexPath.row];
+    cell.tag = indexPath.row;
     return cell;
 }
 
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+//    if (!cell) {
+//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+//    }
+//    [cell.textLabel setText:[NSString  stringWithFormat:@"this is row :%ld",(long)indexPath.row]];
+//    return cell;
+//}
+
 - (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 44.f;
+    return 99.0f;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    SiteDetailsViewController *detailView = [[SiteDetailsViewController alloc]init];
+    [[self navigationController] pushViewController:detailView animated:YES];
 }
 
 @end
