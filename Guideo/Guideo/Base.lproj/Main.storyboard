@@ -42,7 +42,6 @@
         <!--Site Details View Controller-->
         <scene sceneID="Jqf-II-BMW">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SOq-Tf-WfB" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="yOR-BP-MLV" customClass="SiteDetailsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jFQ-8F-5bK"/>
@@ -51,11 +50,20 @@
                     <view key="view" contentMode="scaleToFill" id="xji-yT-V7O">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GGc-1X-zzn">
+                                <rect key="frame" x="0.0" y="143" width="293" height="417"/>
+                                <connections>
+                                    <segue destination="WI3-F2-FOV" kind="embed" id="WyF-5A-7vn"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="4g9-tI-dgk"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SOq-Tf-WfB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1530.5" y="-1118.5"/>
         </scene>
@@ -372,6 +380,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Gw-9V-oP3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1035.5" y="1737.5"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="N2j-AI-RQD">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="WI3-F2-FOV" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vGb-fX-rf1"/>
+                        <viewControllerLayoutGuide type="bottom" id="uYN-aE-7M7"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="kll-4s-Wao">
+                        <rect key="frame" x="0.0" y="0.0" width="293" height="417"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2QJ-qN-yaH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
     <resources>
