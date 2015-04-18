@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SiteViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface SiteViewController : UIViewController
 
 @property NSMutableArray *tableTopic;
 @property NSMutableArray *tableContent;

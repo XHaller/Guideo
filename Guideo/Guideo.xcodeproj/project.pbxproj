@@ -37,6 +37,8 @@
 		D71F0A761ADE29B0005804EB /* MHTabBarIndicator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D71F0A701ADE29B0005804EB /* MHTabBarIndicator@2x.png */; };
 		D71F0A791ADE29C1005804EB /* MHTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = D71F0A781ADE29C1005804EB /* MHTabBarController.m */; };
 		D71F0A821ADE359B005804EB /* SiteDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D71F0A811ADE359B005804EB /* SiteDetailsViewController.m */; };
+		D76500871AE1F44F002F50AD /* ContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D76500841AE1F44F002F50AD /* ContentViewController.m */; };
+		D76500891AE1F44F002F50AD /* ViewPagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = D76500861AE1F44F002F50AD /* ViewPagerController.m */; };
 		D78BE67D1AD996F60004EBC6 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D78BE67C1AD996F60004EBC6 /* HomeViewController.m */; };
 		D79CF2EF1ADDE41D000EB15C /* tableData.m in Sources */ = {isa = PBXBuildFile; fileRef = D79CF2EE1ADDE41D000EB15C /* tableData.m */; };
 		D7D12DFB1ADA12FF0056D739 /* header1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D7D12DFA1ADA12FF0056D739 /* header1.jpg */; };
@@ -100,6 +102,10 @@
 		D71F0A781ADE29C1005804EB /* MHTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHTabBarController.m; sourceTree = "<group>"; };
 		D71F0A801ADE359B005804EB /* SiteDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SiteDetailsViewController.h; sourceTree = "<group>"; };
 		D71F0A811ADE359B005804EB /* SiteDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SiteDetailsViewController.m; sourceTree = "<group>"; };
+		D76500811AE1F43C002F50AD /* ContentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContentViewController.h; sourceTree = "<group>"; };
+		D76500831AE1F43C002F50AD /* ViewPagerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewPagerController.h; sourceTree = "<group>"; };
+		D76500841AE1F44F002F50AD /* ContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentViewController.m; sourceTree = "<group>"; };
+		D76500861AE1F44F002F50AD /* ViewPagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewPagerController.m; sourceTree = "<group>"; };
 		D78BE67B1AD996F60004EBC6 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		D78BE67C1AD996F60004EBC6 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		D79CF2ED1ADDE41D000EB15C /* tableData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tableData.h; sourceTree = "<group>"; };
@@ -209,20 +215,24 @@
 		D79CF2EA1ADDE346000EB15C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				D71F0A771ADE29C1005804EB /* MHTabBarController.h */,
-				D71F0A781ADE29C1005804EB /* MHTabBarController.m */,
-				D71EBB791ADA06BF009D34A4 /* SiteViewController.h */,
-				D71EBB7A1ADA06BF009D34A4 /* SiteViewController.m */,
-				D78BE67B1AD996F60004EBC6 /* HomeViewController.h */,
-				D78BE67C1AD996F60004EBC6 /* HomeViewController.m */,
 				B6F53C0F1AD97890002E2AD3 /* ViewController.h */,
 				B6F53C101AD97890002E2AD3 /* ViewController.m */,
+				D78BE67B1AD996F60004EBC6 /* HomeViewController.h */,
+				D78BE67C1AD996F60004EBC6 /* HomeViewController.m */,
+				D71EBB791ADA06BF009D34A4 /* SiteViewController.h */,
+				D71EBB7A1ADA06BF009D34A4 /* SiteViewController.m */,
+				D71F0A801ADE359B005804EB /* SiteDetailsViewController.h */,
+				D71F0A811ADE359B005804EB /* SiteDetailsViewController.m */,
+				D76500811AE1F43C002F50AD /* ContentViewController.h */,
+				D76500841AE1F44F002F50AD /* ContentViewController.m */,
+				D76500831AE1F43C002F50AD /* ViewPagerController.h */,
+				D76500861AE1F44F002F50AD /* ViewPagerController.m */,
+				D71F0A771ADE29C1005804EB /* MHTabBarController.h */,
+				D71F0A781ADE29C1005804EB /* MHTabBarController.m */,
 				B6A905981AD9B379000304F0 /* MJRootViewController.h */,
 				B6A905991AD9B379000304F0 /* MJRootViewController.m */,
 				B63529571ADB5051003C9877 /* MCCardPickerCollectionViewController.h */,
 				B63529581ADB5051003C9877 /* MCCardPickerCollectionViewController.m */,
-				D71F0A801ADE359B005804EB /* SiteDetailsViewController.h */,
-				D71F0A811ADE359B005804EB /* SiteDetailsViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -369,6 +379,8 @@
 			files = (
 				D71F0A791ADE29C1005804EB /* MHTabBarController.m in Sources */,
 				B635295B1ADB5051003C9877 /* MCCardPickerCollectionViewController.m in Sources */,
+				D76500891AE1F44F002F50AD /* ViewPagerController.m in Sources */,
+				D76500871AE1F44F002F50AD /* ContentViewController.m in Sources */,
 				B63529621ADB50BD003C9877 /* UIImage+ImageEffects.m in Sources */,
 				B6F53C0E1AD97890002E2AD3 /* Guideo.xcdatamodeld in Sources */,
 				B6F53C0B1AD97890002E2AD3 /* AppDelegate.m in Sources */,

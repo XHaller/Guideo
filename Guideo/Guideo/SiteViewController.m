@@ -32,10 +32,24 @@
     tableContent = [[NSMutableArray alloc] init];
     tableImage = [[NSMutableArray alloc] init];
     
+    [tableTopic addObject:@"Statue of Liberty"];
+    [tableContent addObject:@"The Statue of Liberty is a colossal neoclassical sculpture on Liberty Island in New York Harbor in New York City, in the United States. "];
+    
+    [tableTopic addObject:@"Metropolitan Museum of Art"];
+    [tableContent addObject:@"The Metropolitan Museum of Art (colloquially The Met), located in New York City, is the largest art museum in the United States and one of the ten largest in the world."];
+    
+    [tableTopic addObject:@"Central Park"];
+    [tableContent addObject:@"Central Park is an urban park in the central part of the borough of Manhattan, New York City."];
+    
+    [tableTopic addObject:@"Empire State Building"];
+    [tableContent addObject:@"The Empire State Building is a 102-story skyscraper located in Midtown Manhattan, New York City, on Fifth Avenue between West 33rd and 34th Streets."];
+    
+    [tableTopic addObject:@"Ellis Island"];
+    [tableContent addObject:@"Ellis Island is an island that is located in Upper New York Bay in the Port of New York and New Jersey, United States Of America."];
+    
+    
     for(int i = 0; i < 5; i++)
     {
-        [tableTopic addObject:@"Statue of Liberty"];
-        [tableContent addObject:@"The Statue of Liberty is a colossal neoclassical sculpture on Liberty Island in New York Harbor in New York City, in the United States. "];
         NSString *imageName = [NSString stringWithFormat:@"image%d.jpg", i+1];
         UIImage *image = [UIImage imageNamed:imageName];
         [tableImage addObject:image];
@@ -56,19 +70,23 @@
     
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 5;
+    return tableTopic.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    static NSString *cellIdentifier = @"cell";
+    static NSString *cellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.imageView.image = [tableImage objectAtIndex:indexPath.row];
     cell.textLabel.text = [tableTopic objectAtIndex: indexPath.row];
     cell.detailTextLabel.numberOfLines = 2000;
@@ -92,8 +110,22 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SiteDetailsViewController *detailView = [[SiteDetailsViewController alloc]init];
+    [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
+    SiteDetailsViewController *detailView = [self.storyboard instantiateViewControllerWithIdentifier:@"SiteDetailsViewController"];
+    
+    detailView.topicName = [tableTopic objectAtIndex:indexPath.row];
+    
     [[self navigationController] pushViewController:detailView animated:YES];
 }
+
+//- (void)tableView:(UITableView *)tableView prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+//{
+//    SiteDetailsViewController *detailView = [[SiteDetailsViewController alloc]init];
+//    detailView = [segue destinationViewController];
+//    NSIndexPath *path = [tableView indexPathForSelectedRow];
+//    NSString *topic = [tableTopic objectAtIndex:path.row];
+//    detailView.topicName = topic;
+//    
+//}
 
 @end

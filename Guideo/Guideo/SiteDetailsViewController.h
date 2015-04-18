@@ -6,8 +6,13 @@
 //  Copyright (c) 2015年 Guideo. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 
-@interface SiteDetailsViewController : UIViewController
+#import "ViewPagerController.h"
+
+@interface SiteDetailsViewController : ViewPagerController
+
+@property(strong, nonatomic) NSString *topicName;
+@property NSMutableArray *tabName;
 
 @end
