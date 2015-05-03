@@ -10,8 +10,8 @@
 
 @implementation tableData
 
-@synthesize topic;
-@synthesize details;
-
+@synthesize tableTopic;
+@synthesize tableContent;
+@synthesize tableImage;
 
 @end

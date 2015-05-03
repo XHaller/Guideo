@@ -10,8 +10,7 @@
 
 @interface SiteViewController : UIViewController
 
-@property NSMutableArray *tableTopic;
-@property NSMutableArray *tableContent;
-@property NSMutableArray *tableImage;
+@property NSMutableArray *sites;
+@property NSMutableArray * searchResults;
 
 @end

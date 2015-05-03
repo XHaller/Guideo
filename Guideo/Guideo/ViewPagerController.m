@@ -32,8 +32,7 @@
 @end
 
 @implementation UIColor (Equality)
-// This method checks if two UIColors are the same
-// Thanks to @samvermette for this method: http://stackoverflow.com/a/8899384/1931781
+
 - (BOOL)isEqualToColor:(UIColor *)otherColor {
     
     CGColorSpaceRef colorSpaceRGB = CGColorSpaceCreateDeviceRGB();

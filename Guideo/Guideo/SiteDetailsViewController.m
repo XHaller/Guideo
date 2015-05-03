@@ -22,7 +22,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+        
     self.title = topicName;
     
     self.dataSource = self;
@@ -41,6 +42,7 @@
          self.edgesForExtendedLayout = UIRectEdgeNone;
      }
     
+    self.numberOfTabs = [tabName count];
     
     // Do any additional setup after loading the view.
 }
@@ -48,8 +50,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     
     [super viewDidAppear:animated];
-    
-    [self performSelector:@selector(loadContent) withObject:nil afterDelay:3.0];
+     [self.navigationController setNavigationBarHidden:NO animated:animated];
     
 }
 
@@ -69,16 +70,11 @@
     
 }
 
-#pragma mark - Helpers
-- (void)loadContent {
-    self.numberOfTabs = [tabName count];
-}
-
 #pragma mark - Interface Orientation Changes
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     
     // Update changes after screen rotates
-    [self performSelector:@selector(setNeedsReloadOptions) withObject:nil afterDelay:duration];
+    [self performSelector:@selector(setNeedsReloadOptions) withObject:nil];
 }
 
 #pragma mark - ViewPagerDataSource
