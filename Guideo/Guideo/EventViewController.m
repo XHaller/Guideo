@@ -1,27 +1,24 @@
 //
-//  SiteViewController.m
+//  EventViewController.m
 //  Guideo
 //
 //  Created by 亮亮 李 on 15/4/11.
 //  Copyright (c) 2015年 Guideo. All rights reserved.
 //
 
-#import "SiteViewController.h"
-#import "SiteDetailsViewController.h"
-#import "ExpandHeader.h"
+#import "EventViewController.h"
+#import "EventDetailsViewController.h"
 #import "tableData.h"
 
-@interface SiteViewController () <UIScrollViewDelegate>
+@interface EventViewController ()
 
 @end
 
-@implementation SiteViewController{
-    ExpandHeader *_header;
+@implementation EventViewController{
     __weak IBOutlet UITableView *_tableView;
-    __weak UIImageView *_expandView;
 }
 
-@synthesize sites;
+@synthesize events;
 @synthesize searchResults;
 
 - (void)viewDidLoad
@@ -32,8 +29,7 @@
     
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0/255.0 green:215/255.0 blue:255/255.0 alpha:1.0]];
-    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0], UITextAttributeTextColor,[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1.0],UITextAttributeTextShadowColor,[NSValue valueWithUIOffset:UIOffsetMake(0, 1)],UITextAttributeTextShadowOffset,[UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:21.0], UITextAttributeFont, nil]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0]];
     
     UIImage *navBackgroundImage = [UIImage imageNamed:@"navibar.png"];
     [[UINavigationBar appearance] setBackgroundImage:navBackgroundImage forBarMetrics:UIBarMetricsDefault];
@@ -41,51 +37,45 @@
     UIImage *backButtonImage = [[UIImage imageNamed:@"back.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 30, 0, 0)];
     [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButtonImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(NSIntegerMin, NSIntegerMin) forBarMetrics:UIBarMetricsDefault];
-
     
-    sites = [[NSMutableArray alloc] init];
+    
+    events = [[NSMutableArray alloc] init];
     searchResults = [[NSMutableArray alloc] init];
     
-    tableData *site1 = [tableData new];
-    site1.tableTopic = @"Statue of Liberty";
-    site1.tableContent = @"The Statue of Liberty is a colossal neoclassical sculpture on Liberty Island in New York Harbor in New York City, in the United States. ";
-    site1.tableImage = @"image1.jpg";
+    tableData *event1 = [tableData new];
+    event1.tableTopic = @"One day cruise";
+    event1.tableContent = @"The Statue of Liberty is a colossal neoclassical sculpture on Liberty Island in New York Harbor in New York City, in the United States. ";
+    event1.tableImage = @"image1.jpg";
     
-    [sites addObject:site1];
+    [events addObject:event1];
     
-    tableData *site2 = [tableData new];
-    site2.tableTopic = @"Metropolitan Museum of Art";
-    site2.tableContent = @"The Metropolitan Museum of Art (colloquially The Met), located in New York City, is the largest art museum in the United States and one of the ten largest in the world.";
-    site2.tableImage = @"image2.jpg";
+    tableData *event2 = [tableData new];
+    event2.tableTopic = @"Discount ticket!";
+    event2.tableContent = @"The Metropolitan Museum of Art (colloquially The Met), located in New York City, is the largest art museum in the United States and one of the ten largest in the world.";
+    event2.tableImage = @"image2.jpg";
     
-    [sites addObject:site2];
+    [events addObject:event2];
     
-    tableData *site3 = [tableData new];
-    site3.tableTopic = @"Central Park";
-    site3.tableContent = @"Central Park is an urban park in the central part of the borough of Manhattan, New York City.";
-    site3.tableImage = @"image3.jpg";
+    tableData *event3 = [tableData new];
+    event3.tableTopic = @"Picnic at noon";
+    event3.tableContent = @"Central Park is an urban park in the central part of the borough of Manhattan, New York City.";
+    event3.tableImage = @"image3.jpg";
     
-    [sites addObject:site3];
+    [events addObject:event3];
     
-    tableData *site4 = [tableData new];
-    site4.tableTopic = @"Empire State Building";
-    site4.tableContent = @"The Empire State Building is a 102-story skyscraper located in Midtown Manhattan, New York City, on Fifth Avenue between West 33rd and 34th Streets.";
-    site4.tableImage = @"image4.jpg";
+    tableData *event4 = [tableData new];
+    event4.tableTopic = @"Climb to the sky";
+    event4.tableContent = @"The Empire State Building is a 102-story skyscraper located in Midtown Manhattan, New York City, on Fifth Avenue between West 33rd and 34th Streets.";
+    event4.tableImage = @"image4.jpg";
     
-    [sites addObject:site4];
+    [events addObject:event4];
     
-    tableData *site5 = [tableData new];
-    site5.tableTopic = @"Ellis Island";
-    site5.tableContent = @"Ellis Island is an island that is located in Upper New York Bay in the Port of New York and New Jersey, United States Of America.";
-    site5.tableImage = @"image5.jpg";
+    tableData *event5 = [tableData new];
+    event5.tableTopic = @"Island Sale!";
+    event5.tableContent = @"Ellis Island is an island that is located in Upper New York Bay in the Port of New York and New Jersey, United States Of America.";
+    event5.tableImage = @"image5.jpg";
     
-    [sites addObject:site5];
-    
-    
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 420, 180)];
-    [imageView setImage:[UIImage imageNamed:@"header1"]];
-    
-    _header = [ExpandHeader expandWithScrollView:_tableView expandView:imageView];
+    [events addObject:event5];
     
     self.searchDisplayController.searchBar.barTintColor = [UIColor colorWithRed:176/255.0 green:215/255.0 blue:255/255.0 alpha:1.0];
     
@@ -96,6 +86,8 @@
             [textField setBackgroundColor:[UIColor colorWithRed:96/255.0 green:215/255.0 blue:255/255.0 alpha:0.3]];
         }
     }
+
+    
     
     // Do any additional setup after loading the view, typically from a nib.
 }
@@ -130,7 +122,7 @@
         return [searchResults count];
         
     } else {
-        return [sites count];
+        return [events count];
     }
 }
 
@@ -144,17 +136,17 @@
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
-    tableData *site;
+    tableData *event;
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-        site = [searchResults objectAtIndex:indexPath.row];
+        event = [searchResults objectAtIndex:indexPath.row];
     } else {
-        site = [sites objectAtIndex:indexPath.row];
+        event = [events objectAtIndex:indexPath.row];
     }
     
-    cell.imageView.image = [UIImage imageNamed:[site tableImage]];
-    cell.textLabel.text = [site tableTopic];
+    cell.imageView.image = [UIImage imageNamed:[event tableImage]];
+    cell.textLabel.text = [event tableTopic];
     cell.detailTextLabel.numberOfLines = 2000;
-    cell.detailTextLabel.text = [site tableContent];
+    cell.detailTextLabel.text = [event tableContent];
     cell.tag = indexPath.row;
     return cell;
 }
@@ -175,21 +167,21 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
-    SiteDetailsViewController *detailView = [self.storyboard instantiateViewControllerWithIdentifier:@"SiteDetailsViewController"];
+    EventDetailsViewController *detailView = [self.storyboard instantiateViewControllerWithIdentifier:@"EventDetailsViewController"];
     
     detailView.hidesBottomBarWhenPushed = YES;
     
-    tableData *site;
+    tableData *event;
     if (self.searchDisplayController.active)
     {
-        site = [searchResults objectAtIndex:indexPath.row];
+        event = [searchResults objectAtIndex:indexPath.row];
     }
     else
     {
-        site = [sites objectAtIndex:indexPath.row];
+        event = [events objectAtIndex:indexPath.row];
     }
     
-    detailView.topicName = [site tableTopic];
+    detailView.topicName = [event tableTopic];
     
     [[self navigationController] pushViewController:detailView animated:YES];
 }
@@ -207,17 +199,17 @@
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
     NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"tableTopic contains[c] %@", searchText];
-    searchResults = [sites filteredArrayUsingPredicate:resultPredicate];
+    searchResults = [events filteredArrayUsingPredicate:resultPredicate];
 }
 
 //- (void)tableView:(UITableView *)tableView prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 //{
-//    SiteDetailsViewController *detailView = [[SiteDetailsViewController alloc]init];
+//    eventDetailsViewController *detailView = [[eventDetailsViewController alloc]init];
 //    detailView = [segue destinationViewController];
 //    NSIndexPath *path = [tableView indexPathForSelectedRow];
 //    NSString *topic = [tableTopic objectAtIndex:path.row];
 //    detailView.topicName = topic;
-//    
+//
 //}
 
 @end
