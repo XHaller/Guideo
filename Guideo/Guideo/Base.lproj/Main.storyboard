@@ -329,7 +329,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <state key="normal" title="Pick one">
+                                <state key="normal" title="Shuffle!">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -348,6 +348,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hqH-JO-aSU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2566.5" y="-1103.5"/>
+        </scene>
+        <!--Pictures-->
+        <scene sceneID="XVz-ct-6ib">
+            <objects>
+                <viewController storyboardIdentifier="PicturesViewController" title="Pictures" id="yjT-Jj-CiR" customClass="PicturesViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MV7-PP-dY8"/>
+                        <viewControllerLayoutGuide type="bottom" id="5dW-Tv-FxW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4xP-gq-W1F">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AoG-gy-ikM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3155" y="-1087"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="ynN-Hm-CBc">

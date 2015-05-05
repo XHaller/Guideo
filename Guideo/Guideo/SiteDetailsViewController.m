@@ -8,6 +8,7 @@
 
 #import "SiteDetailsViewController.h"
 #import "ContentViewController.h"
+#import "PicturesViewController.h"
 
 
 @interface SiteDetailsViewController () <ViewPagerDataSource, ViewPagerDelegate>
@@ -43,6 +44,13 @@
      }
     
     self.numberOfTabs = [tabName count];
+    
+    UIImage *picturesButtonImage = [[UIImage imageNamed:@"pictures.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 30, 0, 0)];
+    UIBarButtonItem *pictureItem = [[UIBarButtonItem new] initWithImage:picturesButtonImage style:UIBarButtonItemStylePlain target:self action:@selector(pictureView)];
+   
+    NSArray *itemsArr = @[pictureItem];
+    self.navigationItem.rightBarButtonItems = itemsArr;
+    self.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
     
     // Do any additional setup after loading the view.
 }
@@ -141,6 +149,13 @@
         default:
             return color;
     }
+}
+
+-(void)pictureView
+{
+    PicturesViewController *pictureController=[self.storyboard instantiateViewControllerWithIdentifier:@"PicturesViewController"];
+    pictureController.hidesBottomBarWhenPushed = YES;
+    [[self navigationController] pushViewController:pictureController animated:YES];
 }
 
 @end

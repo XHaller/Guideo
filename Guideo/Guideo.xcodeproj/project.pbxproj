@@ -29,6 +29,7 @@
 		D71F0A821ADE359B005804EB /* SiteDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D71F0A811ADE359B005804EB /* SiteDetailsViewController.m */; };
 		D735DFD41AF88B2E00C8B468 /* EventDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D735DFD31AF88B2E00C8B468 /* EventDetailsViewController.m */; };
 		D735DFD71AF897C100C8B468 /* SearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = D735DFD61AF897C100C8B468 /* SearchDisplayController.m */; };
+		D73DA94F1AF9875C00BFD608 /* PicturesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D73DA94E1AF9875C00BFD608 /* PicturesViewController.m */; };
 		D76500871AE1F44F002F50AD /* ContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D76500841AE1F44F002F50AD /* ContentViewController.m */; };
 		D76500891AE1F44F002F50AD /* ViewPagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = D76500861AE1F44F002F50AD /* ViewPagerController.m */; };
 		D773AE651AF88472009A31BE /* EventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D773AE641AF88472009A31BE /* EventViewController.m */; };
@@ -89,6 +90,8 @@
 		D735DFD31AF88B2E00C8B468 /* EventDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailsViewController.m; sourceTree = "<group>"; };
 		D735DFD51AF897C100C8B468 /* SearchDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDisplayController.h; sourceTree = "<group>"; };
 		D735DFD61AF897C100C8B468 /* SearchDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDisplayController.m; sourceTree = "<group>"; };
+		D73DA94D1AF9875C00BFD608 /* PicturesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicturesViewController.h; sourceTree = "<group>"; };
+		D73DA94E1AF9875C00BFD608 /* PicturesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicturesViewController.m; sourceTree = "<group>"; };
 		D76500811AE1F43C002F50AD /* ContentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContentViewController.h; sourceTree = "<group>"; };
 		D76500831AE1F43C002F50AD /* ViewPagerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewPagerController.h; sourceTree = "<group>"; };
 		D76500841AE1F44F002F50AD /* ContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentViewController.m; sourceTree = "<group>"; };
@@ -210,6 +213,8 @@
 				D71EBB7A1ADA06BF009D34A4 /* SiteViewController.m */,
 				D71F0A801ADE359B005804EB /* SiteDetailsViewController.h */,
 				D71F0A811ADE359B005804EB /* SiteDetailsViewController.m */,
+				D73DA94D1AF9875C00BFD608 /* PicturesViewController.h */,
+				D73DA94E1AF9875C00BFD608 /* PicturesViewController.m */,
 				D76500811AE1F43C002F50AD /* ContentViewController.h */,
 				D76500841AE1F44F002F50AD /* ContentViewController.m */,
 				D76500831AE1F43C002F50AD /* ViewPagerController.h */,
@@ -349,6 +354,7 @@
 				B6F53C0E1AD97890002E2AD3 /* Guideo.xcdatamodeld in Sources */,
 				B6F53C0B1AD97890002E2AD3 /* AppDelegate.m in Sources */,
 				D735DFD41AF88B2E00C8B468 /* EventDetailsViewController.m in Sources */,
+				D73DA94F1AF9875C00BFD608 /* PicturesViewController.m in Sources */,
 				B6F53C111AD97890002E2AD3 /* ViewController.m in Sources */,
 				D71EBB7B1ADA06BF009D34A4 /* SiteViewController.m in Sources */,
 				B63529651ADB5115003C9877 /* ExploreViewController.m in Sources */,

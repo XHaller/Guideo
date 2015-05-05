@@ -22,13 +22,22 @@ static NSString *const kCellIdentifier = @"ExploreNote";
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     
-    self.title = @"Explore";
+    self.title = @"Pick One for Bonus!";
     
     self.cardViewController = [[MCCardPickerCollectionViewController alloc] init];
     self.cardViewController.delegate = self;
     [self.cardViewController.collectionView registerClass:[ExploreCollectionViewCell class] forCellWithReuseIdentifier:kCellIdentifier];
     
 }
+
+-(void) viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    // check if searchDisplayController still active..
+    if ([self.searchDisplayController isActive]) {
+        [self.searchDisplayController setActive:NO];
+    }
+}
+
 
 - (IBAction)showPicker:(id)sender {
     [self.cardViewController presentInViewController:self];

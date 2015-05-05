@@ -31,7 +31,7 @@ static CGFloat const kPanTriggerExpandDistance = 50.0;
 		self.layout = [[MCCardPickerCollectionViewFlowLayout alloc] init];
 		self.layout.minimumLineSpacing = 10;
 		self.layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-		self.layout.sectionInset = UIEdgeInsetsMake(10, 20, 0, 20);
+		self.layout.sectionInset = UIEdgeInsetsMake(20, 20, 0, 20);
 		self.layout.itemSize = self.cardSize;
 	}
 	return self;
@@ -47,10 +47,10 @@ static CGFloat const kPanTriggerExpandDistance = 50.0;
 	[self.view addSubview:self.headerView];
 
 	UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, CGRectGetWidth(self.view.frame), 25)];
-	titleLabel.text = @"Pick One!";
-	titleLabel.textAlignment = NSTextAlignmentCenter;
-	titleLabel.textColor = [UIColor whiteColor];
-	[self.headerView addSubview:titleLabel];
+	//titleLabel.text = @"Pick One!";
+	//titleLabel.textAlignment = NSTextAlignmentCenter;
+	//titleLabel.textColor = [UIColor whiteColor];
+	//[self.headerView addSubview:titleLabel];
 
 	self.collectionView = [[UICollectionView alloc] initWithFrame:self.collectionViewFrame collectionViewLayout:self.layout];
 	self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
@@ -205,6 +205,9 @@ static CGFloat const kPanTriggerExpandDistance = 50.0;
 
 - (void)fadeOut
 {
+    [self.view removeFromSuperview];
+    [self removeFromParentViewController];
+    [self restoreLayout:NO];
 	[UIView transitionWithView:self.view duration:0.25 options:UIViewAnimationOptionCurveEaseOut animations:^{
 		self.collectionView.frame = CGRectOffset(self.collectionView.frame, 0, CGRectGetHeight(self.view.frame));
 		self.headerView.alpha = 0;
