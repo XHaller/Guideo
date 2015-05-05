@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "NoteDetailViewController.h"
+#import "NoteDetailCollectionViewCell.h"
 
-@interface NoteDetailViewController ()
+@interface NoteDetailViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate>
 
 @end
 
