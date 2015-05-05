@@ -25,19 +25,19 @@
 {
     [super viewDidLoad];
     
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
     
-    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    self.title = @"Events";
     
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0]];
+   // [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     
-    UIImage *navBackgroundImage = [UIImage imageNamed:@"navibar.png"];
-    [[UINavigationBar appearance] setBackgroundImage:navBackgroundImage forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:176/255.0 green:215/255.0 blue:255/255.0 alpha:1.0]];
+    
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0], UITextAttributeTextColor,[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1.0],UITextAttributeTextShadowColor,[NSValue valueWithUIOffset:UIOffsetMake(0, 1)],UITextAttributeTextShadowOffset,[UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:21.0], UITextAttributeFont, nil]];
     
     UIImage *backButtonImage = [[UIImage imageNamed:@"back.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 30, 0, 0)];
     [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButtonImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(NSIntegerMin, NSIntegerMin) forBarMetrics:UIBarMetricsDefault];
-    
     
     events = [[NSMutableArray alloc] init];
     searchResults = [[NSMutableArray alloc] init];
@@ -79,7 +79,7 @@
     
     self.searchDisplayController.searchBar.barTintColor = [UIColor colorWithRed:176/255.0 green:215/255.0 blue:255/255.0 alpha:1.0];
     
-    self.searchDisplayController.searchBar.tintColor = [UIColor blueColor];
+    self.searchDisplayController.searchBar.tintColor = [UIColor whiteColor];
     for (UIView* subview in [[self.searchDisplayController.searchBar.subviews lastObject] subviews]) {
         if ([subview isKindOfClass:[UITextField class]]) {
             UITextField *textField = (UITextField*)subview;
@@ -94,7 +94,7 @@
 
 - (void) viewWillAppear:(BOOL)animated
 {
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
     [super viewWillAppear:animated];
 }
 

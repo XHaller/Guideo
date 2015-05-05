@@ -20,7 +20,10 @@ static NSString *const kCellIdentifier = @"ExploreNote";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    
+    self.title = @"Explore";
+    
     self.cardViewController = [[MCCardPickerCollectionViewController alloc] init];
     self.cardViewController.delegate = self;
     [self.cardViewController.collectionView registerClass:[ExploreCollectionViewCell class] forCellWithReuseIdentifier:kCellIdentifier];

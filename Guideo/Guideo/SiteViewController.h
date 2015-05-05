@@ -13,4 +13,5 @@
 @property NSMutableArray *sites;
 @property NSMutableArray * searchResults;
 
+
 @end

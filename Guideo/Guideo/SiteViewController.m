@@ -8,6 +8,7 @@
 
 #import "SiteViewController.h"
 #import "SiteDetailsViewController.h"
+#import "ExploreViewController.h"
 #import "ExpandHeader.h"
 #import "tableData.h"
 
@@ -28,20 +29,33 @@
 {
     [super viewDidLoad];
     
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
     
-    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    self.title = @"Sites";
     
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0/255.0 green:215/255.0 blue:255/255.0 alpha:1.0]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:176/255.0 green:215/255.0 blue:255/255.0 alpha:1.0]];
+   
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0], UITextAttributeTextColor,[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1.0],UITextAttributeTextShadowColor,[NSValue valueWithUIOffset:UIOffsetMake(0, 1)],UITextAttributeTextShadowOffset,[UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:21.0], UITextAttributeFont, nil]];
     
-    UIImage *navBackgroundImage = [UIImage imageNamed:@"navibar.png"];
-    [[UINavigationBar appearance] setBackgroundImage:navBackgroundImage forBarMetrics:UIBarMetricsDefault];
     
     UIImage *backButtonImage = [[UIImage imageNamed:@"back.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 30, 0, 0)];
     [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButtonImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(NSIntegerMin, NSIntegerMin) forBarMetrics:UIBarMetricsDefault];
 
+    UIImage *exploreButtonImage = [[UIImage imageNamed:@"explore.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 30, 0, 0)];
+    UIBarButtonItem *exploreItem = [[UIBarButtonItem new] initWithImage:exploreButtonImage style:UIBarButtonItemStylePlain target:self action:@selector(exploreView)];
+    
+    UIImage *mapButtonImage = [[UIImage imageNamed:@"map.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 30, 0, 0)];
+    UIBarButtonItem *mapItem = [[UIBarButtonItem new] initWithImage:mapButtonImage style:UIBarButtonItemStylePlain target:self action: nil];
+    NSArray *itemsArr1 = @[exploreItem];
+    NSArray *itemsArr2 = @[mapItem];
+    self.navigationItem.leftBarButtonItems = itemsArr1;
+    self.navigationItem.rightBarButtonItems = itemsArr2;
+    self.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
+    self.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
+    
+    //[[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    
     
     sites = [[NSMutableArray alloc] init];
     searchResults = [[NSMutableArray alloc] init];
@@ -89,7 +103,7 @@
     
     self.searchDisplayController.searchBar.barTintColor = [UIColor colorWithRed:176/255.0 green:215/255.0 blue:255/255.0 alpha:1.0];
     
-    self.searchDisplayController.searchBar.tintColor = [UIColor blueColor];
+    self.searchDisplayController.searchBar.tintColor = [UIColor whiteColor];
     for (UIView* subview in [[self.searchDisplayController.searchBar.subviews lastObject] subviews]) {
         if ([subview isKindOfClass:[UITextField class]]) {
             UITextField *textField = (UITextField*)subview;
@@ -102,7 +116,7 @@
 
 - (void) viewWillAppear:(BOOL)animated
 {
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
     [super viewWillAppear:animated];
 }
 
@@ -208,6 +222,13 @@
 {
     NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"tableTopic contains[c] %@", searchText];
     searchResults = [sites filteredArrayUsingPredicate:resultPredicate];
+}
+
+-(void)exploreView
+{
+    ExploreViewController *exploreController=[self.storyboard instantiateViewControllerWithIdentifier:@"ExploreViewController"];
+    exploreController.hidesBottomBarWhenPushed = YES;
+    [[self navigationController] pushViewController:exploreController animated:YES];
 }
 
 //- (void)tableView:(UITableView *)tableView prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
