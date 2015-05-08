@@ -1,11 +1,10 @@
-
 USE e6998;
 
 DROP TABLE Sites;
 CREATE TABLE Sites(
-	sid SMALLINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    sid SMALLINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     city NVARCHAR(20) NOT NULL,
-	name NVARCHAR(50) NOT NULL,
+    name NVARCHAR(50) NOT NULL,
     zipcode INTEGER NOT NULL,
 	address NVARCHAR(100) NOT NULL,
     phone NVARCHAR(20),
@@ -16,6 +15,7 @@ CREATE TABLE Sites(
     has_fee NVARCHAR(4),
     activity NVARCHAR(1000),
     description NVARCHAR(1000),
+    #add photourl...
 	UNIQUE (name)
 ) ENGINE = InnoDB  DEFAULT CHARSET = UTF8;
 
@@ -37,6 +37,7 @@ CREATE TABLE Events(
     open_time NVARCHAR(50) NOT NULL,
     has_fee NVARCHAR(4),
     description NVARCHAR(1000),
+    #add photourl...
 	UNIQUE (name)
 ) ENGINE = InnoDB  DEFAULT CHARSET = UTF8;
 
@@ -50,10 +51,14 @@ CREATE TABLE Users(
 	email NVARCHAR(50) NOT NULL,
     description VARCHAR(100),
     preference VARCHAR(100),
+    #add photourl...
     UNIQUE (name),
     UNIQUE (email)
 ) ENGINE = InnoDB  DEFAULT CHARSET = UTF8;
 
+#CREATE TABLE Contents()    
+    #nid->several contents
+    #add photourl...
 CREATE TABLE Notes(
 	nid SMALLINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	title NVARCHAR(50) NOT NULL,
@@ -62,5 +67,6 @@ CREATE TABLE Notes(
     clicked INTEGER NOT NULL,
     uid SMALLINT NOT NULL,
     sid SMALLINT NOT NULL,
+    #type: public or private
 	FOREIGN KEY (uid) REFERENCES Users (uid) ON DELETE NO ACTION
 ) ENGINE = InnoDB  DEFAULT CHARSET = UTF8;

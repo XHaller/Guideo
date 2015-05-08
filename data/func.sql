@@ -7,6 +7,7 @@ where sid = 1;
 select * from Sites
 where name = 'The Museum of Modern Art (MoMA)';
 
+#minimize range using zipcode
 set @zip = 10020;
 select * from Sites
 where abs(zipcode - @zip) < 20;
@@ -16,7 +17,18 @@ where abs(zipcode - @zip) < 20;
 #queens: 110,113,114,116
 #staten island: 103
 
-#notes
+#recommend sites, shorter distances first
+set @curlong = 10;
+set @curla = 10;
+selct * from Sites
+order by (longtitude-curlong)*(longtitude-curlong) + (latitude-curla)*(latitude-curla)
+
+#recommend sites, higher rank
+selct * from Sites
+order by rank;
+
+
+#notes: 
 select * from Notes;
 
 select * from Notes where uid = 1;
@@ -56,4 +68,9 @@ set @zip = 10020;
 select * from Events
 where start_date > '20150430' and abs(zipcode - @zip) < 20;
 
+#recommend events, shorter distances first
+set @curlong = 10;
+set @curla = 10;
+selct * from Events
+order by (longtitude-curlong)*(longtitude-curlong) + (latitude-curla)*(latitude-curla)
 
