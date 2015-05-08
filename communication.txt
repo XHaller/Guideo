@@ -1,0 +1,80 @@
+data information
+1.	User Information
+
+Sign up
+request: user name (primary key), password, email address (unique)
+process: check no same username and email address in the database
+response: success or not
+
+Sign in
+request: user name, password
+process: check if the name and password matched an item in the database
+response: success or not
+
+User Page:
+request: user name
+process: get routes, notes from database
+response: routing list, note list
+
+get_user_related_notes(user_id)
+return {note_id_1, note_id_2, }...
+
+2.	Site Information
+
+Site Page:
+request: current position of user
+process: get sites within a certain distance and rank them based on distance and time
+response: site list with site name, basic introduction(no more than three lines), title image
+
+Site Detail Page:
+request: site name
+process: get one site detailed information 
+response: the site with detailed information(address, coordinate, open time, close time, recommended trip time, price, popularity, any introductions, images)
+
+Routing Page:
+request: list of site names, routing indicator(whether consider open time or not)
+process: calculate the trip order of the route
+response: new list of sites with site name, coordinate, open and close time, recommended trip time and popularity
+
+3.	Explore Information
+
+Explore Page:
+request: current position of user
+process: get three random sites within a certain distance
+response: site list with site name, basic introduction(no more than three lines), title image, random bonus points
+
+4.	Event Information
+
+Event Page:
+request: current position of user
+process: get event information within a certain distance and rank them based on distance and time
+response: event list with event name, time, basic introduction(no more than three lines), title image
+
+Event Detail Page:
+request: event name
+process: get one event detailed information
+response: the event with detailed information(address, coordinate, start time, end time, price, any introductions, images)
+
+5.	Note Information(a note contains of many single_notes)
+
+get_popular_notes(longitude, latitude)
+return {note_id, note_name, note_image}
+
+
+get_note(note_id)
+return {note_id, note_name, note_image, related_single_notes_id{ single_note_1, ....}}
+
+get_single_note(single_note_id)
+return {single_note_id, single_note_content, single_note_image}
+
+
+
+6.	Add Information
+
+add_single_note(note_id, single_note_content, single_note_image = null)
+return true or false(if successfully add the single note)
+
+add_note(note_id, user_id)
+return true or false(if successfully ad the notes)
+
+
