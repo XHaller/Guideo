@@ -1,7 +1,3 @@
-# hostname: e6998.c9qyq3xutthv.us-west-2.rds.amazonaws.com
-# port: 3306
-# username: xy2251
-# password: 19921110
 
 USE e6998;
 
