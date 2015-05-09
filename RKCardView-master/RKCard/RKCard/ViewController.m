@@ -14,6 +14,8 @@
 
 @interface ViewController ()
 
+@property RKCardView* cardView;
+
 @end
 
 @implementation ViewController
@@ -23,15 +25,15 @@
     self.view.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1];
     
     
-    RKCardView* cardView= [[RKCardView alloc]initWithFrame:CGRectMake(BUFFERX, BUFFERY, self.view.frame.size.width-2*BUFFERX, self.view.frame.size.height-2*BUFFERY)];
+    _cardView = [[RKCardView alloc]initWithFrame:CGRectMake(BUFFERX, BUFFERY, self.view.frame.size.width-2*BUFFERX, self.view.frame.size.height-2*BUFFERY)];
     
-    cardView.coverImageView.image = [UIImage imageNamed:@"exampleCover"];
-    cardView.profileImageView.image = [UIImage imageNamed:@"exampleProfile"];
-    cardView.titleLabel.text = @"Richard Kim";
-    cardView.delegate = self;
+    _cardView.coverImageView.image = [UIImage imageNamed:@"exampleCover"];
+    _cardView.profileImageView.image = [UIImage imageNamed:@"exampleProfile"];
+    _cardView.titleLabel.text = @"Richard Kim";
+    _cardView.delegate = self;
 //    [cardView addBlur];
 //    [cardView addShadow];
-    [self.view addSubview:cardView];
+    [self.view addSubview:_cardView];
 }
 
 - (void)didReceiveMemoryWarning {
