@@ -9,6 +9,7 @@
 #import "SiteViewController.h"
 #import "SiteDetailsViewController.h"
 #import "ExploreViewController.h"
+#import "MapViewController.h"
 #import "ExpandHeader.h"
 #import "tableData.h"
 
@@ -46,7 +47,7 @@
     UIBarButtonItem *exploreItem = [[UIBarButtonItem new] initWithImage:exploreButtonImage style:UIBarButtonItemStylePlain target:self action:@selector(exploreView)];
     
     UIImage *mapButtonImage = [[UIImage imageNamed:@"map.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 30, 0, 0)];
-    UIBarButtonItem *mapItem = [[UIBarButtonItem new] initWithImage:mapButtonImage style:UIBarButtonItemStylePlain target:self action: nil];
+    UIBarButtonItem *mapItem = [[UIBarButtonItem new] initWithImage:mapButtonImage style:UIBarButtonItemStylePlain target:self action:@selector(mapView)];
     NSArray *itemsArr1 = @[exploreItem];
     NSArray *itemsArr2 = @[mapItem];
     self.navigationItem.leftBarButtonItems = itemsArr1;
@@ -229,6 +230,13 @@
     ExploreViewController *exploreController=[self.storyboard instantiateViewControllerWithIdentifier:@"ExploreViewController"];
     exploreController.hidesBottomBarWhenPushed = YES;
     [[self navigationController] pushViewController:exploreController animated:YES];
+}
+
+-(void)mapView
+{
+    MapViewController *mapController=[self.storyboard instantiateViewControllerWithIdentifier:@"MapViewController"];
+    mapController.hidesBottomBarWhenPushed = YES;
+    [[self navigationController] pushViewController:mapController animated:YES];
 }
 
 //- (void)tableView:(UITableView *)tableView prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
