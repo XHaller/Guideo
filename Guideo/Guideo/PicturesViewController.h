@@ -19,5 +19,6 @@
 @property (nonatomic, strong) NSArray *images;
 @property (nonatomic, strong) NSMutableArray *imageViews;
 @property (nonatomic, strong) id <NSGAlleryDelegate> delegate;
+@property(strong, nonatomic) NSString *topicName;
 
 @end

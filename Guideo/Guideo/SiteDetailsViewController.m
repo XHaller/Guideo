@@ -154,6 +154,7 @@
 -(void)pictureView
 {
     PicturesViewController *pictureController=[self.storyboard instantiateViewControllerWithIdentifier:@"PicturesViewController"];
+    pictureController.topicName = self.topicName;
     pictureController.hidesBottomBarWhenPushed = YES;
     [[self navigationController] pushViewController:pictureController animated:YES];
 }

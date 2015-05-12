@@ -26,21 +26,28 @@ static CGSize CGSizeResizeToHeight(CGSize size, CGFloat height) {
 @end
 
 @implementation PicturesViewController
+{
+    int numOfImgs;
+}
 
+@synthesize topicName;
 
 - (void)loadView {
     
     [super loadView];
+    
+    numOfImgs = 15;
     NSMutableArray *imgs = [NSMutableArray array];
-    for (int i = 0; i <= 15; i++) {
+    for (int i = 0; i <= numOfImgs; i++) {
         NSString *fileName = [NSString stringWithFormat:@"%02i.jpg", i];
         [imgs addObject:[UIImage imageNamed:fileName]];
     }
-    for (int i = 0; i <= 15; i++) {
-        [imgs exchangeObjectAtIndex:i withObjectAtIndex:arc4random_uniform(15)];
+    for (int i = 0; i <= numOfImgs; i++) {
+        [imgs exchangeObjectAtIndex:i withObjectAtIndex:arc4random_uniform(numOfImgs)];
     }
 
     self.images = imgs;
+    self.title = topicName;
 
     self.contentView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     self.contentView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;

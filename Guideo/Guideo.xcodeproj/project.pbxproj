@@ -51,6 +51,7 @@
 		D7CF4C991B0194FC00DA0217 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7CF4C981B0194FC00DA0217 /* OpenGLES.framework */; };
 		D7CF4C9B1B01950600DA0217 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7CF4C9A1B01950600DA0217 /* QuartzCore.framework */; };
 		D7CF4C9D1B01950E00DA0217 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7CF4C9C1B01950E00DA0217 /* SystemConfiguration.framework */; };
+		D7CF4C9F1B019E8000DA0217 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7CF4C9E1B019E8000DA0217 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,6 +138,7 @@
 		D7CF4C981B0194FC00DA0217 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		D7CF4C9A1B01950600DA0217 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D7CF4C9C1B01950E00DA0217 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		D7CF4C9E1B019E8000DA0217 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +146,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7CF4C9F1B019E8000DA0217 /* CoreLocation.framework in Frameworks */,
 				D7CF4C9D1B01950E00DA0217 /* SystemConfiguration.framework in Frameworks */,
 				D7CF4C9B1B01950600DA0217 /* QuartzCore.framework in Frameworks */,
 				D7CF4C991B0194FC00DA0217 /* OpenGLES.framework in Frameworks */,
@@ -172,6 +175,7 @@
 		B6F53BF91AD97890002E2AD3 = {
 			isa = PBXGroup;
 			children = (
+				D7CF4C9E1B019E8000DA0217 /* CoreLocation.framework */,
 				D7CF4C9C1B01950E00DA0217 /* SystemConfiguration.framework */,
 				D7CF4C9A1B01950600DA0217 /* QuartzCore.framework */,
 				D7CF4C981B0194FC00DA0217 /* OpenGLES.framework */,
