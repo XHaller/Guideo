@@ -299,6 +299,14 @@
                     <view key="view" contentMode="scaleToFill" id="oHI-BJ-d4z">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rGJ-xC-9jk">
+                                <rect key="frame" x="0.0" y="20" width="375" height="598"/>
+                                <connections>
+                                    <segue destination="c7F-jg-eb9" kind="embed" id="uM4-6I-B74"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="add" id="Kye-fQ-j3x"/>
@@ -563,6 +571,57 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L4m-M8-LhP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="201.5" y="1743.5"/>
+        </scene>
+        <!--Add Note View Controller-->
+        <scene sceneID="gdE-1c-5IG">
+            <objects>
+                <viewController id="c7F-jg-eb9" customClass="AddNoteViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="q0t-Pu-qNp"/>
+                        <viewControllerLayoutGuide type="bottom" id="R2f-7u-Rom"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Cao-Ap-bav">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="598"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9fV-oE-hh5">
+                                <rect key="frame" x="240" y="20" width="119" height="50"/>
+                                <color key="backgroundColor" red="0.22352942819999999" green="0.7254902124" blue="0.93333339689999995" alpha="1" colorSpace="deviceRGB"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
+                                <state key="normal" title="Add Picture">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onShowImagePicker:" destination="c7F-jg-eb9" eventType="touchUpInside" id="thm-0U-cJU"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2HY-Ld-E6H">
+                                <rect key="frame" x="240" y="78" width="119" height="142"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
+                            <textView multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Type your travel note here." translatesAutoresizingMaskIntoConstraints="NO" id="TMk-r7-G6w">
+                                <rect key="frame" x="16" y="8" width="216" height="212"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QRY-kP-eYU">
+                                <rect key="frame" x="140" y="251" width="95" height="30"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="iv1" destination="2HY-Ld-E6H" id="CiE-bY-2Y4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="17p-yo-EYa" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1479.5" y="590"/>
         </scene>
     </scenes>
     <resources>

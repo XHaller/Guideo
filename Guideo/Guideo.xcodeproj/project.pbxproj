@@ -12,6 +12,14 @@
 		B635295F1ADB508D003C9877 /* ExploreCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B635295E1ADB508D003C9877 /* ExploreCollectionViewCell.m */; };
 		B63529621ADB50BD003C9877 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = B63529611ADB50BD003C9877 /* UIImage+ImageEffects.m */; };
 		B63529651ADB5115003C9877 /* ExploreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63529641ADB5115003C9877 /* ExploreViewController.m */; };
+		B644EDEF1B02A0420071B857 /* AssetHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B644EDEE1B02A0420071B857 /* AssetHelper.m */; };
+		B644EDF91B02A1B70071B857 /* DoAlbumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B644EDF11B02A1B70071B857 /* DoAlbumCell.m */; };
+		B644EDFA1B02A1B70071B857 /* DoAlbumCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B644EDF21B02A1B70071B857 /* DoAlbumCell.xib */; };
+		B644EDFB1B02A1B70071B857 /* DoImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = B644EDF41B02A1B70071B857 /* DoImagePickerController.m */; };
+		B644EDFC1B02A1B70071B857 /* DoImagePickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B644EDF51B02A1B70071B857 /* DoImagePickerController.xib */; };
+		B644EDFD1B02A1B70071B857 /* DoPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B644EDF71B02A1B70071B857 /* DoPhotoCell.m */; };
+		B644EDFE1B02A1B70071B857 /* DoPhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B644EDF81B02A1B70071B857 /* DoPhotoCell.xib */; };
+		B644EE011B02A2790071B857 /* AddNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B644EE001B02A2790071B857 /* AddNoteViewController.m */; };
 		B67F6B441AF97A1D002DAE08 /* NoteDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B67F6B431AF97A1D002DAE08 /* NoteDetailViewController.m */; };
 		B67F6B471AF97B86002DAE08 /* NoteDetailCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B67F6B461AF97B86002DAE08 /* NoteDetailCollectionViewCell.m */; };
 		B6A9059A1AD9B379000304F0 /* MJCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A905971AD9B379000304F0 /* MJCollectionViewCell.m */; };
@@ -60,6 +68,19 @@
 		B63529611ADB50BD003C9877 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		B63529631ADB510A003C9877 /* ExploreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExploreViewController.h; sourceTree = "<group>"; };
 		B63529641ADB5115003C9877 /* ExploreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExploreViewController.m; sourceTree = "<group>"; };
+		B644EDED1B029FD20071B857 /* AssetHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssetHelper.h; sourceTree = "<group>"; };
+		B644EDEE1B02A0420071B857 /* AssetHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetHelper.m; sourceTree = "<group>"; };
+		B644EDF01B02A1B70071B857 /* DoAlbumCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoAlbumCell.h; sourceTree = "<group>"; };
+		B644EDF11B02A1B70071B857 /* DoAlbumCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoAlbumCell.m; sourceTree = "<group>"; };
+		B644EDF21B02A1B70071B857 /* DoAlbumCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DoAlbumCell.xib; sourceTree = "<group>"; };
+		B644EDF31B02A1B70071B857 /* DoImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoImagePickerController.h; sourceTree = "<group>"; };
+		B644EDF41B02A1B70071B857 /* DoImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoImagePickerController.m; sourceTree = "<group>"; };
+		B644EDF51B02A1B70071B857 /* DoImagePickerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DoImagePickerController.xib; sourceTree = "<group>"; };
+		B644EDF61B02A1B70071B857 /* DoPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoPhotoCell.h; sourceTree = "<group>"; };
+		B644EDF71B02A1B70071B857 /* DoPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoPhotoCell.m; sourceTree = "<group>"; };
+		B644EDF81B02A1B70071B857 /* DoPhotoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DoPhotoCell.xib; sourceTree = "<group>"; };
+		B644EDFF1B02A26C0071B857 /* AddNoteViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddNoteViewController.h; sourceTree = "<group>"; };
+		B644EE001B02A2790071B857 /* AddNoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNoteViewController.m; sourceTree = "<group>"; };
 		B67F6B421AF97A0F002DAE08 /* NoteDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteDetailViewController.h; sourceTree = "<group>"; };
 		B67F6B431AF97A1D002DAE08 /* NoteDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteDetailViewController.m; sourceTree = "<group>"; };
 		B67F6B451AF97B73002DAE08 /* NoteDetailCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteDetailCollectionViewCell.h; sourceTree = "<group>"; };
@@ -157,6 +178,17 @@
 				B6F53C171AD97890002E2AD3 /* LaunchScreen.xib */,
 				B6F53C0C1AD97890002E2AD3 /* Guideo.xcdatamodeld */,
 				B6F53C051AD97890002E2AD3 /* Supporting Files */,
+				B644EDED1B029FD20071B857 /* AssetHelper.h */,
+				B644EDEE1B02A0420071B857 /* AssetHelper.m */,
+				B644EDF01B02A1B70071B857 /* DoAlbumCell.h */,
+				B644EDF11B02A1B70071B857 /* DoAlbumCell.m */,
+				B644EDF21B02A1B70071B857 /* DoAlbumCell.xib */,
+				B644EDF31B02A1B70071B857 /* DoImagePickerController.h */,
+				B644EDF41B02A1B70071B857 /* DoImagePickerController.m */,
+				B644EDF51B02A1B70071B857 /* DoImagePickerController.xib */,
+				B644EDF61B02A1B70071B857 /* DoPhotoCell.h */,
+				B644EDF71B02A1B70071B857 /* DoPhotoCell.m */,
+				B644EDF81B02A1B70071B857 /* DoPhotoCell.xib */,
 			);
 			path = Guideo;
 			sourceTree = "<group>";
@@ -243,6 +275,8 @@
 				B67F6B461AF97B86002DAE08 /* NoteDetailCollectionViewCell.m */,
 				B6FA41A31AFEC301009DCC77 /* UserViewController.h */,
 				B6FA41A41AFEC330009DCC77 /* UserViewController.m */,
+				B644EDFF1B02A26C0071B857 /* AddNoteViewController.h */,
+				B644EE001B02A2790071B857 /* AddNoteViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -336,7 +370,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B644EDFC1B02A1B70071B857 /* DoImagePickerController.xib in Resources */,
+				B644EDFA1B02A1B70071B857 /* DoAlbumCell.xib in Resources */,
 				B6F53C141AD97890002E2AD3 /* Main.storyboard in Resources */,
+				B644EDFE1B02A1B70071B857 /* DoPhotoCell.xib in Resources */,
 				B6F53C191AD97890002E2AD3 /* LaunchScreen.xib in Resources */,
 				B6F53C161AD97890002E2AD3 /* Images.xcassets in Resources */,
 			);
@@ -362,9 +399,12 @@
 				B63529621ADB50BD003C9877 /* UIImage+ImageEffects.m in Sources */,
 				B67F6B471AF97B86002DAE08 /* NoteDetailCollectionViewCell.m in Sources */,
 				B6F53C0E1AD97890002E2AD3 /* Guideo.xcdatamodeld in Sources */,
+				B644EE011B02A2790071B857 /* AddNoteViewController.m in Sources */,
 				B6F53C0B1AD97890002E2AD3 /* AppDelegate.m in Sources */,
 				D735DFD41AF88B2E00C8B468 /* EventDetailsViewController.m in Sources */,
+				B644EDF91B02A1B70071B857 /* DoAlbumCell.m in Sources */,
 				D73DA94F1AF9875C00BFD608 /* PicturesViewController.m in Sources */,
+				B644EDEF1B02A0420071B857 /* AssetHelper.m in Sources */,
 				B6F53C111AD97890002E2AD3 /* ViewController.m in Sources */,
 				D71EBB7B1ADA06BF009D34A4 /* SiteViewController.m in Sources */,
 				B6FA41A51AFEC330009DCC77 /* UserViewController.m in Sources */,
@@ -375,8 +415,10 @@
 				D735DFD71AF897C100C8B468 /* SearchDisplayController.m in Sources */,
 				D71F0A821ADE359B005804EB /* SiteDetailsViewController.m in Sources */,
 				D773AE651AF88472009A31BE /* EventViewController.m in Sources */,
+				B644EDFD1B02A1B70071B857 /* DoPhotoCell.m in Sources */,
 				B6A9059A1AD9B379000304F0 /* MJCollectionViewCell.m in Sources */,
 				B635295F1ADB508D003C9877 /* ExploreCollectionViewCell.m in Sources */,
+				B644EDFB1B02A1B70071B857 /* DoImagePickerController.m in Sources */,
 				D78BE67D1AD996F60004EBC6 /* HomeViewController.m in Sources */,
 				B67F6B441AF97A1D002DAE08 /* NoteDetailViewController.m in Sources */,
 				B6F53C081AD97890002E2AD3 /* main.m in Sources */,
