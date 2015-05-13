@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ndY-ZH-ZVi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ndY-ZH-ZVi">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
         <!--Site-->
@@ -317,6 +317,14 @@
                     <view key="view" contentMode="scaleToFill" id="oHI-BJ-d4z">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hEm-ce-GPM">
+                                <rect key="frame" x="0.0" y="20" width="375" height="590"/>
+                                <connections>
+                                    <segue destination="N3E-Vr-AKA" kind="embed" id="ZST-qZ-rWM"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="add" id="Kye-fQ-j3x"/>
@@ -324,7 +332,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pC5-Ew-UUB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="931.5" y="589.5"/>
+            <point key="canvasLocation" x="931.5" y="608.5"/>
         </scene>
         <!--Explore View Controller-->
         <scene sceneID="jIL-8p-dxC">
@@ -581,6 +589,56 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L4m-M8-LhP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="201.5" y="1743.5"/>
+        </scene>
+        <!--Add Note View Controller-->
+        <scene sceneID="L8K-t4-RT7">
+            <objects>
+                <viewController id="N3E-Vr-AKA" customClass="AddNoteViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bJR-s2-JV8"/>
+                        <viewControllerLayoutGuide type="bottom" id="CxC-y9-wDt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4sO-eK-q6I">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="590"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WzE-SM-b61">
+                                <rect key="frame" x="236" y="20" width="123" height="160"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Text For Your piece of notes." translatesAutoresizingMaskIntoConstraints="NO" id="Fdv-We-Zw7">
+                                <rect key="frame" x="16" y="20" width="212" height="213"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RKM-RH-2Nm">
+                                <rect key="frame" x="164" y="280" width="49" height="30"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l9v-bR-DQr">
+                                <rect key="frame" x="236" y="188" width="123" height="45"/>
+                                <color key="backgroundColor" red="0.22352942819999999" green="0.7254902124" blue="0.93333339689999995" alpha="1" colorSpace="deviceRGB"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
+                                <state key="normal" title="Add Picture">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onShowImagePicker:" destination="N3E-Vr-AKA" eventType="touchUpInside" id="frb-2B-Wbl"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="iv1" destination="WzE-SM-b61" id="IQk-Zo-ESi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="R4V-YI-Jgc" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1470.5" y="580"/>
         </scene>
     </scenes>
     <resources>

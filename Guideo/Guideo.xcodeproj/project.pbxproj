@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B609A3ED1B02D61000B48DA2 /* AddNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B609A3EC1B02D61000B48DA2 /* AddNoteViewController.m */; };
+		B609A3FA1B02D62E00B48DA2 /* AssetHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B609A3F01B02D62E00B48DA2 /* AssetHelper.m */; };
+		B609A3FB1B02D62E00B48DA2 /* DoAlbumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B609A3F21B02D62E00B48DA2 /* DoAlbumCell.m */; };
+		B609A3FC1B02D62E00B48DA2 /* DoAlbumCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B609A3F31B02D62E00B48DA2 /* DoAlbumCell.xib */; };
+		B609A3FD1B02D62E00B48DA2 /* DoImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = B609A3F51B02D62E00B48DA2 /* DoImagePickerController.m */; };
+		B609A3FE1B02D62E00B48DA2 /* DoImagePickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B609A3F61B02D62E00B48DA2 /* DoImagePickerController.xib */; };
+		B609A3FF1B02D62E00B48DA2 /* DoPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B609A3F81B02D62E00B48DA2 /* DoPhotoCell.m */; };
+		B609A4001B02D62E00B48DA2 /* DoPhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B609A3F91B02D62E00B48DA2 /* DoPhotoCell.xib */; };
 		B635295B1ADB5051003C9877 /* MCCardPickerCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63529581ADB5051003C9877 /* MCCardPickerCollectionViewController.m */; };
 		B635295C1ADB5051003C9877 /* MCCardPickerCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = B635295A1ADB5051003C9877 /* MCCardPickerCollectionViewFlowLayout.m */; };
 		B635295F1ADB508D003C9877 /* ExploreCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B635295E1ADB508D003C9877 /* ExploreCollectionViewCell.m */; };
@@ -65,6 +73,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B609A3EB1B02D5FD00B48DA2 /* AddNoteViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddNoteViewController.h; sourceTree = "<group>"; };
+		B609A3EC1B02D61000B48DA2 /* AddNoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNoteViewController.m; sourceTree = "<group>"; };
+		B609A3EF1B02D62E00B48DA2 /* AssetHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetHelper.h; sourceTree = "<group>"; };
+		B609A3F01B02D62E00B48DA2 /* AssetHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetHelper.m; sourceTree = "<group>"; };
+		B609A3F11B02D62E00B48DA2 /* DoAlbumCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoAlbumCell.h; sourceTree = "<group>"; };
+		B609A3F21B02D62E00B48DA2 /* DoAlbumCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoAlbumCell.m; sourceTree = "<group>"; };
+		B609A3F31B02D62E00B48DA2 /* DoAlbumCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DoAlbumCell.xib; sourceTree = "<group>"; };
+		B609A3F41B02D62E00B48DA2 /* DoImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoImagePickerController.h; sourceTree = "<group>"; };
+		B609A3F51B02D62E00B48DA2 /* DoImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoImagePickerController.m; sourceTree = "<group>"; };
+		B609A3F61B02D62E00B48DA2 /* DoImagePickerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DoImagePickerController.xib; sourceTree = "<group>"; };
+		B609A3F71B02D62E00B48DA2 /* DoPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoPhotoCell.h; sourceTree = "<group>"; };
+		B609A3F81B02D62E00B48DA2 /* DoPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoPhotoCell.m; sourceTree = "<group>"; };
+		B609A3F91B02D62E00B48DA2 /* DoPhotoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DoPhotoCell.xib; sourceTree = "<group>"; };
 		B63529571ADB5051003C9877 /* MCCardPickerCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCCardPickerCollectionViewController.h; sourceTree = "<group>"; };
 		B63529581ADB5051003C9877 /* MCCardPickerCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCCardPickerCollectionViewController.m; sourceTree = "<group>"; };
 		B63529591ADB5051003C9877 /* MCCardPickerCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCCardPickerCollectionViewFlowLayout.h; sourceTree = "<group>"; };
@@ -172,6 +193,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B609A3EE1B02D62E00B48DA2 /* DoImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				B609A3EF1B02D62E00B48DA2 /* AssetHelper.h */,
+				B609A3F01B02D62E00B48DA2 /* AssetHelper.m */,
+				B609A3F11B02D62E00B48DA2 /* DoAlbumCell.h */,
+				B609A3F21B02D62E00B48DA2 /* DoAlbumCell.m */,
+				B609A3F31B02D62E00B48DA2 /* DoAlbumCell.xib */,
+				B609A3F41B02D62E00B48DA2 /* DoImagePickerController.h */,
+				B609A3F51B02D62E00B48DA2 /* DoImagePickerController.m */,
+				B609A3F61B02D62E00B48DA2 /* DoImagePickerController.xib */,
+				B609A3F71B02D62E00B48DA2 /* DoPhotoCell.h */,
+				B609A3F81B02D62E00B48DA2 /* DoPhotoCell.m */,
+				B609A3F91B02D62E00B48DA2 /* DoPhotoCell.xib */,
+			);
+			path = DoImagePicker;
+			sourceTree = "<group>";
+		};
 		B6F53BF91AD97890002E2AD3 = {
 			isa = PBXGroup;
 			children = (
@@ -207,6 +246,7 @@
 		B6F53C041AD97890002E2AD3 /* Guideo */ = {
 			isa = PBXGroup;
 			children = (
+				B609A3EE1B02D62E00B48DA2 /* DoImagePicker */,
 				D79CF2EA1ADDE346000EB15C /* ViewControllers */,
 				D71F0A601ADDF780005804EB /* Delegate */,
 				D79CF2EC1ADDE3BA000EB15C /* DataStructure */,
@@ -303,6 +343,8 @@
 				B67F6B461AF97B86002DAE08 /* NoteDetailCollectionViewCell.m */,
 				B6FA41A31AFEC301009DCC77 /* UserViewController.h */,
 				B6FA41A41AFEC330009DCC77 /* UserViewController.m */,
+				B609A3EB1B02D5FD00B48DA2 /* AddNoteViewController.h */,
+				B609A3EC1B02D61000B48DA2 /* AddNoteViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -396,10 +438,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B609A3FC1B02D62E00B48DA2 /* DoAlbumCell.xib in Resources */,
 				B6F53C141AD97890002E2AD3 /* Main.storyboard in Resources */,
+				B609A3FE1B02D62E00B48DA2 /* DoImagePickerController.xib in Resources */,
 				B6F53C191AD97890002E2AD3 /* LaunchScreen.xib in Resources */,
 				B6F53C161AD97890002E2AD3 /* Images.xcassets in Resources */,
 				D7CF4C871B018AFC00DA0217 /* GoogleMaps.bundle in Resources */,
+				B609A4001B02D62E00B48DA2 /* DoPhotoCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,16 +465,20 @@
 				B635295B1ADB5051003C9877 /* MCCardPickerCollectionViewController.m in Sources */,
 				D76500891AE1F44F002F50AD /* ViewPagerController.m in Sources */,
 				D76500871AE1F44F002F50AD /* ContentViewController.m in Sources */,
+				B609A3FD1B02D62E00B48DA2 /* DoImagePickerController.m in Sources */,
 				B63529621ADB50BD003C9877 /* UIImage+ImageEffects.m in Sources */,
+				B609A3FF1B02D62E00B48DA2 /* DoPhotoCell.m in Sources */,
 				B67F6B471AF97B86002DAE08 /* NoteDetailCollectionViewCell.m in Sources */,
 				B6F53C0E1AD97890002E2AD3 /* Guideo.xcdatamodeld in Sources */,
 				B6F53C0B1AD97890002E2AD3 /* AppDelegate.m in Sources */,
 				D735DFD41AF88B2E00C8B468 /* EventDetailsViewController.m in Sources */,
+				B609A3ED1B02D61000B48DA2 /* AddNoteViewController.m in Sources */,
 				D73DA94F1AF9875C00BFD608 /* PicturesViewController.m in Sources */,
 				B6F53C111AD97890002E2AD3 /* ViewController.m in Sources */,
 				D71EBB7B1ADA06BF009D34A4 /* SiteViewController.m in Sources */,
 				B6FA41A51AFEC330009DCC77 /* UserViewController.m in Sources */,
 				B63529651ADB5115003C9877 /* ExploreViewController.m in Sources */,
+				B609A3FB1B02D62E00B48DA2 /* DoAlbumCell.m in Sources */,
 				D71EBB841ADA08C7009D34A4 /* ExpandHeader.m in Sources */,
 				B635295C1ADB5051003C9877 /* MCCardPickerCollectionViewFlowLayout.m in Sources */,
 				D79CF2EF1ADDE41D000EB15C /* tableData.m in Sources */,
@@ -442,6 +491,7 @@
 				D78BE67D1AD996F60004EBC6 /* HomeViewController.m in Sources */,
 				B67F6B441AF97A1D002DAE08 /* NoteDetailViewController.m in Sources */,
 				B6F53C081AD97890002E2AD3 /* main.m in Sources */,
+				B609A3FA1B02D62E00B48DA2 /* AssetHelper.m in Sources */,
 				B6A9059B1AD9B379000304F0 /* MJRootViewController.m in Sources */,
 				B6FA41A21AFEC2D1009DCC77 /* RKCardView.m in Sources */,
 			);
