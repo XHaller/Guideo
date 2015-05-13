@@ -15,12 +15,12 @@ CREATE TABLE Sites(
     has_fee NVARCHAR(4),
     activity NVARCHAR(1000),
     description NVARCHAR(1000),
-    #add photourl...
+    photourl NVARCHAR(100),
+    longtitude NVARCHAR(10),
+    latitude NVARCHAR(10),
 	UNIQUE (name)
 ) ENGINE = InnoDB  DEFAULT CHARSET = UTF8;
 
-# Leagues without the foreign key constraint for last_champion
-# This constraint will be added after the creation of the table of clubs.
 DROP TABLE Events;
 CREATE TABLE Events(
 	eid SMALLINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -37,36 +37,47 @@ CREATE TABLE Events(
     open_time NVARCHAR(50) NOT NULL,
     has_fee NVARCHAR(4),
     description NVARCHAR(1000),
-    #add photourl...
+    photourl NVARCHAR(100),
+    longtitude NVARCHAR(10),
+    latitude NVARCHAR(10),
 	UNIQUE (name)
 ) ENGINE = InnoDB  DEFAULT CHARSET = UTF8;
 
+DROP TABLE Contents;
 DROP TABLE Notes;
 DROP TABLE Users;
 
 CREATE TABLE Users(
 	uid SMALLINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    name VARCHAR(20) NOT NULL,
+    name NVARCHAR(20) NOT NULL,
     password NVARCHAR(50) NOT NULL,
 	email NVARCHAR(50) NOT NULL,
-    description VARCHAR(100),
-    preference VARCHAR(100),
-    #add photourl...
+    description NVARCHAR(100),
+    preference NVARCHAR(100),
+    photourl NVARCHAR(100),
     UNIQUE (name),
     UNIQUE (email)
 ) ENGINE = InnoDB  DEFAULT CHARSET = UTF8;
 
-#CREATE TABLE Contents()    
-    #nid->several contents
-    #add photourl...
+
 CREATE TABLE Notes(
 	nid SMALLINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	title NVARCHAR(50) NOT NULL,
-    content NVARCHAR(1000) NOT NULL,
 	time NVARCHAR(20) NOT NULL,
     clicked INTEGER NOT NULL,
     uid SMALLINT NOT NULL,
-    sid SMALLINT NOT NULL,
-    #type: public or private
+    public SMALLINT NOT NULL, # 1 for public, 0 for private
 	FOREIGN KEY (uid) REFERENCES Users (uid) ON DELETE NO ACTION
 ) ENGINE = InnoDB  DEFAULT CHARSET = UTF8;
+
+CREATE TABLE Contents(
+    cid SMALLINT NOT NULL,
+    nid SMALLINT NOT NULL,
+    sid SMALLINT NOT NULL,
+    content NVARCHAR(1000) NOT NULL,
+    photourl NVARCHAR(100) NOT NULL,
+    longtitude NVARCHAR(10),
+    latitude NVARCHAR(10),
+    PRIMARY KEY (cid, nid),
+    FOREIGN KEY (nid) REFERENCES Notes (nid) ON DELETE CASCADE
+)

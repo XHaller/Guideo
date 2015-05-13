@@ -20,33 +20,35 @@ where abs(zipcode - @zip) < 20;
 #recommend sites, shorter distances first
 set @curlong = 10;
 set @curla = 10;
-selct * from Sites
-order by (longtitude-curlong)*(longtitude-curlong) + (latitude-curla)*(latitude-curla)
+select * from Sites
+order by (longtitude-curlong)*(longtitude-curlong) + (latitude-curla)*(latitude-curla);
 
-#recommend sites, higher rank
-selct * from Sites
-order by rank;
+#recommend sites by rank which is default indicated by sid
+select * from Sites
+order by sid;
 
 
 #notes: 
-select * from Notes;
+# select contents of one note
+select content, photourl from Contents
+where nid = 1 order by cid;
 
-select * from Notes where uid = 1;
+# select notes by title from one user
+select N.title, C.photourl from Notes N, Contents C
+where N.uid = 1 and C.nid = N.nid and C.cid = 1 order by N.nid;
 
-select * from Notes where nid = 2;
-
-select * from Notes order by clicked desc;
+# select notes by popularity
+select title from Notes order by clicked desc;
 
 update Notes
 set clicked = clicked + 1
 where nid = 3;
 
-insert into Notes (title, content, time, clicked, uid, sid)
-values ('test', 'testing', 'May-5', 0, 1, 1);
+insert into Notes (title, time, clicked, uid, sid, public, photourl)
+values ('test', 'May-12', 0, 1, 1, 0, '');
 
 delete from Notes
 where nid = 5;
-
 
 #users
 select * from Users;
@@ -71,6 +73,6 @@ where start_date > '20150430' and abs(zipcode - @zip) < 20;
 #recommend events, shorter distances first
 set @curlong = 10;
 set @curla = 10;
-selct * from Events
+select * from Events
 order by (longtitude-curlong)*(longtitude-curlong) + (latitude-curla)*(latitude-curla)
 
