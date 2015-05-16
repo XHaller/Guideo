@@ -16,43 +16,211 @@
 
 @implementation ViewController
 
-@synthesize greetlabel1, greetlabel2, usernameText, usernameField, passwordField, passwordText, signinButton, signupButton;
+@synthesize greetlabel1, greetlabel2, greetlabel3, usernameField, emailField, passwordField, retypeField, signinButton, sendButton, signup1Button, signup2Button, forgetButton, backButton;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-    [greetlabel1 setFont:[UIFont fontWithName:@"Arial-BoldMT" size:20.0]];
-    [greetlabel2 setFont:[UIFont fontWithName:@"Arial-BoldMT" size:20.0]];
-    [usernameText setFont:[UIFont fontWithName:@"CourierNewPS-BoldMT" size:18.0]];
-    [passwordText setFont:[UIFont fontWithName:@"CourierNewPS-BoldMT" size:18.0]];
     
-    greetlabel1.textColor = [UIColor whiteColor];
-    greetlabel2.textColor = [UIColor whiteColor];
+    greetlabel1=[[UILabel alloc]initWithFrame:CGRectMake(70, 80, 200, 50)];
+    [greetlabel1 setText:@"On My Way, "];
+    [greetlabel1 setFont:[UIFont fontWithName:@"Cochin-BoldItalic" size:30.0f]];
+    [greetlabel1 setTextColor:[UIColor whiteColor]];
+    [greetlabel1 setTextAlignment:NSTextAlignmentCenter];
+    [greetlabel1 setBaselineAdjustment:UIBaselineAdjustmentAlignBaselines];
+    [greetlabel1 setLineBreakMode:NSLineBreakByCharWrapping];
+    [greetlabel1 setNumberOfLines:1];
+    [greetlabel1 setClipsToBounds:YES];
+    [self.view addSubview:greetlabel1];
     
-    usernameText.textColor = [UIColor whiteColor];
-    passwordText.textColor = [UIColor whiteColor];
+    greetlabel2=[[UILabel alloc]initWithFrame:CGRectMake(130, 120, 180, 50)];
+    [greetlabel2 setText:@"In My Way"];
+    [greetlabel2 setFont:[UIFont fontWithName:@"Cochin-BoldItalic" size:30.0f]];
+    [greetlabel2 setTextColor:[UIColor whiteColor]];
+    [greetlabel2 setTextAlignment:NSTextAlignmentCenter];
+    [greetlabel2 setBaselineAdjustment:UIBaselineAdjustmentAlignBaselines];
+    [greetlabel2 setLineBreakMode:NSLineBreakByCharWrapping];
+    [greetlabel2 setNumberOfLines:1];
+    [greetlabel2 setClipsToBounds:YES];
+    [self.view addSubview:greetlabel2];
     
-    [usernameText setNeedsDisplay];
-    [passwordText setNeedsDisplay];
     
-    UIColor* textColor = [UIColor colorWithRed:(102.0/255.0) green:(197.0/255.0) blue:(245.0/255.0) alpha:1.0];
-    [signinButton setTitle:@"Sign in" forState:UIControlStateNormal];
+    greetlabel3=[[UILabel alloc]initWithFrame:CGRectMake(65, 180, 250, 50)];
+    [greetlabel3 setText:@"Make your trip safe and fun!"];
+    [greetlabel3 setFont:[UIFont fontWithName:@"DamascusBold" size:15.0f]];
+    [greetlabel3 setTextColor:[UIColor whiteColor]];
+    [greetlabel3 setTextAlignment:NSTextAlignmentCenter];
+    [greetlabel3 setBaselineAdjustment:UIBaselineAdjustmentAlignBaselines];
+    [greetlabel3 setLineBreakMode:NSLineBreakByCharWrapping];
+    [greetlabel3 setNumberOfLines:1];
+    [greetlabel3 setClipsToBounds:YES];
+    [self.view addSubview:greetlabel3];
+    
+    
+    
+    usernameField = [[UITextField alloc]initWithFrame:CGRectMake(65, 250, 250, 45)];
+    usernameField.borderStyle = UITextBorderStyleRoundedRect;
+    usernameField.layer.cornerRadius = 15.0f;
+    usernameField.layer.masksToBounds=YES;
+    usernameField.layer.borderColor=[[UIColor whiteColor]CGColor];
+    usernameField.layer.borderWidth= 2.0f;
+    [usernameField setBackgroundColor:[UIColor clearColor]];
+    usernameField.placeholder = @"  Your username, please ;)";
+    usernameField.font = [UIFont fontWithName:@"Arial" size:15.0f];
+    usernameField.textColor = [UIColor whiteColor];
+    usernameField.clearButtonMode = UITextFieldViewModeAlways;
+    usernameField.textAlignment = UITextAlignmentLeft;
+    usernameField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    usernameField.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
+
+    [self.view addSubview:usernameField];
+    
+    
+    emailField = [[UITextField alloc]initWithFrame:CGRectMake(65, 320, 250, 45)];
+    emailField.borderStyle = UITextBorderStyleRoundedRect;
+    emailField.layer.cornerRadius = 15.0f;
+    emailField.layer.masksToBounds=YES;
+    emailField.layer.borderColor=[[UIColor whiteColor]CGColor];
+    emailField.layer.borderWidth= 2.0f;
+    [emailField setBackgroundColor:[UIColor clearColor]];
+    emailField.placeholder = @"  Your email address, please ;)";
+    emailField.font = [UIFont fontWithName:@"Arial" size:15.0f];
+    emailField.textColor = [UIColor whiteColor];
+    emailField.clearButtonMode = UITextFieldViewModeAlways;
+    emailField.textAlignment = UITextAlignmentLeft;
+    emailField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    emailField.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
+    
+    [self.view addSubview:emailField];
+
+    
+    
+    passwordField = [[UITextField alloc]initWithFrame:CGRectMake(65, 320, 250, 45)];
+    passwordField.borderStyle = UITextBorderStyleRoundedRect;
+    passwordField.layer.cornerRadius = 15.0f;
+    passwordField.layer.masksToBounds=YES;
+    passwordField.layer.borderColor=[[UIColor whiteColor]CGColor];
+    passwordField.layer.borderWidth= 2.0f;
+    [passwordField setBackgroundColor:[UIColor clearColor]];
+    passwordField.placeholder = @"  Your password, please ;)";
+    passwordField.secureTextEntry = YES;
+    passwordField.font = [UIFont fontWithName:@"Arial" size:15.0f];
+    passwordField.textColor = [UIColor whiteColor];
+    passwordField.clearButtonMode = UITextFieldViewModeAlways;
+    passwordField.textAlignment = UITextAlignmentLeft;
+    passwordField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    passwordField.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
+
+    [self.view addSubview:passwordField];
+    
+    
+    retypeField = [[UITextField alloc]initWithFrame:CGRectMake(65, 460, 250, 45)];
+    retypeField.borderStyle = UITextBorderStyleRoundedRect;
+    retypeField.layer.cornerRadius = 15.0f;
+    retypeField.layer.masksToBounds=YES;
+    retypeField.layer.borderColor=[[UIColor whiteColor]CGColor];
+    retypeField.layer.borderWidth= 2.0f;
+    [retypeField setBackgroundColor:[UIColor clearColor]];
+    retypeField.placeholder = @"  Retype the password, please ;)";
+    retypeField.secureTextEntry = YES;
+    retypeField.font = [UIFont fontWithName:@"Arial" size:15.0f];
+    retypeField.textColor = [UIColor whiteColor];
+    retypeField.clearButtonMode = UITextFieldViewModeAlways;
+    retypeField.textAlignment = UITextAlignmentLeft;
+    retypeField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    retypeField.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
+    
+    [self.view addSubview:retypeField];
+
+    
+    
+    UIColor* textColor = [UIColor colorWithRed:(47.0/255.0) green:(180.0/255.0) blue:(79.0/255.0) alpha:1.0];
+    
+    UIImage* newImage = [self blurWithCoreImage:[UIImage imageNamed:@"initial.jpg"]];
+    
+    self.view.backgroundColor = [UIColor colorWithPatternImage: newImage];
+
+    
+    signinButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    signinButton.frame = CGRectMake(115, 410, 150, 45);
+    [signinButton setTitle:@"Sign In" forState:UIControlStateNormal];
+    [signinButton.titleLabel setFont:[UIFont fontWithName:@"Arial" size:17.0f]];
     [signinButton setBackgroundColor: textColor];
     [signinButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [signinButton addTarget:self action:@selector(signinClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [signinButton.layer setMasksToBounds:YES];
+    [signinButton.layer setCornerRadius:10.0];
+
+    [self.view addSubview:self.signinButton];
     
-    [signupButton setTitle:@"Sign up" forState:UIControlStateNormal];
-    [signupButton setBackgroundColor: [UIColor whiteColor]];
-    [signupButton setTitleColor:textColor forState:UIControlStateNormal];
+    signup1Button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    signup1Button.frame = CGRectMake(115, 480, 150, 45);
+    [signup1Button setTitle:@"Sign Up" forState:UIControlStateNormal];
+    [signup1Button.titleLabel setFont:[UIFont fontWithName:@"Arial" size:17.0f]];
+    [signup1Button setBackgroundColor: [UIColor whiteColor]];
+    [signup1Button setTitleColor:textColor forState:UIControlStateNormal];
+    [signup1Button addTarget:self action:@selector(signup1Clicked:) forControlEvents:UIControlEventTouchUpInside];
+    [signup1Button.layer setMasksToBounds:YES];
+    [signup1Button.layer setCornerRadius:10.0];
     
-    //    [signinButton setBackgroundImage:[UIImage imageNamed:@"signin.png"] forState:UIControlStateNormal];
-    //    [signinButton setTitle:@"Sign in" forState:UIControlStateNormal];
-    //    signinButton.imageEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
+    [self.view addSubview:self.signup1Button];
     
-    passwordField.secureTextEntry = YES;
-    greetlabel1.textColor = [UIColor whiteColor];
-    greetlabel2.textColor = [UIColor whiteColor];
-    //greetlabel1.textAlignment = NSTextAlignmentCenter;
-    //greetlabel2.textAlignment = NSTextAlignmentCenter;
+    signup2Button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    signup2Button.frame = CGRectMake(80, 540, 100, 45);
+    [signup2Button setTitle:@"Sign Up" forState:UIControlStateNormal];
+    [signup2Button.titleLabel setFont:[UIFont fontWithName:@"Arial" size:17.0f]];
+    [signup2Button setBackgroundColor: textColor];
+    [signup2Button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [signup2Button addTarget:self action:@selector(signup2Clicked:) forControlEvents:UIControlEventTouchUpInside];
+    [signup2Button.layer setMasksToBounds:YES];
+    [signup2Button.layer setCornerRadius:10.0];
+    
+    [self.view addSubview:self.signup2Button];
+    
+    
+    backButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    backButton.frame = CGRectMake(200, 540, 100, 45);
+    [backButton setTitle:@"Back" forState:UIControlStateNormal];
+    [backButton.titleLabel setFont:[UIFont fontWithName:@"Arial" size:17.0f]];
+    [backButton setBackgroundColor: [UIColor whiteColor]];
+    [backButton setTitleColor:textColor forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(backClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [backButton.layer setMasksToBounds:YES];
+    [backButton.layer setCornerRadius:10.0];
+    
+    [self.view addSubview:self.backButton];
+    
+    
+    
+    forgetButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    forgetButton.frame = CGRectMake(115, 550, 150, 45);
+    [forgetButton setTitle:@"Forget your password ?" forState:UIControlStateNormal];
+    [forgetButton.titleLabel setFont:[UIFont fontWithName:@"Arial" size:14.0f]];
+    [forgetButton setBackgroundColor: [UIColor clearColor]];
+    [forgetButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    [forgetButton addTarget:self action:@selector(forgetClicked:) forControlEvents:UIControlEventTouchUpInside];
+    forgetButton.layer.borderWidth = 0.0;
+    
+    [self.view addSubview:self.forgetButton];
+    
+    
+    sendButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    sendButton.frame = CGRectMake(80, 440, 100, 45);
+    [sendButton setTitle:@"Send Email" forState:UIControlStateNormal];
+    [sendButton.titleLabel setFont:[UIFont fontWithName:@"Arial" size:17.0f]];
+    [sendButton setBackgroundColor: textColor];
+    [sendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [sendButton addTarget:self action:@selector(sendClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [sendButton.layer setMasksToBounds:YES];
+    [sendButton.layer setCornerRadius:10.0];
+    
+    [self.view addSubview:self.sendButton];
+    
+    
+    emailField.hidden = YES;
+    retypeField.hidden = YES;
+    sendButton.hidden = YES;
+    signup2Button.hidden = YES;
+    backButton.hidden = YES;
     
 }
 
@@ -61,23 +229,55 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (UIImage *)blurWithCoreImage:(UIImage *)sourceImage
+{
+    CIImage *inputImage = [CIImage imageWithCGImage:sourceImage.CGImage];
+    
+    // Apply Affine-Clamp filter to stretch the image so that it does not
+    // look shrunken when gaussian blur is applied
+    CGAffineTransform transform = CGAffineTransformIdentity;
+    CIFilter *clampFilter = [CIFilter filterWithName:@"CIAffineClamp"];
+    [clampFilter setValue:inputImage forKey:@"inputImage"];
+    [clampFilter setValue:[NSValue valueWithBytes:&transform objCType:@encode(CGAffineTransform)] forKey:@"inputTransform"];
+    
+    // Apply gaussian blur filter with radius of 30
+    CIFilter *gaussianBlurFilter = [CIFilter filterWithName: @"CIGaussianBlur"];
+    [gaussianBlurFilter setValue:clampFilter.outputImage forKey: @"inputImage"];
+    [gaussianBlurFilter setValue:@30 forKey:@"inputRadius"];
+    
+    CIContext *context = [CIContext contextWithOptions:nil];
+    CGImageRef cgImage = [context createCGImage:gaussianBlurFilter.outputImage fromRect:[inputImage extent]];
+    
+    // Set up output context.
+    UIGraphicsBeginImageContext(self.view.frame.size);
+    CGContextRef outputContext = UIGraphicsGetCurrentContext();
+    
+    // Invert image coordinates
+    CGContextScaleCTM(outputContext, 1.0, -1.0);
+    CGContextTranslateCTM(outputContext, 0, -self.view.frame.size.height);
+    
+    // Draw base image.
+    CGContextDrawImage(outputContext, self.view.frame, cgImage);
+    
+    // Apply white tint
+    CGContextSaveGState(outputContext);
+    CGContextSetFillColorWithColor(outputContext, [UIColor colorWithWhite:1 alpha:0.2].CGColor);
+    CGContextFillRect(outputContext, self.view.frame);
+    CGContextRestoreGState(outputContext);
+    
+    // Output image is ready.
+    UIImage *outputImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return outputImage;
+}
 - (BOOL) textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
     return YES;
 }
 
-- (IBAction)signinDown:(id)sender {
-    //[signinButton setBackgroundColor: [UIColor greenColor]];
-    //    [signinButton setBackgroundImage:[UIImage imageNamed:@"signin_clicked.png"] forState:UIControlStateNormal];
-    //    [signinButton setTitle:@"Sign in" forState:UIControlStateNormal];
-    //    signinButton.imageEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
-    UIColor* bgColor = [UIColor colorWithRed:(102.0/255.0) green:(210.0/255.0) blue:(255.0/255.0) alpha:1.0];
-    [signinButton setBackgroundColor: bgColor];
-    [signinButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-}
-
-- (IBAction)signinClicked:(id)sender {
+- (IBAction) signinClicked:(id)sender {
     //[signinButton setBackgroundColor: NULL];
     //    [signinButton setBackgroundImage:[UIImage imageNamed:@"signin.png"] forState:UIControlStateNormal];
     //    [signinButton setTitle:@"Sign in" forState:UIControlStateNormal];
@@ -87,11 +287,11 @@
     @try{
         if([[self.usernameField text] isEqualToString:@""])
         {
-            [self alertStatus:@"Sorry, but I don't know how to call you!" :@"Sign in failed!" :0];
+            [self alertStatus:@"Sorry, but please give me your Username!" :@"Sign in failed!" :0];
         }
         else if([[self.passwordField text] isEqualToString:@""])
         {
-            [self alertStatus:@"Sorry, but we should keep a secret words, right?" :@"Sign in failed!" :0];
+            [self alertStatus:@"Sorry, but please give me your Password!" :@"Sign in failed!" :0];
         }
         else
         {
@@ -163,6 +363,59 @@
 
 - (IBAction)tapReturn:(id)sender {
     [self.view endEditing:YES];
+}
+
+- (IBAction) signup1Clicked:(id)sender {
+    emailField.hidden = NO;
+    emailField.frame = CGRectMake(65, 320, 250, 45);
+    retypeField.hidden = NO;
+    usernameField.placeholder = @"  Create a username, please ;)";
+    passwordField.frame = CGRectMake(65, 390, 250, 45);
+    passwordField.placeholder = @"  Create a password, please ;)";
+    signinButton.hidden = YES;
+    signup2Button.hidden = NO;
+    signup1Button.hidden = YES;
+    backButton.frame = CGRectMake(200, 540, 100, 45);
+    backButton.hidden = NO;
+    forgetButton.hidden = YES;
+}
+
+- (IBAction) signup2Clicked:(id)sender {
+    
+}
+
+- (IBAction) backClicked:(id)sender {
+    emailField.hidden = YES;
+    retypeField.hidden = YES;
+    usernameField.hidden = NO;
+    passwordField.hidden = NO;
+    usernameField.placeholder = @"  Your username, please ;)";
+    passwordField.frame = CGRectMake(65, 320, 250, 45);
+    passwordField.placeholder = @"  Your password, please ;)";
+    
+    sendButton.hidden = YES;
+    signinButton.hidden = NO;
+    signup2Button.hidden = YES;
+    signup1Button.hidden = NO;
+    backButton.hidden = YES;
+    forgetButton.hidden = NO;
+}
+
+- (IBAction) sendClicked:(id)sender {
+    
+}
+
+- (IBAction) forgetClicked:(id)sender {
+    emailField.hidden = NO;
+    emailField.frame = CGRectMake(65, 300, 250, 45);
+    usernameField.hidden = YES;
+    passwordField.hidden = YES;
+    backButton.frame = CGRectMake(200, 440, 100, 45);
+    backButton.hidden = NO;
+    sendButton.hidden = NO;
+    forgetButton.hidden = YES;
+    signinButton.hidden = YES;
+    signup1Button.hidden = YES;
 }
 
 - (void) alertStatus:(NSString *)msg :(NSString *)title :(int) tag

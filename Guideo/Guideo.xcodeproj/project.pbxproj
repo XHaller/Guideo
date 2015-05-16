@@ -37,6 +37,7 @@
 		D71EBB7B1ADA06BF009D34A4 /* SiteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D71EBB7A1ADA06BF009D34A4 /* SiteViewController.m */; };
 		D71EBB841ADA08C7009D34A4 /* ExpandHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = D71EBB831ADA08C7009D34A4 /* ExpandHeader.m */; };
 		D71F0A821ADE359B005804EB /* SiteDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D71F0A811ADE359B005804EB /* SiteDetailsViewController.m */; };
+		D72F021A1B07E9F60004EFCD /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D72F02191B07E9F60004EFCD /* SignUpViewController.m */; };
 		D735DFD41AF88B2E00C8B468 /* EventDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D735DFD31AF88B2E00C8B468 /* EventDetailsViewController.m */; };
 		D735DFD71AF897C100C8B468 /* SearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = D735DFD61AF897C100C8B468 /* SearchDisplayController.m */; };
 		D73DA94F1AF9875C00BFD608 /* PicturesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D73DA94E1AF9875C00BFD608 /* PicturesViewController.m */; };
@@ -128,6 +129,8 @@
 		D71EBB831ADA08C7009D34A4 /* ExpandHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpandHeader.m; sourceTree = "<group>"; };
 		D71F0A801ADE359B005804EB /* SiteDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SiteDetailsViewController.h; sourceTree = "<group>"; };
 		D71F0A811ADE359B005804EB /* SiteDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SiteDetailsViewController.m; sourceTree = "<group>"; };
+		D72F02181B07E9F60004EFCD /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
+		D72F02191B07E9F60004EFCD /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		D735DFD21AF88B2E00C8B468 /* EventDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailsViewController.h; sourceTree = "<group>"; };
 		D735DFD31AF88B2E00C8B468 /* EventDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailsViewController.m; sourceTree = "<group>"; };
 		D735DFD51AF897C100C8B468 /* SearchDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDisplayController.h; sourceTree = "<group>"; };
@@ -311,6 +314,8 @@
 			children = (
 				B6F53C0F1AD97890002E2AD3 /* ViewController.h */,
 				B6F53C101AD97890002E2AD3 /* ViewController.m */,
+				D72F02181B07E9F60004EFCD /* SignUpViewController.h */,
+				D72F02191B07E9F60004EFCD /* SignUpViewController.m */,
 				D78BE67B1AD996F60004EBC6 /* HomeViewController.h */,
 				D78BE67C1AD996F60004EBC6 /* HomeViewController.m */,
 				B63529631ADB510A003C9877 /* ExploreViewController.h */,
@@ -482,6 +487,7 @@
 				D71EBB841ADA08C7009D34A4 /* ExpandHeader.m in Sources */,
 				B635295C1ADB5051003C9877 /* MCCardPickerCollectionViewFlowLayout.m in Sources */,
 				D79CF2EF1ADDE41D000EB15C /* tableData.m in Sources */,
+				D72F021A1B07E9F60004EFCD /* SignUpViewController.m in Sources */,
 				D735DFD71AF897C100C8B468 /* SearchDisplayController.m in Sources */,
 				D71F0A821ADE359B005804EB /* SiteDetailsViewController.m in Sources */,
 				D773AE651AF88472009A31BE /* EventViewController.m in Sources */,
