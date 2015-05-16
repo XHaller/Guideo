@@ -44,9 +44,9 @@
     [signupButton setBackgroundColor: [UIColor whiteColor]];
     [signupButton setTitleColor:textColor forState:UIControlStateNormal];
     
-//    [signinButton setBackgroundImage:[UIImage imageNamed:@"signin.png"] forState:UIControlStateNormal];
-//    [signinButton setTitle:@"Sign in" forState:UIControlStateNormal];
-//    signinButton.imageEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
+    //    [signinButton setBackgroundImage:[UIImage imageNamed:@"signin.png"] forState:UIControlStateNormal];
+    //    [signinButton setTitle:@"Sign in" forState:UIControlStateNormal];
+    //    signinButton.imageEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
     
     passwordField.secureTextEntry = YES;
     greetlabel1.textColor = [UIColor whiteColor];
@@ -69,17 +69,20 @@
 
 - (IBAction)signinDown:(id)sender {
     //[signinButton setBackgroundColor: [UIColor greenColor]];
-//    [signinButton setBackgroundImage:[UIImage imageNamed:@"signin_clicked.png"] forState:UIControlStateNormal];
-//    [signinButton setTitle:@"Sign in" forState:UIControlStateNormal];
-//    signinButton.imageEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
+    //    [signinButton setBackgroundImage:[UIImage imageNamed:@"signin_clicked.png"] forState:UIControlStateNormal];
+    //    [signinButton setTitle:@"Sign in" forState:UIControlStateNormal];
+    //    signinButton.imageEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
+    UIColor* bgColor = [UIColor colorWithRed:(102.0/255.0) green:(210.0/255.0) blue:(255.0/255.0) alpha:1.0];
+    [signinButton setBackgroundColor: bgColor];
+    [signinButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 }
 
 - (IBAction)signinClicked:(id)sender {
     //[signinButton setBackgroundColor: NULL];
-//    [signinButton setBackgroundImage:[UIImage imageNamed:@"signin.png"] forState:UIControlStateNormal];
-//    [signinButton setTitle:@"Sign in" forState:UIControlStateNormal];
-//    signinButton.imageEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
-   // [signinButton setBackgroundColor: [UIColor whiteColor]];
+    //    [signinButton setBackgroundImage:[UIImage imageNamed:@"signin.png"] forState:UIControlStateNormal];
+    //    [signinButton setTitle:@"Sign in" forState:UIControlStateNormal];
+    //    signinButton.imageEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
+    // [signinButton setBackgroundColor: [UIColor whiteColor]];
     NSInteger success = 0;
     @try{
         if([[self.usernameField text] isEqualToString:@""])
@@ -92,58 +95,59 @@
         }
         else
         {
-            //            NSString *post =[[NSString alloc] initWithFormat:@"username=%@&password=%@",[self.usernameField text],[self.passwordField text]];
-            //            NSLog(@"PostData: %@",post);
-            //
-            //            NSURL *url=[NSURL URLWithString:@"https://dipinkrishna.com/jsonlogin.php"];
-            //
-            //            NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-            //
-            //            NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
-            //
-            //            NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-            //            [request setURL:url];
-            //            [request setHTTPMethod:@"POST"];
-            //            [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
-            //            [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-            //            [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-            //            [request setHTTPBody:postData];
-            //
-            //            //[NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:[url host]];
-            //
-            //            NSError *error = [[NSError alloc] init];
-            //            NSHTTPURLResponse *response = nil;
-            //            NSData *urlData=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-            //
-            //            NSLog(@"Response code: %ld", (long)[response statusCode]);
-            //
-            //            if ([response statusCode] >= 200 && [response statusCode] < 300)
-            //            {
-            //                NSString *responseData = [[NSString alloc]initWithData:urlData encoding:NSUTF8StringEncoding];
-            //                NSLog(@"Response ==> %@", responseData);
-            //
-            //                NSError *error = nil;
-            //                NSDictionary *jsonData = [NSJSONSerialization
-            //                                          JSONObjectWithData:urlData
-            //                                          options:NSJSONReadingMutableContainers
-            //                                          error:&error];
-            //
-            //                success = [jsonData[@"success"] integerValue];
-            //                NSLog(@"Success: %ld",(long)success);
-            //
-            //                if(success == 1)
-            //                {
-            //                    NSLog(@"Login SUCCESS");
-            //                } else {
-            //
-            //                    NSString *error_msg = (NSString *) jsonData[@"error_message"];
-            //                    [self alertStatus:error_msg :@"Sign in Failed!" :0];
-            //                }
-            //
-            //            } else {
-            //                [self alertStatus:@"Connection Failed" :@"Sign in Failed!" :0];
-            //            }
-            success = 1;
+//            NSString *post =[NSString stringWithFormat:@"username=%@&password=%@",[self.usernameField text],[self.passwordField text]];
+//            NSLog(@"PostData: %@",post);
+//            
+//            NSURL *url=[NSURL URLWithString:@"http://52.6.223.152:80/login"];
+//            
+//            NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+//            
+//            NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
+//            
+//            NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+//            [request setURL:url];
+//            [request setHTTPMethod:@"POST"];
+//            [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+//            [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+//            //[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+//            
+//            [request setHTTPBody:postData];
+//            
+//            //[NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:[url host]];
+//            
+//            NSError *error;
+//            NSHTTPURLResponse *response;
+//            NSData *urlData=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+//            
+//            NSLog(@"Response code: %ld", (long)[response statusCode]);
+//            
+//            if ([response statusCode] >= 200 && [response statusCode] < 300)
+//            {
+//                NSString *responseData = [[NSString alloc]initWithData:urlData encoding:NSUTF8StringEncoding];
+//                NSLog(@"Response ==> %@", responseData);
+//                
+//                NSError *error = nil;
+//                NSDictionary *jsonData = [NSJSONSerialization
+//                                          JSONObjectWithData:urlData
+//                                          options:NSJSONReadingMutableContainers
+//                                          error:&error];
+//                
+//                success = [jsonData[@"login"] integerValue];
+//                NSLog(@"Success: %ld",(long)success);
+//                
+//                if(success == 1)
+//                {
+//                    NSLog(@"Login SUCCESS");
+//                } else {
+//                    
+//                    NSString *error_msg = (NSString *) jsonData[@"error_message"];
+//                    [self alertStatus:error_msg :@"Sign in Failed!" :0];
+//                }
+//                
+//            } else {
+//                [self alertStatus:@"Connection Failed" :@"Sign in Failed!" :0];
+//            }
+             success = 1;
         }
         
     }
