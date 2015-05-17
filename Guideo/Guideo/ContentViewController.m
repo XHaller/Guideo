@@ -14,21 +14,24 @@
 
 @implementation ContentViewController
 
-@synthesize scrollView, contentString;
+@synthesize scrollView, contentString, isBase;
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    [scrollView setScrollEnabled:YES];
     
-    UITextView *contentView = [[UITextView alloc] initWithFrame:CGRectMake(20,188,280,260)];
+    UITextView *contentView = [[UITextView alloc] initWithFrame:CGRectMake(20,0,335,450)];
     [contentView setText:contentString];
-    contentView.textColor = [UIColor lightGrayColor];
-    contentView.font = [UIFont systemFontOfSize:14];
+    contentView.textColor = [UIColor blackColor];
+    contentView.font = [UIFont systemFontOfSize:15];
     [contentView setBackgroundColor:[UIColor clearColor]];
     contentView.editable = NO;
     contentView.scrollEnabled = YES;
+    contentView.layer.borderColor=[[UIColor lightGrayColor]CGColor];
+    contentView.layer.borderWidth= 2.0f;
     [scrollView addSubview:contentView];
+    scrollView.scrollEnabled = YES;
+    
 }
 
 - (void)didReceiveMemoryWarning {

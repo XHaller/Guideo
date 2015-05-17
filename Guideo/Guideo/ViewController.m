@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "HomeViewController.h"
+#import "DataTransfer.h"
 
 @interface ViewController ()
 
@@ -295,6 +296,29 @@
         }
         else
         {
+            NSDictionary *keyPair = @{@"username" : [self.usernameField text], @"password" : [self.passwordField text]};
+            NSDictionary *jsonData = [DataTransfer requestWithURL:@"http://52.6.223.152:80/login" httpMethod:@"POST" params:keyPair];
+            
+            if(jsonData == NULL)
+            {
+                [self alertStatus:@"Connection Failed" :@"Sign in Failed!" :0];
+            }
+            else
+            {
+                success = [jsonData[@"login"] integerValue];
+                
+                NSLog(@"Success: %ld",(long)success);
+            
+                if(success == 1)
+                {
+                    NSLog(@"Login SUCCESS");
+                } else {
+            
+                    NSString *error_msg = (NSString *) jsonData[@"error_message"];
+                    [self alertStatus:error_msg :@"Sign in Failed!" :0];
+                }
+            
+            
 //            NSString *post =[NSString stringWithFormat:@"username=%@&password=%@",[self.usernameField text],[self.passwordField text]];
 //            NSLog(@"PostData: %@",post);
 //            
@@ -347,9 +371,10 @@
 //            } else {
 //                [self alertStatus:@"Connection Failed" :@"Sign in Failed!" :0];
 //            }
-             success = 1;
+             //success = 1;
         }
         
+    }
     }
     @catch (NSException * e) {
         NSLog(@"Exception: %@", e);

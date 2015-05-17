@@ -7,12 +7,14 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
-
+#import "siteData.h"
 #import "ViewPagerController.h"
 
 @interface SiteDetailsViewController : ViewPagerController
 
 @property(strong, nonatomic) NSString *topicName;
+//@property(strong, nonatomic) NSMutableArray *siteInfo;
+
 @property NSMutableArray *tabName;
 @property NSMutableArray *tabContent;
 

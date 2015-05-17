@@ -11,6 +11,7 @@
 @interface ContentViewController : UIViewController
 
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, assign) BOOL isBase;
 @property (nonatomic, weak) NSString *contentString;
 
 @end

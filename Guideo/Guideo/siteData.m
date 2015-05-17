@@ -10,4 +10,6 @@
 
 @implementation siteData
 
+@synthesize siteName, /*siteAddress, sitePhone, sitePrice, siteIntro, sitePopularity, siteOpen, siteClose, siteTripTime, siteLatitude, siteLongitude,*/ siteItemsName, siteItemsContent;
+
 @end
