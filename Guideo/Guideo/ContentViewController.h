@@ -10,7 +10,7 @@
 
 @interface ContentViewController : UIViewController
 
-@property NSString *labelString;
-@property (weak, nonatomic) IBOutlet UILabel *label;
+@property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, weak) NSString *contentString;
 
 @end

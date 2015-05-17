@@ -40,6 +40,7 @@
 		D735DFD41AF88B2E00C8B468 /* EventDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D735DFD31AF88B2E00C8B468 /* EventDetailsViewController.m */; };
 		D735DFD71AF897C100C8B468 /* SearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = D735DFD61AF897C100C8B468 /* SearchDisplayController.m */; };
 		D73DA94F1AF9875C00BFD608 /* PicturesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D73DA94E1AF9875C00BFD608 /* PicturesViewController.m */; };
+		D73E0F1C1B0922A2001F8F35 /* siteData.m in Sources */ = {isa = PBXBuildFile; fileRef = D73E0F1B1B0922A2001F8F35 /* siteData.m */; };
 		D73F5DC41B08FBD300D422B1 /* InterestTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D73F5DC31B08FBD300D422B1 /* InterestTableViewCell.m */; };
 		D73F5DD11B090F7100D422B1 /* NSMutableArray+SWUtilityButtons.m in Sources */ = {isa = PBXBuildFile; fileRef = D73F5DC61B090F7100D422B1 /* NSMutableArray+SWUtilityButtons.m */; };
 		D73F5DD21B090F7100D422B1 /* SWCellScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D73F5DC81B090F7100D422B1 /* SWCellScrollView.m */; };
@@ -141,6 +142,8 @@
 		D735DFD61AF897C100C8B468 /* SearchDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDisplayController.m; sourceTree = "<group>"; };
 		D73DA94D1AF9875C00BFD608 /* PicturesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicturesViewController.h; sourceTree = "<group>"; };
 		D73DA94E1AF9875C00BFD608 /* PicturesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicturesViewController.m; sourceTree = "<group>"; };
+		D73E0F1A1B0922A2001F8F35 /* siteData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = siteData.h; sourceTree = "<group>"; };
+		D73E0F1B1B0922A2001F8F35 /* siteData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = siteData.m; sourceTree = "<group>"; };
 		D73F5DC21B08FBD300D422B1 /* InterestTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterestTableViewCell.h; sourceTree = "<group>"; };
 		D73F5DC31B08FBD300D422B1 /* InterestTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterestTableViewCell.m; sourceTree = "<group>"; };
 		D73F5DC51B090F7100D422B1 /* NSMutableArray+SWUtilityButtons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+SWUtilityButtons.h"; sourceTree = "<group>"; };
@@ -155,7 +158,6 @@
 		D73F5DCE1B090F7100D422B1 /* SWUtilityButtonTapGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUtilityButtonTapGestureRecognizer.m; sourceTree = "<group>"; };
 		D73F5DCF1B090F7100D422B1 /* SWUtilityButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWUtilityButtonView.h; sourceTree = "<group>"; };
 		D73F5DD01B090F7100D422B1 /* SWUtilityButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUtilityButtonView.m; sourceTree = "<group>"; };
-		D76500811AE1F43C002F50AD /* ContentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContentViewController.h; sourceTree = "<group>"; };
 		D76500831AE1F43C002F50AD /* ViewPagerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewPagerController.h; sourceTree = "<group>"; };
 		D76500841AE1F44F002F50AD /* ContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentViewController.m; sourceTree = "<group>"; };
 		D76500861AE1F44F002F50AD /* ViewPagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewPagerController.m; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 		D7CF4C9A1B01950600DA0217 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D7CF4C9C1B01950E00DA0217 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		D7CF4C9E1B019E8000DA0217 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		D7D712921B091F9A0076EDB5 /* ContentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContentViewController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -358,7 +361,7 @@
 				D7CF4C821B01666800DA0217 /* MapViewController.m */,
 				D73DA94D1AF9875C00BFD608 /* PicturesViewController.h */,
 				D73DA94E1AF9875C00BFD608 /* PicturesViewController.m */,
-				D76500811AE1F43C002F50AD /* ContentViewController.h */,
+				D7D712921B091F9A0076EDB5 /* ContentViewController.h */,
 				D76500841AE1F44F002F50AD /* ContentViewController.m */,
 				D76500831AE1F43C002F50AD /* ViewPagerController.h */,
 				D76500861AE1F44F002F50AD /* ViewPagerController.m */,
@@ -389,6 +392,8 @@
 			children = (
 				D79CF2ED1ADDE41D000EB15C /* tableData.h */,
 				D79CF2EE1ADDE41D000EB15C /* tableData.m */,
+				D73E0F1A1B0922A2001F8F35 /* siteData.h */,
+				D73E0F1B1B0922A2001F8F35 /* siteData.m */,
 			);
 			name = DataStructure;
 			sourceTree = "<group>";
@@ -525,6 +530,7 @@
 				D71F0A821ADE359B005804EB /* SiteDetailsViewController.m in Sources */,
 				D773AE651AF88472009A31BE /* EventViewController.m in Sources */,
 				B6A9059A1AD9B379000304F0 /* MJCollectionViewCell.m in Sources */,
+				D73E0F1C1B0922A2001F8F35 /* siteData.m in Sources */,
 				B635295F1ADB508D003C9877 /* ExploreCollectionViewCell.m in Sources */,
 				D7CF4C831B01666800DA0217 /* MapViewController.m in Sources */,
 				D73F5DD41B090F7100D422B1 /* SWTableViewCell.m in Sources */,
