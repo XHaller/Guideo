@@ -34,12 +34,14 @@ connection.query(queryString, function(err, rows, fields) {
 connection.end();
 
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.get('/',function(req,res){
 	res.sendFile("index.html");
 });
 app.post('/login',function(req,res){
 	var user_name=req.body.user;
 	var password=req.body.password;
+	console.log("hello");
 	console.log(req.body);
 	res.setHeader('Content-Type', 'application/json');
 	if (pwd == password)

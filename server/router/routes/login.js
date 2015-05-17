@@ -1,8 +1,9 @@
+var express = require('express');
+var router = express.Router();
 
-exports.login = function(req, res){
+router.post('/', function(req, res){
 	console.log("Handler for /login called");
 	  var mysql = require('mysql');
-
 	var connection = mysql.createConnection({
 		  host     : 'e6998.c9qyq3xutthv.us-west-2.rds.amazonaws.com',
 		  user     : 'xy2251',
@@ -15,7 +16,8 @@ exports.login = function(req, res){
 		console.log("connected to db")
 		var user_name=req.body.user;
 		var password=req.body.password;
-		console.log(req.body);
+		console.log("The body is: "+req.body);
+		console.log("The response is: "+ res.body);
 		res.setHeader('Content-Type', 'application/json');
 		
 		var queryString = 'SELECT password FROM Users WHERE Users.name="' + user_name +'"';
@@ -41,4 +43,6 @@ exports.login = function(req, res){
 
 		connection.end();
 		console.log("disconnected from db")
-};
+}
+
+module.exports = router;
