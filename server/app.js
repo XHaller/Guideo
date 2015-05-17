@@ -2,18 +2,15 @@
 var express        =         require("express");
 var bodyParser     =         require("body-parser");
 var app            =         express();
-var routes = require('./routes');
+var routes = require('./routes/login');
 var mysql = require('mysql');
 
 var app = express();
-
-//environment
-app.set('port', 80);
-app.use(app.router);
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.post('/login', routes.login);
 //app.get('/users', user.list);
  
-http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+app.listen(80,function(){
+	console.log("Started on PORT 80");
 });
