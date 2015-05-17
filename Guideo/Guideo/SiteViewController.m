@@ -8,7 +8,6 @@
 
 #import "SiteViewController.h"
 #import "SiteDetailsViewController.h"
-#import "SwipeStoreTableView.h"
 #import "ExploreViewController.h"
 #import "MapViewController.h"
 #import "ExpandHeader.h"
@@ -16,21 +15,14 @@
 
 @interface SiteViewController () <UIScrollViewDelegate>
 {
-    UIButton * _storeButton;
-    NSIndexPath * _editingIndexPath;
-    
-    UISwipeGestureRecognizer * _leftGestureRecognizer;
-    UISwipeGestureRecognizer * _rightGestureRecognizer;
-    UITapGestureRecognizer * _tapGestureRecognizer;
+    NSString *labelText;
+    UIColor *labelColor;
 }
-
-//@property (nonatomic, strong) IBOutlet SwipeStoreTableView * tableView;
-
 @end
 
 @implementation SiteViewController{
     ExpandHeader *_header;
-    __weak IBOutlet SwipeStoreTableView *_tableView;
+    __weak IBOutlet UITableView *_tableView;
     __weak UIImageView *_expandView;
 }
 
@@ -41,13 +33,10 @@
 {
     [super viewDidLoad];
     
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    labelText = @"Interested";
+    labelColor = [UIColor orangeColor];
     
-    CGRect frame = self.view.bounds;
-    _tableView = [[SwipeStoreTableView alloc] initWithFrame:frame];
-    _tableView.delegate = self;
-    _tableView.dataSource = self;
-    [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
     
     self.title = @"Sites";
     
@@ -169,11 +158,21 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    
+
+   
     static NSString *cellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+    
+    SWTableViewCell *cell = (SWTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    if (cell == nil) {
+        
+        cell = [[SWTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+        
+        [cell setRightUtilityButtons:[self rightButtons:labelText buttonColor:labelColor] WithButtonWidth:108.0f];
+        cell.delegate = self;
     }
+    
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     tableData *site;
@@ -188,17 +187,21 @@
     cell.detailTextLabel.numberOfLines = 2000;
     cell.detailTextLabel.text = [site tableContent];
     cell.tag = indexPath.row;
+    
     return cell;
 }
 
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-//    if (!cell) {
-//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-//    }
-//    [cell.textLabel setText:[NSString  stringWithFormat:@"this is row :%ld",(long)indexPath.row]];
-//    return cell;
-//}
+
+
+- (NSArray *)rightButtons:(NSString *) buttonTitle buttonColor:(UIColor*) color
+{
+    NSMutableArray *rightUtilityButtons = [NSMutableArray new];
+    [rightUtilityButtons sw_addUtilityButtonWithColor:color title:buttonTitle];
+    
+    return rightUtilityButtons;
+}
+
+
 
 - (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 99.0f;
@@ -262,6 +265,34 @@
     [[self navigationController] pushViewController:mapController animated:YES];
 }
 
+- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index
+{
+    
+    NSLog(@"More button was pressed");
+    //UIAlertView *alertTest = [[UIAlertView alloc] initWithTitle:@"Good!" message:@"Add your interested site successfully!" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles: nil];
+    //[alertTest show];
+    cell.interested = !cell.interested;
+    [_tableView reloadData];
+    
+    
+    
+    if(cell.interested)
+    {
+        labelText = @"Bored";
+        labelColor = [UIColor greenColor];
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
+    else
+    {
+        labelText = @"Interested";
+        labelColor = [UIColor orangeColor];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    [cell setRightUtilityButtons:[self rightButtons:labelText buttonColor:labelColor] WithButtonWidth:108.0f];
+    
+    
+    
+}
 //- (void)tableView:(UITableView *)tableView prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 //{
 //    SiteDetailsViewController *detailView = [[SiteDetailsViewController alloc]init];

@@ -184,6 +184,8 @@ const static char * SwipeStoreTableViewCellIndexPathKey = "SwipeStoreTableViewCe
     UIButton * storeButton = (UIButton *)sender;
     NSIndexPath * indexPath = storeButton.indexPath;
 
+    [self.dataSource tableView:self commitEditingStyle:UITableViewCellEditingStyleDelete forRowAtIndexPath:indexPath];
+    
     _editingIndexPath = nil;
 
     [UIView animateWithDuration:0.2f animations:^{

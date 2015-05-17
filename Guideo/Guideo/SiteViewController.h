@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SWTableViewCell.h"
 
-@interface SiteViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface SiteViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, SWTableViewCellDelegate>
 
 @property NSMutableArray *sites;
 @property NSMutableArray * searchResults;
