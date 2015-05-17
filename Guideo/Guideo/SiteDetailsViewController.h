@@ -14,5 +14,6 @@
 
 @property(strong, nonatomic) NSString *topicName;
 @property NSMutableArray *tabName;
+@property NSMutableArray *tabContent;
 
 @end

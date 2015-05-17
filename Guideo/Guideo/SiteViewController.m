@@ -158,9 +158,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
-
-   
     static NSString *cellIdentifier = @"Cell";
     
     SWTableViewCell *cell = (SWTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
@@ -173,7 +170,15 @@
         cell.delegate = self;
     }
     
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    if(cell.interested)
+    {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
+    else
+    {
+         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    
     
     tableData *site;
     if (tableView == self.searchDisplayController.searchResultsTableView) {
@@ -268,25 +273,18 @@
 - (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index
 {
     
-    NSLog(@"More button was pressed");
-    //UIAlertView *alertTest = [[UIAlertView alloc] initWithTitle:@"Good!" message:@"Add your interested site successfully!" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles: nil];
-    //[alertTest show];
     cell.interested = !cell.interested;
     [_tableView reloadData];
-    
-    
     
     if(cell.interested)
     {
         labelText = @"Bored";
         labelColor = [UIColor greenColor];
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
     else
     {
         labelText = @"Interested";
         labelColor = [UIColor orangeColor];
-        cell.accessoryType = UITableViewCellAccessoryNone;
     }
     [cell setRightUtilityButtons:[self rightButtons:labelText buttonColor:labelColor] WithButtonWidth:108.0f];
     

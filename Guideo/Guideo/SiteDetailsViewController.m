@@ -19,7 +19,7 @@
 
 @implementation SiteDetailsViewController
 @synthesize topicName;
-@synthesize tabName;
+@synthesize tabName,tabContent;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,6 +37,15 @@
     [tabName addObject:@"Culture"];
     [tabName addObject:@"Artifact"];
     [tabName addObject:@"Map"];
+    
+    
+    tabContent = [[NSMutableArray alloc] init];
+
+    [tabContent addObject:@"The Statue of Liberty (Liberty Enlightening the World; French: La Liberté éclairant le monde) is a colossal neoclassical sculpture on Liberty Island in New York Harbor in New York City, in the United States. The copper statue, designed by Frédéric Auguste Bartholdi, a French sculptor and dedicated on October 28, 1886, was a gift to the United States from the people of France. The statue is of a robed female figure representing Libertas, the Roman goddess, who bears a torch and a tabula ansata (a tablet evoking the law) upon which is inscribed the date of the American Declaration of Independence, July 4, 1776. A broken chain lies at her feet. The statue is an icon of freedom and of the United States: a welcoming signal to immigrants arriving from abroad.\nBartholdi was inspired by French law professor and politician Édouard René de Laboulaye, who is said to have commented in 1865 that any monument raised to American independence would properly be a joint project of the French and American peoples. He may have been minded to honor the Union victory in the American Civil War and the end of slavery. Due to the troubled political situation in France, work on the statue did not commence until the early 1870s. In 1875, Laboulaye proposed that the French finance the statue and the Americans provide the site and build the pedestal. Bartholdi completed the head and the torch-bearing arm before the statue was fully designed, and these pieces were exhibited for publicity at international expositions."];
+    [tabContent addObject:@"History"];
+    [tabContent addObject:@"Culture"];
+    [tabContent addObject:@"Artifact"];
+    [tabContent addObject:@"Map"];
     
     // Keeps tab bar below navigation bar on iOS 7.0+
      if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
@@ -106,9 +115,7 @@
     
     ContentViewController *cvc = [self.storyboard instantiateViewControllerWithIdentifier:@"contentViewController"];
     
-    cvc.labelString = [tabName objectAtIndex:index];
-    [cvc.label setFont:[UIFont fontWithName:@"Arial-BoldMT" size:20.0]];
-    cvc.label.textAlignment = NSTextAlignmentCenter;
+    [cvc setContentString:[tabContent objectAtIndex:index]];
     
     return cvc;
 }
