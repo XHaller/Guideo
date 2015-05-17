@@ -8,18 +8,29 @@
 
 #import "SiteViewController.h"
 #import "SiteDetailsViewController.h"
+#import "SwipeStoreTableView.h"
 #import "ExploreViewController.h"
 #import "MapViewController.h"
 #import "ExpandHeader.h"
 #import "tableData.h"
 
 @interface SiteViewController () <UIScrollViewDelegate>
+{
+    UIButton * _storeButton;
+    NSIndexPath * _editingIndexPath;
+    
+    UISwipeGestureRecognizer * _leftGestureRecognizer;
+    UISwipeGestureRecognizer * _rightGestureRecognizer;
+    UITapGestureRecognizer * _tapGestureRecognizer;
+}
+
+//@property (nonatomic, strong) IBOutlet SwipeStoreTableView * tableView;
 
 @end
 
 @implementation SiteViewController{
     ExpandHeader *_header;
-    __weak IBOutlet UITableView *_tableView;
+    __weak IBOutlet SwipeStoreTableView *_tableView;
     __weak UIImageView *_expandView;
 }
 
@@ -31,6 +42,12 @@
     [super viewDidLoad];
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    
+    CGRect frame = self.view.bounds;
+    _tableView = [[SwipeStoreTableView alloc] initWithFrame:frame];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
     
     self.title = @"Sites";
     
@@ -223,6 +240,12 @@
 {
     NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"tableTopic contains[c] %@", searchText];
     searchResults = [sites filteredArrayUsingPredicate:resultPredicate];
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Return NO if you do not want the specified item to be editable.
+    return YES;
 }
 
 -(void)exploreView

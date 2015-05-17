@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SiteViewController : UIViewController
+@interface SiteViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property NSMutableArray *sites;
 @property NSMutableArray * searchResults;
