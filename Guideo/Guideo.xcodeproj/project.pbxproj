@@ -38,6 +38,7 @@
 		D71EBB841ADA08C7009D34A4 /* ExpandHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = D71EBB831ADA08C7009D34A4 /* ExpandHeader.m */; };
 		D71F0A821ADE359B005804EB /* SiteDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D71F0A811ADE359B005804EB /* SiteDetailsViewController.m */; };
 		D734D0B01B0949FE00BA29C2 /* DataTransfer.m in Sources */ = {isa = PBXBuildFile; fileRef = D734D0AF1B0949FE00BA29C2 /* DataTransfer.m */; };
+		D734D0B31B09597500BA29C2 /* siteLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = D734D0B21B09597500BA29C2 /* siteLabel.m */; };
 		D735DFD41AF88B2E00C8B468 /* EventDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D735DFD31AF88B2E00C8B468 /* EventDetailsViewController.m */; };
 		D735DFD71AF897C100C8B468 /* SearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = D735DFD61AF897C100C8B468 /* SearchDisplayController.m */; };
 		D73DA94F1AF9875C00BFD608 /* PicturesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D73DA94E1AF9875C00BFD608 /* PicturesViewController.m */; };
@@ -138,6 +139,8 @@
 		D71F0A811ADE359B005804EB /* SiteDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SiteDetailsViewController.m; sourceTree = "<group>"; };
 		D734D0AE1B0949FD00BA29C2 /* DataTransfer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataTransfer.h; sourceTree = "<group>"; };
 		D734D0AF1B0949FE00BA29C2 /* DataTransfer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataTransfer.m; sourceTree = "<group>"; };
+		D734D0B11B09597500BA29C2 /* siteLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = siteLabel.h; sourceTree = "<group>"; };
+		D734D0B21B09597500BA29C2 /* siteLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = siteLabel.m; sourceTree = "<group>"; };
 		D735DFD21AF88B2E00C8B468 /* EventDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailsViewController.h; sourceTree = "<group>"; };
 		D735DFD31AF88B2E00C8B468 /* EventDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailsViewController.m; sourceTree = "<group>"; };
 		D735DFD51AF897C100C8B468 /* SearchDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDisplayController.h; sourceTree = "<group>"; };
@@ -390,6 +393,8 @@
 		D79CF2EC1ADDE3BA000EB15C /* DataStructure */ = {
 			isa = PBXGroup;
 			children = (
+				D734D0B11B09597500BA29C2 /* siteLabel.h */,
+				D734D0B21B09597500BA29C2 /* siteLabel.m */,
 				D79CF2ED1ADDE41D000EB15C /* tableData.h */,
 				D79CF2EE1ADDE41D000EB15C /* tableData.m */,
 				D73E0F1A1B0922A2001F8F35 /* siteData.h */,
@@ -526,6 +531,7 @@
 				D71EBB841ADA08C7009D34A4 /* ExpandHeader.m in Sources */,
 				B635295C1ADB5051003C9877 /* MCCardPickerCollectionViewFlowLayout.m in Sources */,
 				D79CF2EF1ADDE41D000EB15C /* tableData.m in Sources */,
+				D734D0B31B09597500BA29C2 /* siteLabel.m in Sources */,
 				D735DFD71AF897C100C8B468 /* SearchDisplayController.m in Sources */,
 				D73F5DD31B090F7100D422B1 /* SWLongPressGestureRecognizer.m in Sources */,
 				D71F0A821ADE359B005804EB /* SiteDetailsViewController.m in Sources */,

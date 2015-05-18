@@ -279,11 +279,7 @@
 }
 
 - (IBAction) signinClicked:(id)sender {
-    //[signinButton setBackgroundColor: NULL];
-    //    [signinButton setBackgroundImage:[UIImage imageNamed:@"signin.png"] forState:UIControlStateNormal];
-    //    [signinButton setTitle:@"Sign in" forState:UIControlStateNormal];
-    //    signinButton.imageEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
-    // [signinButton setBackgroundColor: [UIColor whiteColor]];
+    
     NSInteger success = 0;
     @try{
         if([[self.usernameField text] isEqualToString:@""])
@@ -317,64 +313,10 @@
                     NSString *error_msg = (NSString *) jsonData[@"error_message"];
                     [self alertStatus:error_msg :@"Sign in Failed!" :0];
                 }
-            
-            
-//            NSString *post =[NSString stringWithFormat:@"username=%@&password=%@",[self.usernameField text],[self.passwordField text]];
-//            NSLog(@"PostData: %@",post);
-//            
-//            NSURL *url=[NSURL URLWithString:@"http://52.6.223.152:80/login"];
-//            
-//            NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-//            
-//            NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
-//            
-//            NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-//            [request setURL:url];
-//            [request setHTTPMethod:@"POST"];
-//            [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
-//            [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-//            //[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-//            
-//            [request setHTTPBody:postData];
-//            
-//            //[NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:[url host]];
-//            
-//            NSError *error;
-//            NSHTTPURLResponse *response;
-//            NSData *urlData=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-//            
-//            NSLog(@"Response code: %ld", (long)[response statusCode]);
-//            
-//            if ([response statusCode] >= 200 && [response statusCode] < 300)
-//            {
-//                NSString *responseData = [[NSString alloc]initWithData:urlData encoding:NSUTF8StringEncoding];
-//                NSLog(@"Response ==> %@", responseData);
-//                
-//                NSError *error = nil;
-//                NSDictionary *jsonData = [NSJSONSerialization
-//                                          JSONObjectWithData:urlData
-//                                          options:NSJSONReadingMutableContainers
-//                                          error:&error];
-//                
-//                success = [jsonData[@"login"] integerValue];
-//                NSLog(@"Success: %ld",(long)success);
-//                
-//                if(success == 1)
-//                {
-//                    NSLog(@"Login SUCCESS");
-//                } else {
-//                    
-//                    NSString *error_msg = (NSString *) jsonData[@"error_message"];
-//                    [self alertStatus:error_msg :@"Sign in Failed!" :0];
-//                }
-//                
-//            } else {
-//                [self alertStatus:@"Connection Failed" :@"Sign in Failed!" :0];
-//            }
-             //success = 1;
+           
+            }
+            success = 1;
         }
-        
-    }
     }
     @catch (NSException * e) {
         NSLog(@"Exception: %@", e);
@@ -394,6 +336,8 @@
     emailField.hidden = NO;
     emailField.frame = CGRectMake(65, 320, 250, 45);
     retypeField.hidden = NO;
+    usernameField.text = nil;
+    passwordField.text = nil;
     usernameField.placeholder = @"  Create a username, please ;)";
     passwordField.frame = CGRectMake(65, 390, 250, 45);
     passwordField.placeholder = @"  Create a password, please ;)";
@@ -407,11 +351,83 @@
 
 - (IBAction) signup2Clicked:(id)sender {
     
+    NSInteger success = 0;
+    NSString *nameRegex = @"[a-zA-Z][a-zA-Z0-9]*";
+    NSPredicate *pred1 = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", nameRegex];
+    NSString *emailRegex = @"^[_A-Za-z0-9-+]+(\\.[_A-Za-z0-9-+]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z‌​]{2,4})$";
+    NSPredicate *pred2 = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    
+    @try{
+        if([[self.usernameField text] isEqualToString:@""])
+        {
+            [self alertStatus:@"Sorry, but please create a Username!" :@"Sign up failed!" :0];
+        }
+        else if(![pred1 evaluateWithObject:[self.usernameField text]])
+        {
+            [self alertStatus:@"Sorry, the username can only contain alphabets and numbers!" :@"Sign up failed!" :0];
+            
+        }
+        else if(![pred2 evaluateWithObject:[self.emailField text]])
+        {
+            [self alertStatus:@"Sorry, the email is not valid!" :@"Sign up failed!" :0];
+        }
+        else if([[self.passwordField text] isEqualToString:@""])
+        {
+            [self alertStatus:@"Sorry, but please create a Password!" :@"Sign up failed!" :0];
+        }
+        else if([[self.passwordField text] length] < 6)
+        {
+            [self alertStatus:@"Sorry, the password should contain at least 6 characters!" :@"Sign up failed!" :0];
+        }
+        else if(![[self.passwordField text] isEqualToString:[self.retypeField text]])
+        {
+            [self alertStatus:@"Sorry, the two passwords are not the same!" :@"Sign up failed!" :0];
+        }
+        else
+        {
+            NSDictionary *keyPair = @{@"username" : [self.usernameField text], @"email" : [self.emailField text], @"password" : [self.passwordField text]};
+            NSDictionary *jsonData = [DataTransfer requestWithURL:@"http://52.6.223.152:80/signup" httpMethod:@"POST" params:keyPair];
+            
+            if(jsonData == NULL)
+            {
+                [self alertStatus:@"Connection Failed" :@"Sign up Failed!" :0];
+            }
+            else
+            {
+                success = [jsonData[@"signup"] integerValue];
+                
+                NSLog(@"Success: %ld",(long)success);
+                
+                if(success == 1)
+                {
+                    NSLog(@"Signup SUCCESS");
+                } else {
+                    
+                    NSString *error_msg = (NSString *) jsonData[@"error_message"];
+                    [self alertStatus:error_msg :@"Sign up Failed!" :0];
+                }
+                
+            }
+            success = 1;
+        }
+    }
+    @catch (NSException * e) {
+        NSLog(@"Exception: %@", e);
+        [self alertStatus:@"Sign up Failed." :@"Error!" :0];
+    }
+    if (success == 1) {
+        [self performSegueWithIdentifier:@"loginSuccess" sender:self];
+    }
+
 }
 
 - (IBAction) backClicked:(id)sender {
     emailField.hidden = YES;
     retypeField.hidden = YES;
+    usernameField.text = nil;
+    passwordField.text = nil;
+    emailField.text = nil;
+    retypeField.text = nil;
     usernameField.hidden = NO;
     passwordField.hidden = NO;
     usernameField.placeholder = @"  Your username, please ;)";
@@ -427,6 +443,55 @@
 }
 
 - (IBAction) sendClicked:(id)sender {
+    
+    NSInteger success = 0;
+    NSString *emailRegex = @"^[_A-Za-z0-9-+]+(\\.[_A-Za-z0-9-+]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z‌​]{2,4})$";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    @try{
+        if([[self.emailField text] isEqualToString:@""])
+        {
+            [self alertStatus:@"Sorry, but please enter your email address!" :@"Failed to Get Password!" :0];
+        }
+        else if(![pred evaluateWithObject:[self.emailField text]])
+        {
+            [self alertStatus:@"Sorry, the email is not valid!" :@"Failed to Get Password!" :0];
+        }
+        else
+        {
+            NSDictionary *keyPair = @{@"email" : [self.emailField text]};
+            NSDictionary *jsonData = [DataTransfer requestWithURL:@"http://52.6.223.152:80/getPassword" httpMethod:@"POST" params:keyPair];
+            
+            if(jsonData == NULL)
+            {
+                [self alertStatus:@"Connection Failed" :@"Failed to Get Password!" :0];
+            }
+            else
+            {
+                success = [jsonData[@"getback"] integerValue];
+                
+                NSLog(@"Success: %ld",(long)success);
+                
+                if(success == 1)
+                {
+                    NSLog(@"Get Password Back!");
+                } else {
+                    
+                    NSString *error_msg = (NSString *) jsonData[@"error_message"];
+                    [self alertStatus:error_msg :@"Failed to Get Password!" :0];
+                }
+                
+            }
+            //success = 1;
+        }
+    }
+    @catch (NSException * e) {
+        NSLog(@"Exception: %@", e);
+        [self alertStatus:@"Failed to Get Password." :@"Error!" :0];
+    }
+    if (success == 1) {
+        [self alertStatus:@"Your Password Has been Sent. Please Check Your Email!" :@"Success" :1];
+    }
+
     
 }
 
