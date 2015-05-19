@@ -14,23 +14,24 @@ connection.connect();
 console.log("connected to db")
 
 
-router.post('/detail', function(req, res){
+router.get('/info', function(req, res){
 	console.log("Handler for /event/detail called");
-		var name=req.body.name;
+		//var name=req.body.topic;
 		
-		console.log("The name is: "+ name);
+		//console.log("The name is: "+ name);
 
-		var queryString = 'SELECT * FROM Events WHERE Events.name="' + name +'";';
-		console.log("Querying db for event detais of event " + name);
+		//var queryString = 'SELECT * FROM Events WHERE Events.name="' + name +'";';
+		var queryString = 'SELECT * FROM Events;';
+		console.log("Querying db for event info of all events ");
 		console.log("This is the query " + queryString);
 		connection.query(queryString, function(err, rows, fields) {
 		    if (err) console.log(err);
 			
 			if (rows.length > 0) {
-				
-				res.end(JSON.stringify({ event: 1, address: rows[0].address, phone: rows[0].phone, start_date: rows[0].start_date, description: rows[0].description, photourl: rows[0].photourl, latitude: rows[0].latitude, longtitude: rows[0].longtitude}));
+				res.end(JSON.stringify({ event: 1, topic: rows[0].name, content: rows[0].description, image: rows[0].photourl}));
+				//res.end(JSON.stringify({ event: 1, address: rows[0].address, phone: rows[0].phone, start_date: rows[0].start_date, description: rows[0].description, photourl: rows[0].photourl, latitude: rows[0].latitude, longtitude: rows[0].longtitude}));
 			} else {
-			    res.end(JSON.stringify({ event: 1, error_message: "No event by this name found." }));
+			    res.end(JSON.stringify({ event: 1, error_message: "No event found." }));
 			}
 		});
 });
