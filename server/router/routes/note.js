@@ -15,29 +15,20 @@ console.log("connected to db")
 
 
 router.post('/', function(req, res){
-	console.log("Handler for /login called");
-		var username=req.body.username;
-		var password=req.body.password;
-		var email = req.body.email;
-		console.log("The username is: "+ username);
+	console.log("Handler for /note called");
+		var id=req.body.id;
+		console.log("The note id is: "+ id);
 
-		var queryString = 'SELECT * FROM Users WHERE Users.name="' + username +'";';
-		console.log("Querying db for password of user " + username);
+		var queryString = 'SELECT * FROM Notes WHERE Notes.id="' + id +'";';
+		console.log("Querying db for notes with id " + id);
 		console.log("This is the query " + queryString);
 		connection.query(queryString, function(err, rows, fields) {
 		    if (err) console.log(err);
 			
 			if (rows.length > 0) {
-				res.end(JSON.stringify({ event: 0, error_message: "Username Already Exists.\nPlease try another username!" }));
+				res.end(JSON.stringify({ note: 1, id: rows[0].nid, title: rows[0].title}));
 			} else {
-				var queryString = 'INSERT INTO Users (name, password, email) VALUES ("' + username + '","' + password + '","' + email + '");';
-				console.log("Querying db for password of user " + username);
-				console.log("This is the query " + queryString);
-				var pwd;
-				 
-				connection.query(queryString, function(err, rows, fields) {
-				    if (err) console.log(err);
-				    res.end(JSON.stringify({ signup: 1 }));
+				    res.end(JSON.stringify({ note: 1 }));
 				});
 			}
 		});
