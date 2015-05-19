@@ -293,7 +293,7 @@
         else
         {
             NSDictionary *keyPair = @{@"username" : [self.usernameField text], @"password" : [self.passwordField text]};
-            NSDictionary *jsonData = [DataTransfer requestWithURL:@"http://52.6.223.152:80/login" httpMethod:@"POST" params:keyPair];
+            NSDictionary *jsonData = [DataTransfer requestObjectWithURL:@"http://52.6.223.152:80/login" httpMethod:@"POST" params:keyPair];
             
             if(jsonData == NULL)
             {
@@ -315,7 +315,7 @@
                 }
            
             }
-            success = 1;
+            //success = 1;
         }
     }
     @catch (NSException * e) {
@@ -386,7 +386,7 @@
         else
         {
             NSDictionary *keyPair = @{@"username" : [self.usernameField text], @"email" : [self.emailField text], @"password" : [self.passwordField text]};
-            NSDictionary *jsonData = [DataTransfer requestWithURL:@"http://52.6.223.152:80/signup" httpMethod:@"POST" params:keyPair];
+            NSDictionary *jsonData = [DataTransfer requestObjectWithURL:@"http://52.6.223.152:80/signup" httpMethod:@"POST" params:keyPair];
             
             if(jsonData == NULL)
             {
@@ -408,7 +408,7 @@
                 }
                 
             }
-            success = 1;
+            //success = 1;
         }
     }
     @catch (NSException * e) {
@@ -459,7 +459,7 @@
         else
         {
             NSDictionary *keyPair = @{@"email" : [self.emailField text]};
-            NSDictionary *jsonData = [DataTransfer requestWithURL:@"http://52.6.223.152:80/getPassword" httpMethod:@"POST" params:keyPair];
+            NSDictionary *jsonData = [DataTransfer requestObjectWithURL:@"http://52.6.223.152:80/getPassword" httpMethod:@"POST" params:keyPair];
             
             if(jsonData == NULL)
             {

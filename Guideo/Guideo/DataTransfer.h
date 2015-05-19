@@ -12,6 +12,8 @@
 {
 }
 
-+ (NSDictionary *)requestWithURL:(NSString *)urladdress httpMethod:(NSString *)httpMethod params:(NSDictionary *)sendParams;
++ (NSDictionary *)requestObjectWithURL:(NSString *)urladdress httpMethod:(NSString *)httpMethod params:(NSDictionary *)sendParams;
+
++ (NSArray *)requestArrayWithURL:(NSString *)urladdress httpMethod:(NSString *)httpMethod params:(NSDictionary *)sendParams;
 
 @end
