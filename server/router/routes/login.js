@@ -16,7 +16,7 @@ console.log("connected to db")
 
 router.post('/', function(req, res){
 	console.log("Handler for /login called");
-		var user_name=req.body.user;
+		var user_name=req.body.username;
 		var password=req.body.password;
 		console.log("The username is: "+ user_name);
 			
@@ -28,8 +28,10 @@ router.post('/', function(req, res){
 		connection.query(queryString, function(err, rows, fields) {
 		    if (err) console.log(err);
 		
-			if (result.length < 1)
+			if (rows.length < 1) {
+				res.end(JSON.stringify({ login: 0 }));
 				return; 
+		}
 		    pwd = rows[0].password;
 		    
 		    console.log("And this is the password: "+pwd); 
@@ -41,8 +43,8 @@ router.post('/', function(req, res){
 		// for (var i in rows) {
 		//      console.log('Row 0: ', rows[0].password);
 		//    }
-		connection.end();
-		console.log("disconnected from db")
+		//connection.end();
+		//console.log("disconnected from db")
 		});
 });
 
