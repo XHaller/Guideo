@@ -29,7 +29,7 @@ router.post('/', function(req, res){
 				res.end(JSON.stringify({ note: 1, id: rows[0].nid, title: rows[0].title}));
 			} else {
 				    res.end(JSON.stringify({ note: 1 }));
-				});
+			
 			}
 		});
 });
