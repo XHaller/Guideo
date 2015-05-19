@@ -28,7 +28,7 @@ router.post('/', function(req, res){
 		    if (err) console.log(err);
 			
 			if (rows.length > 0) {
-				res.end(JSON.stringify({ signup: 0, error_message: "Username Already Exists.\nPlease try another username!" }));
+				res.end(JSON.stringify({ event: 0, error_message: "Username Already Exists.\nPlease try another username!" }));
 			} else {
 				var queryString = 'INSERT INTO Users (name, password, email) VALUES ("' + username + '","' + password + '","' + email + '");';
 				console.log("Querying db for password of user " + username);

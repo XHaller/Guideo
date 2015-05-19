@@ -39,12 +39,6 @@ router.post('/', function(req, res){
 	    		res.end(JSON.stringify({ login: 1 }));
 			else
 	    		res.end(JSON.stringify({ login: 0 }));	
-
-		// for (var i in rows) {
-		//      console.log('Row 0: ', rows[0].password);
-		//    }
-		//connection.end();
-		//console.log("disconnected from db")
 		});
 });
 
