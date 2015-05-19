@@ -6,9 +6,13 @@ var app            =         express();
 var mysql = require('mysql');
 
 var app = express();
-app.use(bodyParser.urlencoded({ extended: false }));
+var jsonParser = bodyParser.json();
 app.use(bodyParser.json());
-//app.post('/login', routes.login);
+app.use(bodyParser.urlencoded({ extended: false }));
+
+//  app.use(app.router);
+//app.post('/login', jsonParser, routes.login);
+
 var router = require('./router')(app);
  
 app.listen(80,function(){

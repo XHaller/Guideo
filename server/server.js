@@ -42,13 +42,13 @@ app.post('/login',function(req,res){
 	var user_name=req.body.user;
 	var password=req.body.password;
 	console.log("hello");
-	console.log(req.body);
+	console.log(req.body.user);
 	res.setHeader('Content-Type', 'application/json');
 	if (pwd == password)
     		res.end(JSON.stringify({ login: 1 }));
 	else
     		res.end(JSON.stringify({ login: 0 }));	
-	console.log(res.body);
+	//console.log(res.body);
 });
 
 app.listen(80,function(){
