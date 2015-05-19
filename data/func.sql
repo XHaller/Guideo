@@ -5,7 +5,7 @@ select * from Sites
 where sid = 1;
 
 select * from Sites
-where name = 'The Museum of Modern Art (MoMA)';
+where name = 'Museum of Modern Art';
 
 #minimize range using zipcode
 set @zip = 10020;
@@ -23,7 +23,7 @@ set @curla = 10;
 select * from Sites
 order by (longtitude-curlong)*(longtitude-curlong) + (latitude-curla)*(latitude-curla);
 
-#recommend sites by rank which is default indicated by sid
+#recommend sites by rank which is indicated by sid
 select * from Sites
 order by sid;
 
