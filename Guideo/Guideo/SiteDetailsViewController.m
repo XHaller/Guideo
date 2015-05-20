@@ -34,7 +34,7 @@
     
     tabName = [[NSMutableArray alloc] init];
     
-    [tabName addObject:@"BaseInfo"];
+    [tabName addObject:@"Info"];
     [tabName addObject:@"History"];
     [tabName addObject:@"Culture"];
     [tabName addObject:@"Artifact"];
@@ -65,9 +65,9 @@
 //    [siteInfo.siteItemsContent addObject:@"Map"];
     
     // Keeps tab bar below navigation bar on iOS 7.0+
-     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
-         self.edgesForExtendedLayout = UIRectEdgeNone;
-     }
+//     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
+//         self.edgesForExtendedLayout = UIRectEdgeNone;
+//     }
     
     self.numberOfTabs = [tabName count];
     
@@ -119,7 +119,7 @@
     
     UILabel *label = [UILabel new];
     label.backgroundColor = [UIColor clearColor];
-    label.font = [UIFont systemFontOfSize:12.0];
+    label.font = [UIFont fontWithName:@"Cochin-BoldItalic" size:20.0];
     label.text = [tabName objectAtIndex:index];
     label.textAlignment = NSTextAlignmentCenter;
     label.textColor = [UIColor blackColor];
@@ -132,7 +132,7 @@
     
     ContentViewController *cvc = [self.storyboard instantiateViewControllerWithIdentifier:@"contentViewController"];
     
-    if([[tabName objectAtIndex:index] isEqualToString:@"BaseInfo"])
+    if([[tabName objectAtIndex:index] isEqualToString:@"Info"])
         cvc.isBase = NO;
     else
         cvc.isBase = YES;

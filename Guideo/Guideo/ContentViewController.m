@@ -20,7 +20,7 @@
     
     [super viewDidLoad];
     
-    UITextView *contentView = [[UITextView alloc] initWithFrame:CGRectMake(20,0,335,450)];
+    UITextView *contentView = [[UITextView alloc] initWithFrame:CGRectMake(10,10,self.view.frame.size.width-20,430)];
     [contentView setText:contentString];
     contentView.textColor = [UIColor blackColor];
     contentView.font = [UIFont systemFontOfSize:15];

@@ -41,6 +41,7 @@
 		D734D0B31B09597500BA29C2 /* siteLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = D734D0B21B09597500BA29C2 /* siteLabel.m */; };
 		D735DFD41AF88B2E00C8B468 /* EventDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D735DFD31AF88B2E00C8B468 /* EventDetailsViewController.m */; };
 		D735DFD71AF897C100C8B468 /* SearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = D735DFD61AF897C100C8B468 /* SearchDisplayController.m */; };
+		D73890801B0C513B00446D09 /* ImageScaler.m in Sources */ = {isa = PBXBuildFile; fileRef = D738907F1B0C513B00446D09 /* ImageScaler.m */; };
 		D73DA94F1AF9875C00BFD608 /* PicturesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D73DA94E1AF9875C00BFD608 /* PicturesViewController.m */; };
 		D73E0F1C1B0922A2001F8F35 /* siteData.m in Sources */ = {isa = PBXBuildFile; fileRef = D73E0F1B1B0922A2001F8F35 /* siteData.m */; };
 		D73F5DD11B090F7100D422B1 /* NSMutableArray+SWUtilityButtons.m in Sources */ = {isa = PBXBuildFile; fileRef = D73F5DC61B090F7100D422B1 /* NSMutableArray+SWUtilityButtons.m */; };
@@ -145,6 +146,8 @@
 		D735DFD31AF88B2E00C8B468 /* EventDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailsViewController.m; sourceTree = "<group>"; };
 		D735DFD51AF897C100C8B468 /* SearchDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDisplayController.h; sourceTree = "<group>"; };
 		D735DFD61AF897C100C8B468 /* SearchDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDisplayController.m; sourceTree = "<group>"; };
+		D738907E1B0C513B00446D09 /* ImageScaler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageScaler.h; sourceTree = "<group>"; };
+		D738907F1B0C513B00446D09 /* ImageScaler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageScaler.m; sourceTree = "<group>"; };
 		D73DA94D1AF9875C00BFD608 /* PicturesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicturesViewController.h; sourceTree = "<group>"; };
 		D73DA94E1AF9875C00BFD608 /* PicturesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicturesViewController.m; sourceTree = "<group>"; };
 		D73E0F1A1B0922A2001F8F35 /* siteData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = siteData.h; sourceTree = "<group>"; };
@@ -319,6 +322,10 @@
 			children = (
 				D734D0AE1B0949FD00BA29C2 /* DataTransfer.h */,
 				D734D0AF1B0949FE00BA29C2 /* DataTransfer.m */,
+				D738907E1B0C513B00446D09 /* ImageScaler.h */,
+				D738907F1B0C513B00446D09 /* ImageScaler.m */,
+				B67F6B451AF97B73002DAE08 /* NoteDetailCollectionViewCell.h */,
+				B67F6B461AF97B86002DAE08 /* NoteDetailCollectionViewCell.m */,
 				D73F5DC51B090F7100D422B1 /* NSMutableArray+SWUtilityButtons.h */,
 				D73F5DC61B090F7100D422B1 /* NSMutableArray+SWUtilityButtons.m */,
 				D73F5DC71B090F7100D422B1 /* SWCellScrollView.h */,
@@ -380,8 +387,6 @@
 				D735DFD61AF897C100C8B468 /* SearchDisplayController.m */,
 				B67F6B421AF97A0F002DAE08 /* NoteDetailViewController.h */,
 				B67F6B431AF97A1D002DAE08 /* NoteDetailViewController.m */,
-				B67F6B451AF97B73002DAE08 /* NoteDetailCollectionViewCell.h */,
-				B67F6B461AF97B86002DAE08 /* NoteDetailCollectionViewCell.m */,
 				B6FA41A31AFEC301009DCC77 /* UserViewController.h */,
 				B6FA41A41AFEC330009DCC77 /* UserViewController.m */,
 				B609A3EB1B02D5FD00B48DA2 /* AddNoteViewController.h */,
@@ -508,6 +513,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B635295B1ADB5051003C9877 /* MCCardPickerCollectionViewController.m in Sources */,
+				D73890801B0C513B00446D09 /* ImageScaler.m in Sources */,
 				D76500891AE1F44F002F50AD /* ViewPagerController.m in Sources */,
 				D76500871AE1F44F002F50AD /* ContentViewController.m in Sources */,
 				B609A3FD1B02D62E00B48DA2 /* DoImagePickerController.m in Sources */,
@@ -671,6 +677,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jari Aho (N6UX62EFNQ)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -685,6 +692,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jari Aho (N6UX62EFNQ)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

@@ -8,11 +8,15 @@
 
 #import "EventViewController.h"
 #import "EventDetailsViewController.h"
+#import "SearchDisplayController.h"
 #import "tableData.h"
 #import "DataTransfer.h"
+#import "ImageScaler.h"
 
 @interface EventViewController ()
-
+{
+    SearchDisplayController *search;
+}
 @end
 
 @implementation EventViewController{
@@ -103,15 +107,40 @@
 //    
 //    [events addObject:event5];
     
-    self.searchDisplayController.searchBar.barTintColor = [UIColor colorWithRed:176/255.0 green:215/255.0 blue:255/255.0 alpha:1.0];
+    self.navigationController.navigationBar.translucent = NO;
     
-    self.searchDisplayController.searchBar.tintColor = [UIColor whiteColor];
-    for (UIView* subview in [[self.searchDisplayController.searchBar.subviews lastObject] subviews]) {
+    
+    UISearchBar *mySearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 0)];
+    [self.view addSubview:mySearchBar];
+    
+    mySearchBar.barTintColor = [UIColor colorWithRed:176/255.0 green:215/255.0 blue:255/255.0 alpha:1.0];
+    mySearchBar.tintColor = [UIColor whiteColor];
+    mySearchBar.placeholder = @"Search Events";
+    //mySearchBar.showsScopeBar = NO;
+    
+    for (UIView* subview in [[mySearchBar.subviews lastObject] subviews]) {
         if ([subview isKindOfClass:[UITextField class]]) {
             UITextField *textField = (UITextField*)subview;
             [textField setBackgroundColor:[UIColor colorWithRed:96/255.0 green:215/255.0 blue:255/255.0 alpha:0.3]];
         }
     }
+    
+    // create the Search Display Controller with the above Search Bar
+    search = [[SearchDisplayController alloc]initWithSearchBar:mySearchBar contentsController:self];
+    search.searchResultsDataSource = self;
+    search.searchResultsDelegate = self;
+    
+    
+    
+//    search.searchBar.barTintColor = [UIColor colorWithRed:176/255.0 green:215/255.0 blue:255/255.0 alpha:1.0];
+//    
+//    search.searchBar.tintColor = [UIColor whiteColor];
+//    for (UIView* subview in [[search.searchBar.subviews lastObject] subviews]) {
+//        if ([subview isKindOfClass:[UITextField class]]) {
+//            UITextField *textField = (UITextField*)subview;
+//            [textField setBackgroundColor:[UIColor colorWithRed:96/255.0 green:215/255.0 blue:255/255.0 alpha:0.3]];
+//        }
+//    }
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -124,8 +153,8 @@
 -(void) viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     // check if searchDisplayController still active..
-    if ([self.searchDisplayController isActive]) {
-        [self.searchDisplayController setActive:NO];
+    if ([search isActive]) {
+        [search setActive:NO];
     }
 }
 
@@ -141,7 +170,9 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
+    if (tableView == search.searchResultsTableView) {
+        NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"tableTopic contains[c] %@", search.searchBar.text];
+        searchResults = [events filteredArrayUsingPredicate:resultPredicate];
         return [searchResults count];
         
     } else {
@@ -160,15 +191,16 @@
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     tableData *event;
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
+    if (tableView == search.searchResultsTableView) {
         event = [searchResults objectAtIndex:indexPath.row];
     } else {
         event = [events objectAtIndex:indexPath.row];
     }
     
+    CGSize newSize = CGSizeMake(64, 64);
     NSURL *imageURL = [NSURL URLWithString:[event tableImage]];
     NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
-    cell.imageView.image = [UIImage imageWithData:imageData];
+    cell.imageView.image = [ImageScaler imageResize:[UIImage imageWithData:imageData] andResizeTo:newSize];
     
     cell.textLabel.text = [event tableTopic];
     cell.detailTextLabel.numberOfLines = 2000;
@@ -198,7 +230,7 @@
     detailView.hidesBottomBarWhenPushed = YES;
     
     tableData *event;
-    if (self.searchDisplayController.active)
+    if (search.active)
     {
         event = [searchResults objectAtIndex:indexPath.row];
     }
@@ -212,21 +244,7 @@
     [[self navigationController] pushViewController:detailView animated:YES];
 }
 
--(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
-{
-    [self filterContentForSearchText:searchString
-                               scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
-                                      objectAtIndex:[self.searchDisplayController.searchBar
-                                                     selectedScopeButtonIndex]]];
-    
-    return YES;
-}
 
-- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
-{
-    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"tableTopic contains[c] %@", searchText];
-    searchResults = [events filteredArrayUsingPredicate:resultPredicate];
-}
 
 //- (void)tableView:(UITableView *)tableView prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 //{

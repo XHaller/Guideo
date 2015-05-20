@@ -44,7 +44,6 @@
     
     _expandView = expandView;
     
-    //使View可以伸展效果  重要属性
     _expandView.contentMode= UIViewContentModeScaleAspectFill;
     _expandView.clipsToBounds = YES;
     
@@ -74,7 +73,6 @@
 
 - (void)reSizeView{
     
-    //重置_expandView位置
     [_expandView setFrame:CGRectMake(0, -1*_expandHeight, CGRectGetWidth(_expandView.frame), _expandHeight)];
     
 }
