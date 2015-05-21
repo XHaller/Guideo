@@ -42,6 +42,7 @@
 		D735DFD41AF88B2E00C8B468 /* EventDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D735DFD31AF88B2E00C8B468 /* EventDetailsViewController.m */; };
 		D735DFD71AF897C100C8B468 /* SearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = D735DFD61AF897C100C8B468 /* SearchDisplayController.m */; };
 		D73890801B0C513B00446D09 /* ImageScaler.m in Sources */ = {isa = PBXBuildFile; fileRef = D738907F1B0C513B00446D09 /* ImageScaler.m */; };
+		D73890831B0D96B600446D09 /* userData.m in Sources */ = {isa = PBXBuildFile; fileRef = D73890821B0D96B600446D09 /* userData.m */; };
 		D73DA94F1AF9875C00BFD608 /* PicturesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D73DA94E1AF9875C00BFD608 /* PicturesViewController.m */; };
 		D73E0F1C1B0922A2001F8F35 /* siteData.m in Sources */ = {isa = PBXBuildFile; fileRef = D73E0F1B1B0922A2001F8F35 /* siteData.m */; };
 		D73F5DD11B090F7100D422B1 /* NSMutableArray+SWUtilityButtons.m in Sources */ = {isa = PBXBuildFile; fileRef = D73F5DC61B090F7100D422B1 /* NSMutableArray+SWUtilityButtons.m */; };
@@ -148,6 +149,8 @@
 		D735DFD61AF897C100C8B468 /* SearchDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDisplayController.m; sourceTree = "<group>"; };
 		D738907E1B0C513B00446D09 /* ImageScaler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageScaler.h; sourceTree = "<group>"; };
 		D738907F1B0C513B00446D09 /* ImageScaler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageScaler.m; sourceTree = "<group>"; };
+		D73890811B0D96B600446D09 /* userData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userData.h; sourceTree = "<group>"; };
+		D73890821B0D96B600446D09 /* userData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = userData.m; sourceTree = "<group>"; };
 		D73DA94D1AF9875C00BFD608 /* PicturesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicturesViewController.h; sourceTree = "<group>"; };
 		D73DA94E1AF9875C00BFD608 /* PicturesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicturesViewController.m; sourceTree = "<group>"; };
 		D73E0F1A1B0922A2001F8F35 /* siteData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = siteData.h; sourceTree = "<group>"; };
@@ -404,6 +407,8 @@
 				D79CF2EE1ADDE41D000EB15C /* tableData.m */,
 				D73E0F1A1B0922A2001F8F35 /* siteData.h */,
 				D73E0F1B1B0922A2001F8F35 /* siteData.m */,
+				D73890811B0D96B600446D09 /* userData.h */,
+				D73890821B0D96B600446D09 /* userData.m */,
 			);
 			name = DataStructure;
 			sourceTree = "<group>";
@@ -519,6 +524,7 @@
 				B609A3FD1B02D62E00B48DA2 /* DoImagePickerController.m in Sources */,
 				B63529621ADB50BD003C9877 /* UIImage+ImageEffects.m in Sources */,
 				B609A3FF1B02D62E00B48DA2 /* DoPhotoCell.m in Sources */,
+				D73890831B0D96B600446D09 /* userData.m in Sources */,
 				D73F5DD51B090F7100D422B1 /* SWUtilityButtonTapGestureRecognizer.m in Sources */,
 				B67F6B471AF97B86002DAE08 /* NoteDetailCollectionViewCell.m in Sources */,
 				D734D0B01B0949FE00BA29C2 /* DataTransfer.m in Sources */,

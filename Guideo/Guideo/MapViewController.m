@@ -7,7 +7,7 @@
 //
 
 #import "MapViewController.h"
-#import <GoogleMaps/GoogleMaps.h>
+
 
 @interface MapViewController ()
 
@@ -15,7 +15,6 @@
 
 @implementation MapViewController
 {
-    GMSMapView *mapView;
     BOOL isRouting;
     UIImage *routeButtonImage;
     UIImage *noRouteButtonImage;
@@ -26,6 +25,7 @@
 @synthesize longitude;
 @synthesize siteName;
 @synthesize siteInfo;
+@synthesize mapView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -41,12 +41,12 @@
     self.navigationItem.rightBarButtonItems = itemsArr;
     self.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
     
+    locationManager = [[CLLocationManager alloc] init];
     
-    if (locationManager == nil)
-        locationManager = [[CLLocationManager alloc] init];
     locationManager.delegate = self;
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     locationManager.distanceFilter = 500;
+   
     
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0 &&
         [CLLocationManager authorizationStatus] != kCLAuthorizationStatusAuthorizedWhenInUse
@@ -58,13 +58,14 @@
         [locationManager startUpdatingLocation]; //Will update location immediately
     }
     
-//    mapView.myLocationEnabled = YES;
-//    CLLocation *location = mapView.myLocation;
-//    
-//    
-//    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:location.coordinate.latitude
-//                                                            longitude:location.coordinate.longitude
-//                                                                 zoom:6];
+    CLLocation *location = [locationManager location];
+    
+    
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:location.coordinate.latitude
+                                                            longitude:location.coordinate.longitude
+                                                                 zoom:6];
+    
+   // NSLog(@"%f", location.coordinate.latitude);
     
     siteName = [[NSMutableArray alloc] init];
     siteInfo = [[NSMutableArray alloc] init];
@@ -91,13 +92,21 @@
     [longitude addObject:[NSNumber numberWithDouble:74.2133]];
     [longitude addObject:[NSNumber numberWithDouble:74.5274]];
     
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:41
-                                                            longitude:74
-                                                                 zoom:8];
-
+//    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:41
+//                                                            longitude:74
+//                                                                 zoom:8];
+//
     
     
     mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
+    
+    mapView.myLocationEnabled = YES;
+    mapView.delegate = self;
+    location = mapView.myLocation;
+    camera = [GMSCameraPosition cameraWithLatitude:location.coordinate.latitude
+                                         longitude:location.coordinate.longitude
+                                              zoom:16];
+    mapView.camera = camera;
     
     for(int i = 0; i < [latitude count]; i++)
     {
@@ -116,51 +125,34 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 -(void) viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    // check if searchDisplayController still active..
-    if ([self.searchDisplayController isActive]) {
-        [self.searchDisplayController setActive:NO];
-    }
-    
-   // CLLocation *location = locationManager.location;
-   // NSLog(@"lat%f - lon%f", location.coordinate.latitude, location.coordinate.longitude);
 }
 
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+    UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"There was an error retrieving your location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [errorAlert show];
+    NSLog(@"Error: %@",error.description);
+}
 
 - (void)locationManager:(CLLocationManager *)manager
      didUpdateLocations:(NSArray *)locations {
     // If it's a relatively recent event, turn off updates to save power.
     CLLocation* location = [locations lastObject];
+    
+    //NSLog(@"%.8f",location.coordinate.latitude);
+    //NSLog(@"%.8f",location.coordinate.longitude);
+    
     NSDate* eventDate = location.timestamp;
     NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
-    if (abs(howRecent) < 15.0) {
-        // Update your marker on your map using location.coordinate.latitude
-        //and location.coordinate.longitude);
+    if (fabs(howRecent) < 15.0) {
         CLLocationCoordinate2D target =
         CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
         [mapView animateToLocation:target];
     }
 }
 
-#pragma mark - CLLocationManagerDelegate
-- (void)locationManager:(CLLocationManager*)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
-{
-    switch (status) {
-        case kCLAuthorizationStatusNotDetermined: {
-            NSLog(@"User still thinking..");
-        } break;
-        case kCLAuthorizationStatusDenied: {
-            NSLog(@"User hates you");
-        } break;
-        case kCLAuthorizationStatusAuthorizedWhenInUse:
-        case kCLAuthorizationStatusAuthorizedAlways: {
-            [locationManager startUpdatingLocation]; //Will update location immediately
-        } break;
-        default:
-            break;
-    }
-}
 
 - (void) showRoute
 {

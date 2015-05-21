@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "HomeViewController.h"
+#import "userData.h"
 #import "DataTransfer.h"
 
 @interface ViewController ()
@@ -307,6 +308,11 @@
             
                 if(success == 1)
                 {
+                    [userData setUsername:jsonData[@"name"]];
+                    [userData setEmail:jsonData[@"email"]];
+                    [userData setUserintro:jsonData[@"intro"]];
+                    [userData setUserimage:jsonData[@"image"]];
+
                     NSLog(@"Login SUCCESS");
                 } else {
             
@@ -400,6 +406,10 @@
                 
                 if(success == 1)
                 {
+                    [userData setUsername:[self.usernameField text]];
+                    [userData setEmail:[self.emailField text]];
+                    [userData setUserintro:@""];
+                    [userData setUserimage:@""];
                     NSLog(@"Signup SUCCESS");
                 } else {
                     

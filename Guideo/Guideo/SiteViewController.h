@@ -13,6 +13,6 @@
 
 @property NSMutableArray *sites;
 @property NSMutableArray * searchResults;
-
+@property NSMutableSet *interestedSites;
 
 @end

@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ContentViewController : UIViewController
+@interface ContentViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, strong) UITableView *_tableView;
 @property (nonatomic, assign) BOOL isBase;
 @property (nonatomic, weak) NSString *contentString;
 

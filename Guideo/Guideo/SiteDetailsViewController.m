@@ -133,9 +133,9 @@
     ContentViewController *cvc = [self.storyboard instantiateViewControllerWithIdentifier:@"contentViewController"];
     
     if([[tabName objectAtIndex:index] isEqualToString:@"Info"])
-        cvc.isBase = NO;
-    else
         cvc.isBase = YES;
+    else
+        cvc.isBase = NO;
     [cvc setContentString:[tabContent objectAtIndex:index]];
     
     return cvc;

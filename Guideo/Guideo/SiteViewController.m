@@ -32,6 +32,7 @@
 
 @synthesize sites;
 @synthesize searchResults;
+@synthesize interestedSites;
 
 - (void)viewDidLoad
 {
@@ -70,9 +71,10 @@
     
     sites = [[NSMutableArray alloc] init];
     searchResults = [[NSMutableArray alloc] init];
+    interestedSites = [[NSMutableSet alloc] init];
     
-    
-    NSDictionary *keyPair = @{@"event": @"1"};
+    /*
+    NSDictionary *keyPair = @{@"site": @"1"};
     NSArray *jsonData = [DataTransfer requestArrayWithURL:@"http://52.6.223.152:80/site" httpMethod:@"POST" params:keyPair];
     
     //NSString *word = [jsonData objectAtIndex:0][@"topic"];
@@ -83,7 +85,7 @@
     {
         siteNum = [jsonData count];
         
-        NSLog(@"Event Number: %lu", (unsigned long)siteNum);
+        NSLog(@"Site Number: %lu", (unsigned long)siteNum);
     }
     
     for(int i = 0; i < siteNum; i++)
@@ -96,44 +98,44 @@
         [sites addObject:site];
         
     }
-
+*/
     
     
     
-//    tableData *site1 = [tableData new];
-//    site1.tableTopic = @"Statue of Liberty";
-//    site1.tableContent = @"The Statue of Liberty is a colossal neoclassical sculpture on Liberty Island in New York Harbor in New York City, in the United States. ";
-//    site1.tableImage = @"image1.jpg";
-//    
-//    [sites addObject:site1];
-//    
-//    tableData *site2 = [tableData new];
-//    site2.tableTopic = @"Metropolitan Museum of Art";
-//    site2.tableContent = @"The Metropolitan Museum of Art (colloquially The Met), located in New York City, is the largest art museum in the United States and one of the ten largest in the world.";
-//    site2.tableImage = @"image2.jpg";
-//    
-//    [sites addObject:site2];
-//    
-//    tableData *site3 = [tableData new];
-//    site3.tableTopic = @"Central Park";
-//    site3.tableContent = @"Central Park is an urban park in the central part of the borough of Manhattan, New York City.";
-//    site3.tableImage = @"image3.jpg";
-//    
-//    [sites addObject:site3];
-//    
-//    tableData *site4 = [tableData new];
-//    site4.tableTopic = @"Empire State Building";
-//    site4.tableContent = @"The Empire State Building is a 102-story skyscraper located in Midtown Manhattan, New York City, on Fifth Avenue between West 33rd and 34th Streets.";
-//    site4.tableImage = @"image4.jpg";
-//    
-//    [sites addObject:site4];
-//    
-//    tableData *site5 = [tableData new];
-//    site5.tableTopic = @"Ellis Island";
-//    site5.tableContent = @"Ellis Island is an island that is located in Upper New York Bay in the Port of New York and New Jersey, United States Of America.";
-//    site5.tableImage = @"image5.jpg";
-//    
-//    [sites addObject:site5];
+    tableData *site1 = [tableData new];
+    site1.tableTopic = @"Statue of Liberty";
+    site1.tableContent = @"The Statue of Liberty is a colossal neoclassical sculpture on Liberty Island in New York Harbor in New York City, in the United States. ";
+    site1.tableImage = @"image1.jpg";
+    
+    [sites addObject:site1];
+    
+    tableData *site2 = [tableData new];
+    site2.tableTopic = @"Metropolitan Museum of Art";
+    site2.tableContent = @"The Metropolitan Museum of Art (colloquially The Met), located in New York City, is the largest art museum in the United States and one of the ten largest in the world.";
+    site2.tableImage = @"image2.jpg";
+    
+    [sites addObject:site2];
+    
+    tableData *site3 = [tableData new];
+    site3.tableTopic = @"Central Park";
+    site3.tableContent = @"Central Park is an urban park in the central part of the borough of Manhattan, New York City.";
+    site3.tableImage = @"image3.jpg";
+    
+    [sites addObject:site3];
+    
+    tableData *site4 = [tableData new];
+    site4.tableTopic = @"Empire State Building";
+    site4.tableContent = @"The Empire State Building is a 102-story skyscraper located in Midtown Manhattan, New York City, on Fifth Avenue between West 33rd and 34th Streets.";
+    site4.tableImage = @"image4.jpg";
+    
+    [sites addObject:site4];
+    
+    tableData *site5 = [tableData new];
+    site5.tableTopic = @"Ellis Island";
+    site5.tableContent = @"Ellis Island is an island that is located in Upper New York Bay in the Port of New York and New Jersey, United States Of America.";
+    site5.tableImage = @"image5.jpg";
+    
+    [sites addObject:site5];
     
     self.navigationController.navigationBar.translucent = NO;
     
@@ -255,9 +257,11 @@
     }
     
     CGSize newSize = CGSizeMake(64, 64);
-    NSURL *imageURL = [NSURL URLWithString:[site tableImage]];
-    NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
-    cell.imageView.image = [ImageScaler imageResize:[UIImage imageWithData:imageData] andResizeTo:newSize];
+    //NSURL *imageURL = [NSURL URLWithString:[site tableImage]];
+    //NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+    //cell.imageView.image = [ImageScaler imageResize:[UIImage imageWithData:imageData] andResizeTo:newSize];
+    cell.imageView.image = [ImageScaler imageResize:[UIImage imageNamed:[site tableImage]] andResizeTo:newSize];
+    
     cell.textLabel.text = [site tableTopic];
     cell.detailTextLabel.numberOfLines = 2000;
     cell.detailTextLabel.text = [site tableContent];
@@ -324,6 +328,18 @@
 {
     MapViewController *mapController=[self.storyboard instantiateViewControllerWithIdentifier:@"MapViewController"];
     mapController.hidesBottomBarWhenPushed = YES;
+    
+    NSArray *interested = [interestedSites allObjects];
+    
+    for(int i = 0; i < [interested count]; i++)
+    {
+        tableData *tempData = [interested objectAtIndex:i];
+        [mapController.siteName addObject:[tempData tableTopic]];
+        [mapController.siteInfo addObject:[tempData tableContent]];
+        //[mapController.latitude addObject:[tempData latitude]];
+        //[mapController.longitude addObject:[tempData longitutde]];
+    }
+    
     [[self navigationController] pushViewController:mapController animated:YES];
 }
 
@@ -337,11 +353,13 @@
     {
         labelText = @"Bored";
         labelColor = [UIColor greenColor];
+        [interestedSites addObject:[sites objectAtIndex:index]];
     }
     else
     {
         labelText = @"Interested";
         labelColor = [UIColor orangeColor];
+        [interestedSites removeObject:[sites objectAtIndex:index]];
     }
     [cell setRightUtilityButtons:[self rightButtons:labelText buttonColor:labelColor] WithButtonWidth:108.0f];
     
