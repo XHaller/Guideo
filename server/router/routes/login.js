@@ -29,7 +29,7 @@ router.post('/', function(req, res){
 		    if (err) console.log(err);
 		
 			if (rows.length < 1) {
-				res.end(JSON.stringify({ login: 0 }));
+				res.end(JSON.stringify({ login: 0, error_message: "Your username or password is incorrect."}));
 				return; 
 		}
 		    pwd = rows[0].password;
@@ -38,7 +38,7 @@ router.post('/', function(req, res){
 			if (pwd == password)
 	    		res.end(JSON.stringify({ login: 1 }));
 			else
-	    		res.end(JSON.stringify({ login: 0 }));	
+	    		res.end(JSON.stringify({ login: 0 , error_message: "Your usernameor password is incorrect."}));	
 		});
 });
 
