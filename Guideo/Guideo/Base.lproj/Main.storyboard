@@ -639,7 +639,6 @@
         <!--User View Controller-->
         <scene sceneID="nwu-mo-pcV">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3Bc-1I-a62" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="UfK-zz-L4I" customClass="UserViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Dnf-A3-ncE"/>
@@ -652,6 +651,7 @@
                     </view>
                     <toolbarItems/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Bc-1I-a62" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2555" y="1579.5"/>
         </scene>
