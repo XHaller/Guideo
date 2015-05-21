@@ -10,6 +10,7 @@
 #import "AssetHelper.h"
 
 @interface AddNoteViewController ()
+@property (weak, nonatomic) IBOutlet UITextView *textName;
 
 @end
 
@@ -75,6 +76,12 @@
         
         [ASSETHELPER clearData];
     }
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.textName resignFirstResponder];
+
 }
 
 @end
