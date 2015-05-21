@@ -14,14 +14,7 @@ connection.connect();
 console.log("connected to db")
 
 
-var queryString = 'CREATE TABLE Interests(
-uid SMALLINT NOT NULL,
-sid SMALLINT NOT NULL,
-score INTEGER NOT NULL,
-PRIMARY KEY (uid, sid),
-FOREIGN KEY (uid) REFERENCES Users (uid) ON DELETE CASCADE
-FOREIGN KEY (sid) REFERENCES Sites (sid) ON DELETE CASCADE
-) ENGINE = InnoDB DEFAULT CHARSET = UTF8;';
+var queryString = 'CREATE TABLE Interests(uid SMALLINT NOT NULL,sid SMALLINT NOT NULL,score INTEGER NOT NULL,PRIMARY KEY (uid, sid),FOREIGN KEY (uid) REFERENCES Users (uid) ON DELETE CASCADE,FOREIGN KEY (sid) REFERENCES Sites (sid) ON DELETE CASCADE) ENGINE = InnoDB DEFAULT CHARSET = UTF8;';
 connection.query(queryString, function(err, rows, fields) {
 		    if (err) console.log(err);
 		    else console.log("created table Interests");
@@ -31,10 +24,23 @@ connection.query(queryString, function(err, rows, fields) {
 
 router.post('/', function(req, res){
 	console.log("Handler for /interest called");
-		var user=req.body.userid;
-		var site=req.body.siteid;
-		var interest = req.body.interest;
-		var queryString = 'SELECT * FROM Interests WHERE Interests.uid = '+ user + ' AND Interests.sid = ' + site +';';
+		var username=req.body.username;
+		var sitename=req.body.sitename;
+		var interest = req.body.interested;
+
+		var queryString = 'SELECT * FROM Users WHERE  Users.name="' + username +'"';
+		connection.query(queryString, function(err, rows, fields){
+			if (err) console.log(err);
+		});
+		var user = rows[0].uid;
+
+		queryString = 'SELECT * FROM Sites WHERE  Sites.name="' + sitename +'"';
+		connection.query(queryString, function(err, rows, fields){
+			if (err) console.log(err);
+		});
+		var site = rows[0].sid;
+		
+		queryString = 'SELECT * FROM Interests WHERE Interests.uid = '+ user + ' AND Interests.sid = ' + site +';';
 		console.log("Querying db for interest of user with id + " + user + " in site with id  " +sid);
 		console.log("This is the query " + queryString);
 		connection.query(queryString, function(err, rows, fields) {
