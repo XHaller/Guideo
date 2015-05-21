@@ -1,0 +1,5 @@
+KEYNAME="JihanLi.pem"
+USERNAME="hadoop"
+HOSTNAME="ec2-52-7-93-75.compute-1.amazonaws.com"
+SCRIPT="hadoop fs -cat recommendations/part-r-00000 | head"
+ssh -l ${USERNAME} ${HOSTNAME} -i ${KEYNAME} "${SCRIPT}"
