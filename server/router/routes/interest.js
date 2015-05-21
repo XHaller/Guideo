@@ -14,20 +14,13 @@ connection.connect();
 console.log("connected to db")
 
 
-var queryString = 'CREATE TABLE Interests(
-uid SMALLINT NOT NULL,
-sid SMALLINT NOT NULL,
-score INTEGER NOT NULL,
-PRIMARY KEY (uid, sid),
-FOREIGN KEY (uid) REFERENCES Users (uid) ON DELETE CASCADE
-FOREIGN KEY (sid) REFERENCES Sites (sid) ON DELETE CASCADE
-) ENGINE = InnoDB DEFAULT CHARSET = UTF8;';
+/*var queryString = 'CREATE TABLE Interests(uid SMALLINT NOT NULL,sid SMALLINT NOT NULL,score INTEGER NOT NULL,PRIMARY KEY (uid, sid), FOREIGN KEY (uid) REFERENCES Users (uid) ON DELETE CASCADE, FOREIGN KEY (sid) REFERENCES Sites (sid) ON DELETE CASCADE) ENGINE = InnoDB DEFAULT CHARSET = UTF8;';
 connection.query(queryString, function(err, rows, fields) {
 		    if (err) console.log(err);
 		    else console.log("created table Interests");
 		});
 
-
+*/
 
 router.post('/', function(req, res){
 	console.log("Handler for /interest called");
@@ -40,7 +33,7 @@ router.post('/', function(req, res){
 		connection.query(queryString, function(err, rows, fields) {
 		    if (err) console.log(err);
 			if (rows.length > 0) {
-				queryString = 'UPDATE Interests SET score = ' + interest ' WHERE Interests.uid = '+ user + ' AND Interests.sid = ' + site +';'
+				queryString = 'UPDATE Interests SET score = ' + interest + ' WHERE Interests.uid = '+ user + ' AND Interests.sid = ' + site +';'
 				connection.query(queryString, function(err, rows, fields){
 					if (err) console.log(err);
 				});
