@@ -27,25 +27,28 @@ router.post('/', function(req, res){
 		var username=req.body.username;
 		var sitename=req.body.sitename;
 		var interest = req.body.interested;
-
+		var user, site;
 		var queryString = 'SELECT * FROM Users WHERE  Users.name="' + username +'"';
+		console.log(queryString);
 		connection.query(queryString, function(err, rows, fields){
 			if (err) console.log(err);
+			user = rows[0].uid;
+			console.log("The id is " + user);
 		});
-		var user = rows[0].uid;
 
 		queryString = 'SELECT * FROM Sites WHERE  Sites.name="' + sitename +'"';
+		console.log(queryString);
 		connection.query(queryString, function(err, rows, fields){
 			if (err) console.log(err);
+			else site = rows[0].sid;
 		});
-		var site = rows[0].sid;
 		
 		queryString = 'SELECT * FROM Interests WHERE Interests.uid = '+ user + ' AND Interests.sid = ' + site +';';
-		console.log("Querying db for interest of user with id + " + user + " in site with id  " +sid);
+		console.log("Querying db for interest of user with id + " + user + " in site with id  " +site);
 		console.log("This is the query " + queryString);
 		connection.query(queryString, function(err, rows, fields) {
 		    if (err) console.log(err);
-			if (rows.length > 0) {
+			if (typeof rows!== 'undefined' && rows) {
 				queryString = 'UPDATE Interests SET score = ' + interest + ' WHERE Interests.uid = '+ user + ' AND Interests.sid = ' + site +';'
 				connection.query(queryString, function(err, rows, fields){
 					if (err) console.log(err);
@@ -56,6 +59,7 @@ router.post('/', function(req, res){
 					if (err) console.log(err);
 				});
 			}
+			console.log("updated interest");
 		});
 });
 
