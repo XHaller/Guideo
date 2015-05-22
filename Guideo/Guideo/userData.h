@@ -9,11 +9,18 @@
 #import <Foundation/Foundation.h>
 
 @interface userData : NSObject
+{
+    NSString* userName;
+    NSString* email;
+    NSString* userIntro;
+    NSString* userImage;
+}
 
+@property(nonatomic,retain)NSString *userName;
+@property(nonatomic,retain)NSString *email;
+@property(nonatomic,retain)NSString *userIntro;
+@property(nonatomic,retain)NSString *userImage;
 
-+ (void) setUsername:(NSString*)val;
-+ (void) setEmail:(NSString*)val;
-+ (void) setUserintro:(NSString*)val;
-+ (void) setUserimage:(NSString*)val;
++ (id)sharedSingletonClass;
 
 @end

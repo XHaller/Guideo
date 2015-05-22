@@ -10,8 +10,10 @@
 
 @interface tableData : NSObject
 
-@property (nonatomic, strong) NSString *tableTopic; // name of recipe
-@property (nonatomic, strong) NSString *tableContent; // preparation time
-@property (nonatomic, strong) NSString *tableImage; // image filename of recipe
+@property (nonatomic, strong) NSString *tableTopic;
+@property (nonatomic, strong) NSString *tableContent;
+@property (nonatomic, strong) NSString *tableImage;
+@property (nonatomic, strong) NSString *latitude;
+@property (nonatomic, strong) NSString *longitude;
 
 @end

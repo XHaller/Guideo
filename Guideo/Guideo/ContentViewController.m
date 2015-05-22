@@ -14,16 +14,12 @@
 
 @implementation ContentViewController
 
-@synthesize scrollView, _tableView, contentString, isBase;
+@synthesize scrollView, _tableView, mapView, siteInfo, contentString, isBase;
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
     
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(10,10,self.view.frame.size.width-20,430)];
-    _tableView.delegate = self;
-    _tableView.dataSource = self;
-    [scrollView addSubview:_tableView];
     if(isBase == NO)
     {
         UITextView *contentView = [[UITextView alloc] initWithFrame:CGRectMake(10,10,self.view.frame.size.width-20,430)];
@@ -36,11 +32,32 @@
         contentView.layer.borderColor=[[UIColor lightGrayColor]CGColor];
         contentView.layer.borderWidth= 2.0f;
         [scrollView addSubview:contentView];
-        _tableView.hidden = YES;
     }
     else
     {
-        _tableView.hidden = NO;
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(10,210,self.view.frame.size.width-20,300)];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        [scrollView addSubview:_tableView];
+        
+        mapView = [GMSMapView mapWithFrame:CGRectMake(10,10,self.view.frame.size.width-20,200) camera:nil];
+        
+        mapView.myLocationEnabled = YES;
+        mapView.delegate = self;
+        double latitude = 40.783333;
+        double longitude = -73.966667;
+        GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:latitude
+                                                                longitude:longitude
+                                                                     zoom:12];
+        mapView.camera = camera;
+        
+        
+        GMSMarker *marker = [[GMSMarker alloc] init];
+        marker.position = CLLocationCoordinate2DMake(latitude, longitude);
+        marker.title = @"Central Park";
+        marker.snippet = @"The biggest park in the city.";
+        marker.map = mapView;
+        [scrollView addSubview:mapView];
     }
     scrollView.scrollEnabled = YES;
     
@@ -56,7 +73,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 7;
+    return 8;
 }
 
 
@@ -68,28 +85,37 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     }
     
+    if(indexPath.row == 0)
+    {
+        cell.textLabel.font = [UIFont fontWithName:@"Arial-BoldMT" size:20];
+    }
+    else
+    {
+        cell.textLabel.font = [UIFont fontWithName:@"ArialHebrew" size:15];
+    }
+    
     switch(indexPath.row)
     {
         case 0:
-            cell.textLabel.text = @"Name:";
+            cell.textLabel.text = siteInfo.siteName;
             break;
         case 1:
-            cell.textLabel.text = @"Address:";
+            cell.textLabel.text = @"Address: ";
             break;
         case 2:
-            cell.textLabel.text = @"Popularity:";
+            cell.textLabel.text = @"Popularity: ";
             break;
         case 3:
-            cell.textLabel.text = @"Price:";
+            cell.textLabel.text = @"Price: ";
             break;
         case 4:
-            cell.textLabel.text = @"Open Time:   Close Time:";
+            cell.textLabel.text = @"Open Time:   Close Time: ";
             break;
         case 5:
-            cell.textLabel.text = @"Recommending Trip Time:";
+            cell.textLabel.text = @"Recommending Trip Time: ";
             break;
         case 6:
-            cell.textLabel.text = @"Phone:";
+            cell.textLabel.text = @"Phone: ";
             break;
         default:
             cell.textLabel.text = @"";
@@ -98,6 +124,7 @@
     cell.detailTextLabel.numberOfLines = 200;
     cell.detailTextLabel.text = @"";
     cell.tag = indexPath.row;
+    cell.selectionStyle =UITableViewCellSelectionStyleNone;
     return cell;
 
 }

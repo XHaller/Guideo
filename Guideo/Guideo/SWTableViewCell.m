@@ -55,6 +55,7 @@ static NSString * const kTableViewCellContentView = @"UITableViewCellContentView
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
+    c
     
     if (self)
     {
@@ -79,7 +80,6 @@ static NSString * const kTableViewCellContentView = @"UITableViewCellContentView
 - (void)initializer
 {
     layoutUpdating = NO;
-    interested = NO;
     // Set up scroll view that will host our cell content
     self.cellScrollView = [[SWCellScrollView alloc] init];
     self.cellScrollView.translatesAutoresizingMaskIntoConstraints = NO;

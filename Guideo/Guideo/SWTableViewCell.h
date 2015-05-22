@@ -37,6 +37,7 @@ typedef NS_ENUM(NSInteger, SWCellState)
 
 @property (nonatomic, copy) NSArray *rightUtilityButtons;
 @property (nonatomic, assign) BOOL interested;
+@property (nonatomic, assign) BOOL flag;
 
 @property (nonatomic, weak) id <SWTableViewCellDelegate> delegate;
 

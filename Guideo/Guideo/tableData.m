@@ -10,8 +10,6 @@
 
 @implementation tableData
 
-@synthesize tableTopic;
-@synthesize tableContent;
-@synthesize tableImage;
+@synthesize tableTopic, tableContent, tableImage, latitude, longitude;
 
 @end

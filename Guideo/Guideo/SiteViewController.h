@@ -8,11 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "SWTableViewCell.h"
+#import <CoreLocation/CoreLocation.h>
+#import <GoogleMaps/GoogleMaps.h>
 
 @interface SiteViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, SWTableViewCellDelegate>
 
 @property NSMutableArray *sites;
-@property NSMutableArray * searchResults;
+@property NSMutableSet* sitesSet;
+@property NSMutableArray *searchResults;
 @property NSMutableSet *interestedSites;
+@property (nonatomic, strong) NSOperationQueue *imageDownloadingQueue;
+@property (nonatomic, strong) NSCache *imageCache;
+
+@property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic, strong) GMSMapView *mapView;
 
 @end

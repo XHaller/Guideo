@@ -13,9 +13,6 @@
 @interface SiteDetailsViewController : ViewPagerController
 
 @property(strong, nonatomic) NSString *topicName;
-//@property(strong, nonatomic) NSMutableArray *siteInfo;
-
-@property NSMutableArray *tabName;
-@property NSMutableArray *tabContent;
+@property siteData *siteInfo;
 
 @end

@@ -12,6 +12,9 @@
 #import "DataTransfer.h"
 
 @interface ViewController ()
+{
+    userData *user;
+}
 
 @end
 
@@ -22,6 +25,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    user = [userData sharedSingletonClass];
     
     greetlabel1=[[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2-120, 50, 200, 50)];
     [greetlabel1 setText:@"On My Way, "];
@@ -308,15 +313,19 @@
             
                 if(success == 1)
                 {
-                    [userData setUsername:jsonData[@"name"]];
-                    [userData setEmail:jsonData[@"email"]];
-                    [userData setUserintro:jsonData[@"intro"]];
-                    [userData setUserimage:jsonData[@"image"]];
+                    user.userName = jsonData[@"name"];
+                    user.email = jsonData[@"email"];
+                    user.userIntro = jsonData[@"intro"];
+                    user.userImage = jsonData[@"image"];
 
                     NSLog(@"Login SUCCESS");
                 } else {
-            
+                    user.userName = @"name";
+                    user.email = @"email";
+                    user.userIntro = @"intro";
+                    user.userImage = @"image";
                     NSString *error_msg = (NSString *) jsonData[@"error_message"];
+                    //NSLog(@"%@", jsonData);
                     [self alertStatus:error_msg :@"Sign in Failed!" :0];
                 }
            
@@ -406,10 +415,11 @@
                 
                 if(success == 1)
                 {
-                    [userData setUsername:[self.usernameField text]];
-                    [userData setEmail:[self.emailField text]];
-                    [userData setUserintro:@""];
-                    [userData setUserimage:@""];
+                    user.userName = [self.usernameField text];
+                    user.email = [self.emailField text];
+                    user.userIntro = @"";
+                    user.userImage = @"";
+                    
                     NSLog(@"Signup SUCCESS");
                 } else {
                     
@@ -418,7 +428,7 @@
                 }
                 
             }
-            success = 1;
+            //success = 1;
         }
     }
     @catch (NSException * e) {

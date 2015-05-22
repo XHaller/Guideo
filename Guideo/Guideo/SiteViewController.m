@@ -14,6 +14,7 @@
 #import "ImageScaler.h"
 #import "SearchDisplayController.h"
 #import "tableData.h"
+#import "userData.h"
 #import "DataTransfer.h"
 
 @interface SiteViewController () <UIScrollViewDelegate>
@@ -21,6 +22,10 @@
     NSString *labelText;
     UIColor *labelColor;
     SearchDisplayController *search;
+    userData *user;
+    NSArray *interestingString;
+    NSSet *tempset;
+    CLLocation * location;
 }
 @end
 
@@ -32,11 +37,19 @@
 
 @synthesize sites;
 @synthesize searchResults;
-@synthesize interestedSites;
+@synthesize interestedSites, imageCache, imageDownloadingQueue;
+@synthesize locationManager, mapView;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.imageDownloadingQueue = [[NSOperationQueue alloc] init];
+    self.imageDownloadingQueue.maxConcurrentOperationCount = 4; // many servers limit how many concurrent requests they'll accept from a device, so make sure to set this accordingly
+    
+    self.imageCache = [[NSCache alloc] init];
+    
+    user = [userData sharedSingletonClass];
     
     labelText = @"Interested";
     labelColor = [UIColor orangeColor];
@@ -66,6 +79,30 @@
     self.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
     self.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
     
+    locationManager = [[CLLocationManager alloc] init];
+    
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    locationManager.distanceFilter = 500;
+    
+    
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0 &&
+        [CLLocationManager authorizationStatus] != kCLAuthorizationStatusAuthorizedWhenInUse
+        //[CLLocationManager authorizationStatus] != kCLAuthorizationStatusAuthorizedAlways
+        ) {
+        // Will open an confirm dialog to get user's approval
+        [locationManager requestWhenInUseAuthorization];
+    } else {
+        [locationManager startUpdatingLocation]; //Will update location immediately
+    }
+    
+    location = [locationManager location];
+    mapView = [GMSMapView mapWithFrame:CGRectZero camera:nil];
+    
+    mapView.myLocationEnabled = YES;
+    mapView.delegate = self;
+    location = mapView.myLocation;
+    
     //[[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     
     
@@ -73,8 +110,8 @@
     searchResults = [[NSMutableArray alloc] init];
     interestedSites = [[NSMutableSet alloc] init];
     
-    /*
-    NSDictionary *keyPair = @{@"site": @"1"};
+    
+    NSDictionary *keyPair = @{@"latitude": [[NSNumber numberWithDouble:location.coordinate.latitude]  stringValue], @"longitude": [[NSNumber numberWithDouble:location.coordinate.longitude]  stringValue]};
     NSArray *jsonData = [DataTransfer requestArrayWithURL:@"http://52.6.223.152:80/site" httpMethod:@"POST" params:keyPair];
     
     //NSString *word = [jsonData objectAtIndex:0][@"topic"];
@@ -94,25 +131,39 @@
         site.tableTopic = [jsonData objectAtIndex:i][@"topic"];
         site.tableContent = [jsonData objectAtIndex:i][@"content"];
         site.tableImage = [jsonData objectAtIndex:i][@"image"];
-        
+        site.latitude = [jsonData objectAtIndex:i][@"latitude"];
+        site.longitude = [jsonData objectAtIndex:i][@"longitude"];
         [sites addObject:site];
         
     }
-*/
     
     
+    NSDictionary *keyPair2 = @{@"username": @"High"};
+    NSDictionary *jsonData2 = [DataTransfer requestObjectWithURL:@"http://52.6.223.152:80/interest/get" httpMethod:@"POST" params:keyPair2];
     
+    //NSString *word = [jsonData objectAtIndex:0][@"topic"];
+    //NSLog(@"jsonData: %@\n\n",word);
+    
+    interestingString = [jsonData2[@"name"] componentsSeparatedByString:@","];
+    tempset = [NSSet setWithArray:interestingString];
+    
+  /*
     tableData *site1 = [tableData new];
     site1.tableTopic = @"Statue of Liberty";
     site1.tableContent = @"The Statue of Liberty is a colossal neoclassical sculpture on Liberty Island in New York Harbor in New York City, in the United States. ";
     site1.tableImage = @"image1.jpg";
+    site1.latitude = @"40.689167";
+    site1.longitude= @"-74.044444";
+    
     
     [sites addObject:site1];
     
     tableData *site2 = [tableData new];
-    site2.tableTopic = @"Metropolitan Museum of Art";
+    site2.tableTopic = @"The Metropolitan Museum of Art";
     site2.tableContent = @"The Metropolitan Museum of Art (colloquially The Met), located in New York City, is the largest art museum in the United States and one of the ten largest in the world.";
     site2.tableImage = @"image2.jpg";
+    site2.latitude = @"40.779447";
+    site2.longitude= @"-73.96311";
     
     [sites addObject:site2];
     
@@ -120,6 +171,8 @@
     site3.tableTopic = @"Central Park";
     site3.tableContent = @"Central Park is an urban park in the central part of the borough of Manhattan, New York City.";
     site3.tableImage = @"image3.jpg";
+    site3.latitude = @"40.783333";
+    site3.longitude= @"-73.966667";
     
     [sites addObject:site3];
     
@@ -127,15 +180,21 @@
     site4.tableTopic = @"Empire State Building";
     site4.tableContent = @"The Empire State Building is a 102-story skyscraper located in Midtown Manhattan, New York City, on Fifth Avenue between West 33rd and 34th Streets.";
     site4.tableImage = @"image4.jpg";
+    site4.latitude = @"40.748433";
+    site4.longitude= @"-73.985656";
     
     [sites addObject:site4];
     
     tableData *site5 = [tableData new];
-    site5.tableTopic = @"Ellis Island";
-    site5.tableContent = @"Ellis Island is an island that is located in Upper New York Bay in the Port of New York and New Jersey, United States Of America.";
+    site5.tableTopic = @"Lincoln Center";
+    site5.tableContent = @"Lincoln Center for the Performing Arts is a 16.3-acre (6.6-hectare) complex of buildings in the Lincoln Square neighborhood of Manhattan in New York City. Jed Bernstein began as president in 2014.";
     site5.tableImage = @"image5.jpg";
+    site5.latitude = @"40.772311";
+    site5.longitude= @"-73.983403";
     
     [sites addObject:site5];
+   */
+   
     
     self.navigationController.navigationBar.translucent = NO;
     
@@ -231,6 +290,7 @@
     
     SWTableViewCell *cell = (SWTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
+    
     if (cell == nil) {
         
         cell = [[SWTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
@@ -238,16 +298,6 @@
         [cell setRightUtilityButtons:[self rightButtons:labelText buttonColor:labelColor] WithButtonWidth:108.0f];
         cell.delegate = self;
     }
-    
-    if(cell.interested)
-    {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    }
-    else
-    {
-         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    }
-    
     
     tableData *site;
     if (tableView == search.searchResultsTableView) {
@@ -257,15 +307,74 @@
     }
     
     CGSize newSize = CGSizeMake(64, 64);
-    //NSURL *imageURL = [NSURL URLWithString:[site tableImage]];
-    //NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
-    //cell.imageView.image = [ImageScaler imageResize:[UIImage imageWithData:imageData] andResizeTo:newSize];
-    cell.imageView.image = [ImageScaler imageResize:[UIImage imageNamed:[site tableImage]] andResizeTo:newSize];
+    NSString *imageUrlString = [site tableImage];
+
+    UIImage *cachedImage = [self.imageCache objectForKey:imageUrlString];
+    if (cachedImage) {
+        cell.imageView.image = cachedImage;
+    } else {
+        // you'll want to initialize the image with some blank image as a placeholder
+        
+        cell.imageView.image = [UIImage imageNamed:@"image1.jpg"];
+        
+        // now download in the image in the background
+        
+        [self.imageDownloadingQueue addOperationWithBlock:^{
+            
+            NSURL *imageUrl   = [NSURL URLWithString:imageUrlString];
+            NSData *imageData = [NSData dataWithContentsOfURL:imageUrl];
+            UIImage *image    = nil;
+            if (imageData)
+                image = [ImageScaler imageResize:[UIImage imageWithData:imageData] andResizeTo:newSize];
+            
+            if (image) {
+                // add the image to your cache
+                
+                [self.imageCache setObject:image forKey:imageUrlString];
+                
+                // finally, update the user interface in the main queue
+                
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    // Make sure the cell is still visible
+                    
+                    // Note, by using the same `indexPath`, this makes a fundamental
+                    // assumption that you did not insert any rows in the intervening
+                    // time. If this is not a valid assumption, make sure you go back
+                    // to your model to identify the correct `indexPath`/`updateCell`
+                    
+                    UITableViewCell *updateCell = [tableView cellForRowAtIndexPath:indexPath];
+                    if (updateCell)
+                        updateCell.imageView.image = image;
+                }];
+            }
+        }];
+    }
+    
+    //if(flag == YES)
+    //{
+        if([tempset containsObject:[site tableTopic]])
+        {
+            cell.interested = YES;
+        }
+        else
+        {
+            cell.interested = NO;
+        }
+   // }
     
     cell.textLabel.text = [site tableTopic];
     cell.detailTextLabel.numberOfLines = 2000;
     cell.detailTextLabel.text = [site tableContent];
     cell.tag = indexPath.row;
+    
+    if(cell.interested)
+    {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
+    else
+    {
+         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
     
     return cell;
 }
@@ -329,15 +438,21 @@
     MapViewController *mapController=[self.storyboard instantiateViewControllerWithIdentifier:@"MapViewController"];
     mapController.hidesBottomBarWhenPushed = YES;
     
-    NSArray *interested = [interestedSites allObjects];
+    mapController.siteName = [[NSMutableArray alloc] init];
+    mapController.siteInfo = [[NSMutableArray alloc] init];
+    mapController.latitude = [[NSMutableArray alloc] init];
+    mapController.longitude = [[NSMutableArray alloc] init];
     
+    NSArray *interested = [interestedSites allObjects];
     for(int i = 0; i < [interested count]; i++)
     {
         tableData *tempData = [interested objectAtIndex:i];
         [mapController.siteName addObject:[tempData tableTopic]];
-        [mapController.siteInfo addObject:[tempData tableContent]];
-        //[mapController.latitude addObject:[tempData latitude]];
-        //[mapController.longitude addObject:[tempData longitutde]];
+        [mapController.siteInfo addObject:[tempData tableTopic]];
+        [mapController.latitude addObject:[NSNumber numberWithDouble:[[tempData latitude] doubleValue]]];
+        // NSLog(@"%d %f", i, [[tempData latitude] doubleValue]);
+        [mapController.longitude addObject:[NSNumber numberWithDouble:[[tempData longitude] doubleValue]]];
+        // NSLog(@"%d %f", i, [[tempData longitude] doubleValue]);
     }
     
     [[self navigationController] pushViewController:mapController animated:YES];
@@ -349,22 +464,27 @@
     cell.interested = !cell.interested;
     [_tableView reloadData];
     
+    NSDictionary *keyPair;
     if(cell.interested)
     {
         labelText = @"Bored";
         labelColor = [UIColor greenColor];
-        [interestedSites addObject:[sites objectAtIndex:index]];
+        [interestedSites addObject:[sites objectAtIndex:cell.tag]];
+       // NSLog(@"index: %lu", (unsigned long)[interestedSites count]);
+        keyPair = @{@"username": @"High", @"sitename": [[sites objectAtIndex:cell.tag] tableTopic], @"interested": @"1"};
     }
     else
     {
         labelText = @"Interested";
         labelColor = [UIColor orangeColor];
-        [interestedSites removeObject:[sites objectAtIndex:index]];
+        [interestedSites removeObject:[sites objectAtIndex:cell.tag]];
+       // NSLog(@"index: %lu", (unsigned long)[interestedSites count]);
+        keyPair = @{@"username": @"High", @"sitename": [[sites objectAtIndex:cell.tag] tableTopic], @"interested": @"0"};
     }
     [cell setRightUtilityButtons:[self rightButtons:labelText buttonColor:labelColor] WithButtonWidth:108.0f];
     
     
-    
+    [DataTransfer requestObjectWithURL:@"http://52.6.223.152:80/interest" httpMethod:@"POST" params:keyPair];
 }
 //- (void)tableView:(UITableView *)tableView prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 //{

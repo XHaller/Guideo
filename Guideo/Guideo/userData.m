@@ -10,29 +10,19 @@
 
 @implementation userData
 
-static NSString* userName;
+@synthesize userName, email, userIntro, userImage;
 
-+ (NSString*) getUsername
-{  return userName; }
-+ (void) setUsername:(NSString*)val
-{ userName = val; }
-
-static NSString* emailaddress;
-+ (NSString*) getEmail
-{  return emailaddress; }
-+ (void) setEmail:(NSString*)val
-{ emailaddress = val; }
-
-static NSString* userIntro;
-+ (NSString*) getUserIntro
-{  return userIntro; }
-+ (void) setUserintro:(NSString*)val
-{ userIntro = val; }
-
-static NSString* userImage;
-+ (NSString*) getUserImage
-{ return userImage; }
-+ (void) setUserimage:(NSString*)val
-{ userIntro = val; }
++ (id)sharedSingletonClass
+{
+    static userData *instance = nil;
+    
+    static dispatch_once_t onceToken;
+    
+    dispatch_once(&onceToken, ^{
+        instance = [[self alloc] init];
+    });
+    
+    return instance;
+}
 
 @end
