@@ -8,6 +8,7 @@
 
 #import "AddNoteViewController.h"
 #import "AssetHelper.h"
+#import "DataTransfer.h"
 
 @interface AddNoteViewController ()
 @property (weak, nonatomic) IBOutlet UITextView *textName;
@@ -15,6 +16,17 @@
 @end
 
 @implementation AddNoteViewController
+- (IBAction)submitNote:(id)sender {
+    NSLog(@"submit note");
+//    NSDictionary *keyPair = @{@"username" : [self.textName text], @"text" : [self.textName text], @"image_url": [self.textName text]};
+//    NSDictionary *jsonData = [DataTransfer requestObjectWithURL:@"http://52.6.223.152:80/addNote" httpMethod:@"POST" params:keyPair];
+    
+}
+
+- (IBAction)clearImage:(id)sender {
+    for (UIImageView *iv in _aIVs)
+        iv.image = nil;
+}
 
 - (void)viewDidLoad
 {

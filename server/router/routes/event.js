@@ -16,21 +16,20 @@ console.log("connected to db")
 
 router.post('/', function(req, res){
 	console.log("Handler for /event/detail called");
-		//var name=req.body.topic;
-		
-		//console.log("The name is: "+ name);
-
-		//var queryString = 'SELECT * FROM Events WHERE Events.name="' + name +'";';
 		var queryString = 'SELECT * FROM Events;';
 		console.log("Querying db for event info of all events ");
 		console.log("This is the query " + queryString);
 		connection.query(queryString, function(err, rows, fields) {
 		    if (err) console.log(err);
-			
 			if (rows.length > 0) {
-				res.end(JSON.stringify([{ event: 1, topic: rows[0].name, content: rows[0].description, image: rows[0].photourl}, { event: 1, topic: rows[1].name, content: rows[1].description, image: rows[1].photourl}]));
-//				res.end(JSON.stringify({ event: 1, topic: rows[0].name, content: rows[0].description, image: rows[0].photourl}));
-				//res.end(JSON.stringify({ event: 1, address: rows[0].address, phone: rows[0].phone, start_date: rows[0].start_date, description: rows[0].description, photourl: rows[0].photourl, latitude: rows[0].latitude, longtitude: rows[0].longtitude}));
+				var i=0;
+				for (i=0; i<rows.length-1; i++) {
+					a = a + "{ \"event\": \"1\", \"topic\": \""+rows[i].name+"\", \"content\": \""+rows[i].description.replace(/"/g, '\\"')+ "\", \"image\": \""+rows[i].photourl+"\"},";
+				}
+				a = a + "{ \"event\": \"1\", \"topic\": \""+rows[i].name+"\", \"content\": \""+rows[i].description+ "\", \"image\": \""+rows[0].photourl+"\"}]";
+				console.log(a);
+				var j = JSON.parse(a);
+				res.end(a);
 			} else {
 			    res.end(JSON.stringify({ event: 0, error_message: "No event found." }));
 			}

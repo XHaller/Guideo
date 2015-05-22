@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "UserViewController.h"
 #import "RKCardView.h"
-
+#import "DataTransfer.h"
 #define BUFFERX 20 //distance from side to the card (higher makes thinner card)
 #define BUFFERY 40 //distance from top to the card (higher makes shorter card)
     
