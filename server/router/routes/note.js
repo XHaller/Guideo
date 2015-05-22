@@ -20,6 +20,33 @@ connection.query(queryString, function(err, rows, fields) {
 		    else console.log("added image");
 		});
 */
+router.post('/user', function(req, res){
+	console.log("Handler for /note/user called");
+		var username=req.body.username;
+
+		var queryString = 'SELECT * FROM Notes WHERE Notes.uid IN (SELECT uid FROM Users WHERE Users.name = "' +username + '");';
+		console.log("This is the query " + queryString);
+		connection.query(queryString, function(err, rows, fields) {
+		    if (err) console.log(err);
+			
+			if (rows.length > 0) {
+				console.log(rows.length + " is the number of notes");
+				var i = 0;
+				a = "[";
+				for (i=0; i<rows.length-1; i++) {
+					a = a + "{ \"topic\": \""+rows[i].title +"\", \"nid\": \"" + rows[i].nid +"\", \"image\": \"" + rows[i].image + "\"},"
+				}
+				a = a + "{ \"topic\": \""+rows[i].title +"\", \"nid\": \"" + rows[i].nid +"\", \"image\": \"" + rows[i].image + "\"}]"
+				//console.log(a);[objArr[i].id]
+				var j = JSON.parse(a);
+				res.end(a);
+			} else {
+				    res.end(JSON.stringify({ note: 0 }));
+			
+			}
+		});
+});
+
 router.post('/', function(req, res){
 	console.log("Handler for /note called");
 		var id=req.body.id;
@@ -66,5 +93,6 @@ router.post('/', function(req, res){
 			}
 		});
 });
+
 
 module.exports = router;

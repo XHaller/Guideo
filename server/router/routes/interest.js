@@ -11,7 +11,6 @@ var connection = mysql.createConnection({
 });
 
 /*var queryString = 'CREATE TABLE Interests(uid SMALLINT NOT NULL,sid SMALLINT NOT NULL,score INTEGER NOT NULL,PRIMARY KEY (uid, sid), FOREIGN KEY (uid) REFERENCES Users (uid) ON DELETE CASCADE, FOREIGN KEY (sid) REFERENCES Sites (sid) ON DELETE CASCADE) ENGINE = InnoDB DEFAULT CHARSET = UTF8;';
->>>>>>> 80d56ce664ea63b3e88aba44fd82e11aecab04a3
 connection.query(queryString, function(err, rows, fields) {
 		    if (err) console.log(err);
 		    else console.log("created table Interests");
