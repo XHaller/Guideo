@@ -20,6 +20,7 @@
 		B635295F1ADB508D003C9877 /* ExploreCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B635295E1ADB508D003C9877 /* ExploreCollectionViewCell.m */; };
 		B63529621ADB50BD003C9877 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = B63529611ADB50BD003C9877 /* UIImage+ImageEffects.m */; };
 		B63529651ADB5115003C9877 /* ExploreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63529641ADB5115003C9877 /* ExploreViewController.m */; };
+		B679D0771B0EBEA100302D05 /* UserNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B679D0761B0EBEA100302D05 /* UserNoteViewController.m */; };
 		B67F6B441AF97A1D002DAE08 /* NoteDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B67F6B431AF97A1D002DAE08 /* NoteDetailViewController.m */; };
 		B67F6B471AF97B86002DAE08 /* NoteDetailCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B67F6B461AF97B86002DAE08 /* NoteDetailCollectionViewCell.m */; };
 		B6A9059A1AD9B379000304F0 /* MJCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A905971AD9B379000304F0 /* MJCollectionViewCell.m */; };
@@ -107,6 +108,8 @@
 		B63529611ADB50BD003C9877 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		B63529631ADB510A003C9877 /* ExploreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExploreViewController.h; sourceTree = "<group>"; };
 		B63529641ADB5115003C9877 /* ExploreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExploreViewController.m; sourceTree = "<group>"; };
+		B679D0721B0EBE2C00302D05 /* UserNoteViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserNoteViewController.h; sourceTree = "<group>"; };
+		B679D0761B0EBEA100302D05 /* UserNoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserNoteViewController.m; sourceTree = "<group>"; };
 		B67F6B421AF97A0F002DAE08 /* NoteDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteDetailViewController.h; sourceTree = "<group>"; };
 		B67F6B431AF97A1D002DAE08 /* NoteDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteDetailViewController.m; sourceTree = "<group>"; };
 		B67F6B451AF97B73002DAE08 /* NoteDetailCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteDetailCollectionViewCell.h; sourceTree = "<group>"; };
@@ -394,6 +397,8 @@
 				B6FA41A41AFEC330009DCC77 /* UserViewController.m */,
 				B609A3EB1B02D5FD00B48DA2 /* AddNoteViewController.h */,
 				B609A3EC1B02D61000B48DA2 /* AddNoteViewController.m */,
+				B679D0721B0EBE2C00302D05 /* UserNoteViewController.h */,
+				B679D0761B0EBEA100302D05 /* UserNoteViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -544,6 +549,7 @@
 				B635295C1ADB5051003C9877 /* MCCardPickerCollectionViewFlowLayout.m in Sources */,
 				D79CF2EF1ADDE41D000EB15C /* tableData.m in Sources */,
 				D734D0B31B09597500BA29C2 /* siteLabel.m in Sources */,
+				B679D0771B0EBEA100302D05 /* UserNoteViewController.m in Sources */,
 				D735DFD71AF897C100C8B468 /* SearchDisplayController.m in Sources */,
 				D73F5DD31B090F7100D422B1 /* SWLongPressGestureRecognizer.m in Sources */,
 				D71F0A821ADE359B005804EB /* SiteDetailsViewController.m in Sources */,
