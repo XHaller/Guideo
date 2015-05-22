@@ -350,8 +350,6 @@
         }];
     }
     
-    //if(flag == YES)
-    //{
         if([tempset containsObject:[site tableTopic]])
         {
             cell.interested = YES;
@@ -360,7 +358,6 @@
         {
             cell.interested = NO;
         }
-   // }
     
     cell.textLabel.text = [site tableTopic];
     cell.detailTextLabel.numberOfLines = 2000;

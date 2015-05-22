@@ -55,7 +55,7 @@ static NSString * const kTableViewCellContentView = @"UITableViewCellContentView
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
-    c
+    
     
     if (self)
     {

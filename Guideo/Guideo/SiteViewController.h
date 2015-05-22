@@ -11,7 +11,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import <GoogleMaps/GoogleMaps.h>
 
-@interface SiteViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, SWTableViewCellDelegate>
+@interface SiteViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, SWTableViewCellDelegate, GMSMapViewDelegate, CLLocationManagerDelegate>
 
 @property NSMutableArray *sites;
 @property NSMutableSet* sitesSet;
