@@ -1,6 +1,7 @@
 USE e6998;
-
+SET foreign_key_checks = 0;
 DROP TABLE Sites;
+SET foreign_key_checks = 1;
 CREATE TABLE Sites(
     sid SMALLINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     city NVARCHAR(20) NOT NULL,
@@ -14,6 +15,9 @@ CREATE TABLE Sites(
     visit_length NVARCHAR(50),
     has_fee NVARCHAR(4),
     activity NVARCHAR(1000),
+    history NVARCHAR(500),
+    culture NVARCHAR(500),
+    architact NVARCHAR(500),
     description NVARCHAR(1000),
     photourl NVARCHAR(500),
     latitude NVARCHAR(20),
@@ -36,6 +40,7 @@ CREATE TABLE Events(
     end_date NVARCHAR(20) NOT NULL,
     open_time NVARCHAR(50),
     has_fee NVARCHAR(4),
+    brief_info NVARCHAR(200),
     description NVARCHAR(1000),
     photourl NVARCHAR(500),
     latitude NVARCHAR(20),
