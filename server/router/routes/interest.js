@@ -27,6 +27,7 @@ router.post('/', function(req, res){
 					if (err) console.log(err);
 					user = rows[0].uid;
 					console.log("The id is " + user);
+					callbackA();
 				});
 			},
 			function(callbackB) {
@@ -35,6 +36,7 @@ router.post('/', function(req, res){
 				connection.query(queryString, function(err, rows, fields){
 					if (err) console.log(err);
 					else site = rows[0].sid;
+					callbackB();
 				});	
 			}
 			], function(err){
@@ -55,6 +57,7 @@ router.post('/', function(req, res){
 						});
 					}
 					console.log("updated interest");
+					res.end(JSON.stringify({ interest: 1 }));
 				});
 			});
 });
