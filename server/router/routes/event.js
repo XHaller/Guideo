@@ -39,7 +39,7 @@ router.post('/', function(req, res){
 
 router.post('/detail', function(req, res){
 	console.log("Handler for /event/detail called");
-		var queryString = 'SELECT * FROM Events WHERE Event.name =' + req.body.event_name +';';
+		var queryString = 'SELECT * FROM Events WHERE Event.name ="' + req.body.event_name +'";';
 		console.log("Querying db for event info of all events ");
 		console.log("This is the query " + queryString);
 		connection.query(queryString, function(err, rows, fields) {
