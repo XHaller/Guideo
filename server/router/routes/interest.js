@@ -23,12 +23,14 @@ connection.connect();
 console.log("connected to db")
 
 
-router.post('/post', function(req, res){
+router.post('/get', function(req, res){
 	var user=req.body.username;
 	var queryString = 'SELECT name FROM Sites WHERE Sites.sid IN (SELECT sid FROM Interests WHERE Interests.uid IN (SELECT uid FROM Users WHERE Users.name = "'+ user + '"));'
+	queryString = queryString.toString();
+	console.log("Query: " + queryString);
 	connection.query(queryString, function(err, rows, fields){
 					if (err) console.log(err);
-					var str;
+					var str="";
 					if (typeof rows!== 'undefined' && rows) {
 						var i;
 						str = "{\"name\":\"";
@@ -39,7 +41,10 @@ router.post('/post', function(req, res){
 					} else {
 						str = "{\"name\":\"0\"}";
 					}
-					res.end(JSON.parse(str));
+					console.log("The output is: " + str);
+					var temp = JSON.parse(str);
+					console.log("Type is: " + typeof temp);
+					res.json(temp);
 				});	
 });
 

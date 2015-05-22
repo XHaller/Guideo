@@ -27,8 +27,8 @@ router.post('/', function(req, res){
 				for (i=0; i<rows.length-1; i++) {
 					a = a + "{ \"site\": \"1\", \"topic\": \""+rows[i].name+"\", \"content\": \""+rows[i].description.replace(/"/g, '\\"')+ "\", \"image\": \""+rows[i].photourl+ "\", \"latitude\": \""+rows[i].latitude +"\", \"longitude\": \""+rows[i].longtitude +"\"},";
 				}
-				a = a + "{ \"site\": \"1\", \"topic\": \""+rows[i].name+"\", \"content\": \""+rows[i].description.replace(/"/g, '\\"')+ "\", \"image\": \""+rows[i].photourl+ "\", \"latitude\": \""+rows[i].latitude +"\", \"longtitude\": \""+rows[i].longitude +"\"}]";
-				console.log(a);
+				a = a + "{ \"site\": \"1\", \"topic\": \""+rows[i].name+"\", \"content\": \""+rows[i].description.replace(/"/g, '\\"')+ "\", \"image\": \""+rows[i].photourl+ "\", \"latitude\": \""+rows[i].latitude +"\", \"longtitude\": \""+rows[i].longtitude +"\"}]";
+				//console.log(a);
 				var j = JSON.parse(a);
 				res.end(a);
 			} else {
