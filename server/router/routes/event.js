@@ -45,12 +45,12 @@ router.post('/detail', function(req, res){
 		connection.query(queryString, function(err, rows, fields) {
 		    if (err) console.log(err);
 			if (rows.length > 0) {
-				var a = "[";
 				var i=0;
+				var a = "";
 				for (i=0; i<rows.length-1; i++) {
-					a = a + "{ \"event\": \"1\", \"topic\": \""+rows[i].name+"\", \"content\": \""+rows[i].description.replace(/"/g, '\\"')+ "\", \"image\": \""+rows[i].photourl+ "\", \"latitude\": \""+rows[i].latitude +"\", \"longitude\": \""+rows[i].longtitude +  "\", \"website\": \""+rows[i].website +"\", \"phone\": \""+rows[i].phone + "\", \"address\": \""+rows[i].address +"\", \"date\": \""+rows[i].date +"\", \"location\": \""+rows[i].location +"\"},";
+					a = "{ \"event\": \"1\", \"topic\": \""+rows[i].name+"\", \"content\": \""+rows[i].description.replace(/"/g, '\\"')+ "\", \"image\": \""+rows[i].photourl+ "\", \"latitude\": \""+rows[i].latitude +"\", \"longitude\": \""+rows[i].longtitude +  "\", \"website\": \""+rows[i].website +"\", \"phone\": \""+rows[i].phone + "\", \"address\": \""+rows[i].address +"\", \"date\": \""+rows[i].date +"\", \"location\": \""+rows[i].location +"\"}";
 				}
-				a = a + "{ \"event\": \"1\", \"topic\": \""+rows[i].name+"\", \"content\": \""+rows[i].description.replace(/"/g, '\\"')+ "\", \"image\": \""+rows[i].photourl+ "\", \"latitude\": \""+rows[i].latitude +"\", \"longitude\": \""+rows[i].longtitude +  "\", \"website\": \""+rows[i].website +"\", \"phone\": \""+rows[i].phone + "\", \"address\": \""+rows[i].address +"\", \"date\": \""+rows[i].date +"\", \"location\": \""+rows[i].location +"\"}]";
+				//a = a + "{ \"event\": \"1\", \"topic\": \""+rows[i].name+"\", \"content\": \""+rows[i].description.replace(/"/g, '\\"')+ "\", \"image\": \""+rows[i].photourl+ "\", \"latitude\": \""+rows[i].latitude +"\", \"longitude\": \""+rows[i].longtitude +  "\", \"website\": \""+rows[i].website +"\", \"phone\": \""+rows[i].phone + "\", \"address\": \""+rows[i].address +"\", \"date\": \""+rows[i].date +"\", \"location\": \""+rows[i].location +"\"}]";
 				console.log(a);
 				var j = JSON.parse(a);
 				res.end(a);
