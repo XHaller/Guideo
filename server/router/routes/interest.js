@@ -10,8 +10,38 @@ var connection = mysql.createConnection({
 	port     : '3306'
 });
 
+/*var queryString = 'CREATE TABLE Interests(uid SMALLINT NOT NULL,sid SMALLINT NOT NULL,score INTEGER NOT NULL,PRIMARY KEY (uid, sid), FOREIGN KEY (uid) REFERENCES Users (uid) ON DELETE CASCADE, FOREIGN KEY (sid) REFERENCES Sites (sid) ON DELETE CASCADE) ENGINE = InnoDB DEFAULT CHARSET = UTF8;';
+>>>>>>> 80d56ce664ea63b3e88aba44fd82e11aecab04a3
+connection.query(queryString, function(err, rows, fields) {
+		    if (err) console.log(err);
+		    else console.log("created table Interests");
+		});
+
+*/
+
 connection.connect();
 console.log("connected to db")
+
+
+router.post('/post', function(req, res){
+	var user=req.body.username;
+	var queryString = 'SELECT name FROM Sites WHERE Sites.sid IN (SELECT sid FROM Interests WHERE Interests.uid IN (SELECT uid FROM Users WHERE Users.name = "'+ user + '"));'
+	connection.query(queryString, function(err, rows, fields){
+					if (err) console.log(err);
+					var str;
+					if (typeof rows!== 'undefined' && rows) {
+						var i;
+						str = "{\"name\":\"";
+						for (i=0; i<rows.length-1; i++) {
+							str = str + rows[i].name + ','
+						}
+						str = str + rows[i].name + '\"}';
+					} else {
+						str = "{\"name\":\"0\"}";
+					}
+					res.end(JSON.parse(str));
+				});	
+});
 
 router.post('/', function(req, res){
 	console.log("Handler for /interest called");
@@ -49,14 +79,15 @@ router.post('/', function(req, res){
 						queryString = 'UPDATE Interests SET score = ' + interest + ' WHERE Interests.uid = '+ user + ' AND Interests.sid = ' + site +';'
 						connection.query(queryString, function(err, rows, fields){
 							if (err) console.log(err);
+							console.log("updated interest");
 						});
 					} else {
 					    queryString = 'INSERT INTO Interests VALUES(' + user + ', ' + site + ', ' + interest +');'
 					    connection.query(queryString, function(err, rows, fields){
 							if (err) console.log(err);
+							console.log("inserted interest");
 						});
 					}
-					console.log("updated interest");
 					res.end(JSON.stringify({ interest: 1 }));
 				});
 			});
