@@ -394,7 +394,10 @@
     
     cell.textLabel.text = [site tableTopic];
     cell.detailTextLabel.numberOfLines = 2000;
-    cell.detailTextLabel.text = [site tableContent];
+    if([[site tableContent] length] >= 100)
+        cell.detailTextLabel.text = [[site tableContent] substringToIndex:100];
+    else
+        cell.detailTextLabel.text = [site tableContent];
     cell.tag = indexPath.row;
     
     if([[ifInterested objectAtIndex:indexPath.row] boolValue])

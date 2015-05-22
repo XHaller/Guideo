@@ -204,7 +204,10 @@
     
     cell.textLabel.text = [event tableTopic];
     cell.detailTextLabel.numberOfLines = 2000;
-    cell.detailTextLabel.text = [event tableContent];
+    if([[event tableContent] length] >= 100)
+        cell.detailTextLabel.text = [[event tableContent] substringToIndex:100];
+    else
+        cell.detailTextLabel.text = [event tableContent];
     cell.tag = indexPath.row;
     return cell;
 }
