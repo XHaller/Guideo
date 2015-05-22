@@ -19,12 +19,11 @@
 
 @interface SiteViewController () <UIScrollViewDelegate>
 {
-    NSString *labelText;
-    UIColor *labelColor;
     SearchDisplayController *search;
     userData *user;
     NSArray *interestingString;
-    NSSet *tempset;
+    NSMutableSet *tempset;
+    NSMutableArray *ifInterested;
     CLLocation * location;
 }
 @end
@@ -51,9 +50,6 @@
     
     user = [userData sharedSingletonClass];
     
-    labelText = @"Interested";
-    labelColor = [UIColor orangeColor];
-    
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     
     self.title = @"Sites";
@@ -71,7 +67,7 @@
     UIBarButtonItem *exploreItem = [[UIBarButtonItem new] initWithImage:exploreButtonImage style:UIBarButtonItemStylePlain target:self action:@selector(exploreView)];
     
     UIImage *mapButtonImage = [[UIImage imageNamed:@"map.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 30, 0, 0)];
-    UIBarButtonItem *mapItem = [[UIBarButtonItem new] initWithImage:mapButtonImage style:UIBarButtonItemStylePlain target:self action:@selector(mapView)];
+    UIBarButtonItem *mapItem = [[UIBarButtonItem new] initWithImage:mapButtonImage style:UIBarButtonItemStylePlain target:self action:@selector(mappingView)];
     NSArray *itemsArr1 = @[exploreItem];
     NSArray *itemsArr2 = @[mapItem];
     self.navigationItem.leftBarButtonItems = itemsArr1;
@@ -109,6 +105,7 @@
     sites = [[NSMutableArray alloc] init];
     searchResults = [[NSMutableArray alloc] init];
     interestedSites = [[NSMutableSet alloc] init];
+    ifInterested = [[NSMutableArray alloc] init];
     
     
     NSDictionary *keyPair = @{@"latitude": [[NSNumber numberWithDouble:location.coordinate.latitude]  stringValue], @"longitude": [[NSNumber numberWithDouble:location.coordinate.longitude]  stringValue]};
@@ -134,7 +131,7 @@
         site.latitude = [jsonData objectAtIndex:i][@"latitude"];
         site.longitude = [jsonData objectAtIndex:i][@"longitude"];
         [sites addObject:site];
-        
+        [ifInterested addObject:[NSNumber numberWithBool:NO]];
     }
     
     
@@ -145,7 +142,7 @@
     //NSLog(@"jsonData: %@\n\n",word);
     
     interestingString = [jsonData2[@"name"] componentsSeparatedByString:@","];
-    tempset = [NSSet setWithArray:interestingString];
+    tempset = [NSMutableSet setWithArray:interestingString];
     
   /*
     tableData *site1 = [tableData new];
@@ -286,7 +283,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    static NSString *cellIdentifier = @"Cell";
+    NSString *cellIdentifier = @"Cell";
     
     SWTableViewCell *cell = (SWTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
@@ -294,10 +291,13 @@
     if (cell == nil) {
         
         cell = [[SWTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+        NSString *labelText = @"Interested";
+        UIColor *labelColor = [UIColor orangeColor];
         
         [cell setRightUtilityButtons:[self rightButtons:labelText buttonColor:labelColor] WithButtonWidth:108.0f];
         cell.delegate = self;
     }
+    
     
     tableData *site;
     if (tableView == search.searchResultsTableView) {
@@ -305,6 +305,7 @@
     } else {
         site = [sites objectAtIndex:indexPath.row];
     }
+
     
     CGSize newSize = CGSizeMake(64, 64);
     NSString *imageUrlString = [site tableImage];
@@ -350,28 +351,32 @@
         }];
     }
     
-        if([tempset containsObject:[site tableTopic]])
-        {
-            cell.interested = YES;
-        }
-        else
-        {
-            cell.interested = NO;
-        }
+    
+    if([tempset containsObject:[site tableTopic]])
+    {
+        //cell.interested = YES;
+        [ifInterested replaceObjectAtIndex:indexPath.row withObject:[NSNumber numberWithBool:YES]];
+        NSString * labelText = @"Bored";
+        UIColor *labelColor = [UIColor greenColor];
+        [cell setRightUtilityButtons:[self rightButtons:labelText buttonColor:labelColor] WithButtonWidth:108.0f];
+        [tempset removeObject:[site tableTopic]];
+    }
+    
     
     cell.textLabel.text = [site tableTopic];
     cell.detailTextLabel.numberOfLines = 2000;
     cell.detailTextLabel.text = [site tableContent];
     cell.tag = indexPath.row;
     
-    if(cell.interested)
+    if([[ifInterested objectAtIndex:indexPath.row] boolValue])
     {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
     else
     {
-         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
+    
     
     return cell;
 }
@@ -430,7 +435,7 @@
     [[self navigationController] pushViewController:exploreController animated:YES];
 }
 
--(void)mapView
+-(void) mappingView
 {
     MapViewController *mapController=[self.storyboard instantiateViewControllerWithIdentifier:@"MapViewController"];
     mapController.hidesBottomBarWhenPushed = YES;
@@ -458,16 +463,22 @@
 - (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index
 {
     
-    cell.interested = !cell.interested;
+    [ifInterested replaceObjectAtIndex:cell.tag withObject:[NSNumber numberWithBool:![[ifInterested objectAtIndex:cell.tag] boolValue]]];
+
+    
     [_tableView reloadData];
     
     NSDictionary *keyPair;
-    if(cell.interested)
+    NSString *labelText;
+    UIColor *labelColor;
+    if([[ifInterested objectAtIndex:cell.tag] boolValue])
     {
         labelText = @"Bored";
         labelColor = [UIColor greenColor];
         [interestedSites addObject:[sites objectAtIndex:cell.tag]];
-       // NSLog(@"index: %lu", (unsigned long)[interestedSites count]);
+        
+        //NSArray *siteArray = [interestedSites allObjects];
+        //NSLog(@"index: %@", [[siteArray objectAtIndex:0] tableTopic]);
         keyPair = @{@"username": @"High", @"sitename": [[sites objectAtIndex:cell.tag] tableTopic], @"interested": @"1"};
     }
     else
