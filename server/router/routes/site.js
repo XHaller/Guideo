@@ -25,9 +25,9 @@ router.post('/', function(req, res){
 			if (rows.length > 0) {
 				var i=0;
 				for (i=0; i<rows.length-1; i++) {
-					a = a + "{ \"site\": \"1\", \"topic\": \""+rows[i].name+"\", \"content\": \""+rows[i].description.replace(/"/g, '\\"')+ "\", \"image\": \""+rows[i].photourl+"\"},";
+					a = a + "{ \"site\": \"1\", \"topic\": \""+rows[i].name+"\", \"content\": \""+rows[i].description.replace(/"/g, '\\"')+ "\", \"image\": \""+rows[i].photourl+ "\", \"latitude\": \""+rows[i].latitude +"\", \"longitude\": \""+rows[i].longitude +"\"},";
 				}
-				a = a + "{ \"site\": \"1\", \"topic\": \""+rows[i].name+"\", \"content\": \""+rows[i].description+ "\", \"image\": \""+rows[0].photourl+"\"}]";
+				a = a + "{ \"site\": \"1\", \"topic\": \""+rows[i].name+"\", \"content\": \""+rows[i].description.replace(/"/g, '\\"')+ "\", \"image\": \""+rows[i].photourl+ "\", \"latitude\": \""+rows[i].latitude +"\", \"longitude\": \""+rows[i].longitude +"\"}]";
 				console.log(a);
 				var j = JSON.parse(a);
 				res.end(a);
