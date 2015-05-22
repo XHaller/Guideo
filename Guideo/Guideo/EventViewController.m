@@ -47,7 +47,7 @@
     events = [[NSMutableArray alloc] init];
     searchResults = [[NSMutableArray alloc] init];
     
-    NSDictionary *keyPair = @{@"event": @"1"};
+    NSDictionary *keyPair = @{@"latitude": @"0", @"longitude": @"0"};
     NSArray *jsonData = [DataTransfer requestArrayWithURL:@"http://52.6.223.152:80/event" httpMethod:@"POST" params:keyPair];
     
     //NSString *word = [jsonData objectAtIndex:0][@"topic"];
