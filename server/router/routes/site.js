@@ -26,7 +26,7 @@ router.post('/', function(req, res){
 		    if (err) console.log(err);
 			var a ="[";
 			if (rows.length > 0) {
-				console.log("testing scoping: " + lat);
+				/*console.log("testing scoping: " + lat);
 				var i=0;
 				var d, elem, objArr = [];
 				function compare(a,b) {
@@ -37,18 +37,18 @@ router.post('/', function(req, res){
 					return 0;
 				}
 				for (i=0; i<rows.length; i++) {
-					d = geo.getDistance({latitude: lat, longitude: lon}, {latitude: rows[i].latitude, longitude: rows[i].longitude});
+					d = geo.getDistance({latitude: lat, longitude: lon}, {latitude: rows[i].latitude, longitude: rows[i].longtitude});
 					elem = {id: i, distance: d};
 					console.log("Elem with id " + i + "is " + elem);
 					objArr.push(elem);
 				}
-				objArr.sort(compare);
+				objArr.sort(compare);*/
 
 				for (i=0; i<rows.length-1; i++) {
-					a = a + "{ \"site\": \"1\", \"topic\": \""+rows[objArr[i].id].name+"\", \"content\": \""+rows[objArr[i].id].description.replace(/"/g, '\\"')+ "\", \"image\": \""+rows[objArr[i].id].photourl+ "\", \"latitude\": \""+rows[objArr[i].id].latitude +"\", \"longitude\": \""+rows[objArr[i].id].longtitude +"\"},";
+					a = a + "{ \"site\": \"1\", \"topic\": \""+rows[i].name+"\", \"content\": \""+rows[i].description.replace(/"/g, '\\"')+ "\", \"image\": \""+rows[i].photourl+ "\", \"latitude\": \""+rows[i].latitude +"\", \"longitude\": \""+rows[i].longtitude +"\"},";
 				}
-				a = a + "{ \"site\": \"1\", \"topic\": \""+rows[objArr[i].id].name+"\", \"content\": \""+rows[objArr[i].id].description.replace(/"/g, '\\"')+ "\", \"image\": \""+rows[objArr[i].id].photourl+ "\", \"latitude\": \""+rows[objArr[i].id].latitude +"\", \"longtitude\": \""+rows[objArr[i].id].longtitude +"\"}]";
-				//console.log(a);
+				a = a + "{ \"site\": \"1\", \"topic\": \""+rows[i].name+"\", \"content\": \""+rows[i].description.replace(/"/g, '\\"')+ "\", \"image\": \""+rows[i].photourl+ "\", \"latitude\": \""+rows[i].latitude +"\", \"longtitude\": \""+rows[i].longtitude +"\"}]";
+				//console.log(a);[objArr[i].id]
 				var j = JSON.parse(a);
 				res.end(a);
 			} else {
