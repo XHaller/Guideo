@@ -59,7 +59,7 @@ router.post('/', function(req, res){
 
 router.post('/detail', function(req, res){
 	console.log("Handler for /site/detail called");
-		var queryString = 'SELECT * FROM Sites;';
+		var queryString = 'SELECT * FROM Sites WHERE Sites.name =' + req.body.site_name +';';
 		console.log("Querying db for detailed site info ");
 		console.log("This is the query " + queryString);
 		connection.query(queryString, function(err, rows, fields) {
