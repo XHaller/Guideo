@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-
+#import "DataTransfer.h"
 @interface UserNoteViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
 @property(strong,nonatomic) NSArray *listData;
@@ -30,6 +30,11 @@
     self.tableView.dataSource=self;
     //把tabView添加到视图之上
     [self.view addSubview:self.tableView];
+    
+//        调用server得到json数据
+//        NSDictionary *keyPair = @{@"username" : [self.textName text]};
+//        NSDictionary *jsonData = [DataTransfer requestObjectWithURL:@"http://52.6.223.152:80/usernotes" httpMethod:@"POST" params:keyPair];
+    
     //    存放显示在单元格上的数据
     NSArray *array = [NSArray arrayWithObjects:@"张三",@"张四",@"张五",@"李三",@"李四",@"李五",@"李六",@"王三",@"王四",@"王五",@"王六",@"王七",@"王八",@"王九",@"王十", nil];
     self.listData = array;
