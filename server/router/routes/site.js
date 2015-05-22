@@ -67,8 +67,8 @@ router.post('/detail', function(req, res){
 			var a ="";
 			if (rows.length > 0) {
 				var i=0;
-				for (i=0; i<rows.length-1; i++) {
-					a = a + "{ \"site\": \"1\", \"topic\": \""+rows[i].name+"\", \"content\": \""+rows[i].description.replace(/"/g, '\\"')+ "\", \"image\": \""+rows[i].photourl+ "\", \"latitude\": \""+rows[i].latitude +"\", \"longitude\": \""+rows[i].longtitude +   "\", \"trip_time\": \""+rows[i].visit_length +"\", \"fee\": \""+rows[i].has_fee +   "\", \"hours\": \""+rows[i].open_time +"\", \"phone\": \""+rows[i].phone +"\"}";
+				for (i=0; i<rows.length; i++) {
+					a = "{ \"site\": \"1\", \"topic\": \""+rows[i].name+"\", \"content\": \""+rows[i].description.replace(/"/g, '\\"')+ "\", \"image\": \""+rows[i].photourl+ "\", \"latitude\": \""+rows[i].latitude +"\", \"longitude\": \""+rows[i].longtitude +   "\", \"trip_time\": \""+rows[i].visit_length +"\", \"fee\": \""+rows[i].has_fee +   "\", \"hours\": \""+rows[i].open_time +"\", \"phone\": \""+rows[i].phone +"\"}";
 				}
 				//a = a + "{ \"site\": \"1\", \"topic\": \""+rows[i].name+"\", \"content\": \""+rows[i].description.replace(/"/g, '\\"')+ "\", \"image\": \""+rows[i].photourl+ "\", \"latitude\": \""+rows[i].latitude +"\", \"longitude\": \""+rows[i].longtitude +   "\", \"trip_time\": \""+rows[i].visit_length +"\", \"fee\": \""+rows[i].has_fee +   "\", \"hours\": \""+rows[i].open_time +"\", \"phone\": \""+rows[i].phone +"\"}]";
 				//console.log(a);

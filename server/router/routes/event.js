@@ -47,7 +47,7 @@ router.post('/detail', function(req, res){
 			if (rows.length > 0) {
 				var i=0;
 				var a = "";
-				for (i=0; i<rows.length-1; i++) {
+				for (i=0; i<rows.length; i++) {
 					a = "{ \"event\": \"1\", \"topic\": \""+rows[i].name+"\", \"content\": \""+rows[i].description.replace(/"/g, '\\"')+ "\", \"image\": \""+rows[i].photourl+ "\", \"latitude\": \""+rows[i].latitude +"\", \"longitude\": \""+rows[i].longtitude +  "\", \"website\": \""+rows[i].website +"\", \"phone\": \""+rows[i].phone + "\", \"address\": \""+rows[i].address +"\", \"date\": \""+rows[i].date +"\", \"location\": \""+rows[i].location +"\"}";
 				}
 				//a = a + "{ \"event\": \"1\", \"topic\": \""+rows[i].name+"\", \"content\": \""+rows[i].description.replace(/"/g, '\\"')+ "\", \"image\": \""+rows[i].photourl+ "\", \"latitude\": \""+rows[i].latitude +"\", \"longitude\": \""+rows[i].longtitude +  "\", \"website\": \""+rows[i].website +"\", \"phone\": \""+rows[i].phone + "\", \"address\": \""+rows[i].address +"\", \"date\": \""+rows[i].date +"\", \"location\": \""+rows[i].location +"\"}]";
