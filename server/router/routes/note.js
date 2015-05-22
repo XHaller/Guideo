@@ -20,6 +20,35 @@ connection.query(queryString, function(err, rows, fields) {
 		    else console.log("added image");
 		});
 */
+router.post('/upload', function(req, res){
+	console.log("Handler for /note/user called");
+		var username=req.body.username;
+		var text = req.body.text;
+
+		var queryString = 'SELECT uid FROM Users WHERE Users.name = "' + username + '";';
+		console.log("This is the query " + queryString);
+		connection.query(queryString, function(err, rows, fields) {
+		    if (err) {
+		    	console.log(err);
+		    	res.end(JSON.stringify({ upload: 0 }));
+		    } else if (rows.length > 0) {
+				var uid = rows[0].uid;
+				queryString = 'INSERT INTO Notes (uid, title) VALUES (' + uid + ',"' + text +'");';
+				connection.query(queryString, function(err, rows, fields) {
+				    if (err) {
+				    	console.log(err);
+				    	res.end(JSON.stringify({ upload: 0 }));
+				    } else {
+				    	res.end(JSON.stringify({ upload: 1 }));
+				    }
+				});
+			} else {
+				    res.end(JSON.stringify({ upload: 0 }));
+			
+			}
+		});
+});
+
 router.post('/user', function(req, res){
 	console.log("Handler for /note/user called");
 		var username=req.body.username;
