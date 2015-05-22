@@ -577,7 +577,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l9v-bR-DQr">
-                                <rect key="frame" x="172" y="262" width="123" height="45"/>
+                                <rect key="frame" x="172" y="147" width="123" height="45"/>
                                 <color key="backgroundColor" red="0.22352942819999999" green="0.7254902124" blue="0.93333339689999995" alpha="1" colorSpace="deviceRGB"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
                                 <state key="normal" title="Add Picture">
@@ -594,7 +594,17 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="submitNote:" destination="N3E-Vr-AKA" eventType="touchUpInside" id="COj-a9-pNE"/>
                                     <segue destination="TPw-lH-ze6" kind="push" id="25C-Zx-xhS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ejd-Y8-TuO">
+                                <rect key="frame" x="172" y="212" width="123" height="39"/>
+                                <state key="normal" title="Clear">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clearImage:" destination="N3E-Vr-AKA" eventType="touchUpInside" id="VUj-Cw-5KJ"/>
                                 </connections>
                             </button>
                         </subviews>
