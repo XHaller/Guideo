@@ -142,6 +142,7 @@ router.post('/', function(req, res){
 			siteResult.push(elem);
 			console.dir("Current elem: " + elem.name + " And current result array size: " + siteResult.length);
 			if (siteResult.length == siteNames.length) {
+				console.log("Called Again!");
 				console.log(siteResult.length);
 				async.parallel([
 					function(callbackA) {
@@ -152,7 +153,25 @@ router.post('/', function(req, res){
 					}
 					], function(err) {
 						//console.dir(results);
-						res.end(JSON.stringify(results));
+						var a = "[";
+						var qString = 'Select * FROM Sites;';
+						connection.query(qString, function(err, rows, fields) {
+							for (var j=0; j <results.length-1; j++) {
+								for (var k = 0; k < rows.length; k++) {
+									if (rows[k].name == results[j].getName()) {
+										a = a + "{ \"topic\": \""+rows[k].name+"\", \"content\": \""+rows[k].description.replace(/"/g, '\\"')+ "\", \"latitude\": \""+rows[k].latitude +"\", \"longitude\": \""+rows[k].longtitude +"\"},";
+									}
+								}
+							}
+							for (var k = 0; k < rows.length; k++) {
+									if (rows[k].name == results[j].getName()) {
+										a = a + "{ \"topic\": \""+rows[k].name+"\", \"content\": \""+rows[k].description.replace(/"/g, '\\"')+ "\", \"latitude\": \""+rows[k].latitude +"\", \"longitude\": \""+rows[k].longtitude +"\"}]";
+									}
+							}
+							var f = JSON.parse(a);
+							console.log("response " + a);
+							res.end(a);
+						});
 					});
 			}
 		});
