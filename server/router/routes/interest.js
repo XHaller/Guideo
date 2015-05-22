@@ -84,7 +84,7 @@ router.post('/', function(req, res){
 						queryString = 'UPDATE Interests SET score = ' + interest + ' WHERE Interests.uid = '+ user + ' AND Interests.sid = ' + site +';'
 						connection.query(queryString, function(err, rows, fields){
 							if (err) console.log(err);
-							console.log("updated interest");
+							console.log("updated interest to " + interest + " of site with id " + site);
 						});
 					} else {
 					    queryString = 'INSERT INTO Interests VALUES(' + user + ', ' + site + ', ' + interest +');'
