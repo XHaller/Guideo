@@ -16,11 +16,11 @@
     NSString* userImage;
 }
 
-@property(nonatomic,retain)NSString *userName;
-@property(nonatomic,retain)NSString *email;
-@property(nonatomic,retain)NSString *userIntro;
-@property(nonatomic,retain)NSString *userImage;
+@property(nonatomic,strong)NSString *userName;
+@property(nonatomic,strong)NSString *email;
+@property(nonatomic,strong)NSString *userIntro;
+@property(nonatomic,strong)NSString *userImage;
 
-+ (id)sharedSingletonClass;
++ (userData*)sharedSingletonClass;
 
 @end

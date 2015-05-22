@@ -92,8 +92,13 @@
         [locationManager startUpdatingLocation]; //Will update location immediately
     }
     
-    location = [locationManager location];
-    mapView = [GMSMapView mapWithFrame:CGRectZero camera:nil];
+    CLLocation *location = [locationManager location];
+    
+    
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:location.coordinate.latitude
+                                                            longitude:location.coordinate.longitude
+                                                                 zoom:6];
+    mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     
     mapView.myLocationEnabled = YES;
     mapView.delegate = self;
@@ -134,8 +139,9 @@
         [ifInterested addObject:[NSNumber numberWithBool:NO]];
     }
     
-    
-    NSDictionary *keyPair2 = @{@"username": @"High"};
+    NSString* username = user.userName;
+    //NSLog(@"UserName: %@", username);
+    NSDictionary *keyPair2 = @{@"username": username};
     NSDictionary *jsonData2 = [DataTransfer requestObjectWithURL:@"http://52.6.223.152:80/interest/get" httpMethod:@"POST" params:keyPair2];
     
     //NSString *word = [jsonData objectAtIndex:0][@"topic"];
@@ -263,6 +269,29 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
     
+}
+
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+    UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"There was an error retrieving your location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [errorAlert show];
+    NSLog(@"Error: %@",error.description);
+}
+
+- (void)locationManager:(CLLocationManager *)manager
+     didUpdateLocations:(NSArray *)locations {
+    // If it's a relatively recent event, turn off updates to save power.
+    CLLocation* location = [locations lastObject];
+    
+    //NSLog(@"%.8f",location.coordinate.latitude);
+    //NSLog(@"%.8f",location.coordinate.longitude);
+    
+    NSDate* eventDate = location.timestamp;
+    NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
+    if (fabs(howRecent) < 15.0) {
+        CLLocationCoordinate2D target =
+        CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
+        [mapView animateToLocation:target];
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -471,6 +500,7 @@
     NSDictionary *keyPair;
     NSString *labelText;
     UIColor *labelColor;
+    NSString* username = user.userName;
     if([[ifInterested objectAtIndex:cell.tag] boolValue])
     {
         labelText = @"Bored";
@@ -479,7 +509,7 @@
         
         //NSArray *siteArray = [interestedSites allObjects];
         //NSLog(@"index: %@", [[siteArray objectAtIndex:0] tableTopic]);
-        keyPair = @{@"username": @"High", @"sitename": [[sites objectAtIndex:cell.tag] tableTopic], @"interested": @"1"};
+        keyPair = @{@"username": username, @"sitename": [[sites objectAtIndex:cell.tag] tableTopic], @"interested": @"1"};
     }
     else
     {
@@ -487,7 +517,7 @@
         labelColor = [UIColor orangeColor];
         [interestedSites removeObject:[sites objectAtIndex:cell.tag]];
        // NSLog(@"index: %lu", (unsigned long)[interestedSites count]);
-        keyPair = @{@"username": @"High", @"sitename": [[sites objectAtIndex:cell.tag] tableTopic], @"interested": @"0"};
+        keyPair = @{@"username": username, @"sitename": [[sites objectAtIndex:cell.tag] tableTopic], @"interested": @"0"};
     }
     [cell setRightUtilityButtons:[self rightButtons:labelText buttonColor:labelColor] WithButtonWidth:108.0f];
     

@@ -13,13 +13,12 @@
 @property (nonatomic, strong) NSString *siteName;
 @property (nonatomic, strong) NSString *siteAddress;
 
-@property (nonatomic, assign) float *siteOpen;
-@property (nonatomic, assign) float *siteClose;
-@property (nonatomic, assign) float *siteTripTime;
-@property (nonatomic, assign) float *sitePopularity;
-@property (nonatomic, assign) float *siteLatitude;
-@property (nonatomic, assign) float *siteLongitude;
-@property (nonatomic, assign) float *sitePrice;
+@property (nonatomic, strong) NSString* siteOpen;
+@property (nonatomic, strong) NSString* siteTripTime;
+@property (nonatomic, strong) NSString* sitePopularity;
+@property (nonatomic, assign) float siteLatitude;
+@property (nonatomic, assign) float siteLongitude;
+@property (nonatomic, strong) NSString* sitePrice;
 
 @property (nonatomic, strong) NSString *sitePhone;
 @property (nonatomic, strong) NSString *siteIntro;
