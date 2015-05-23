@@ -25,10 +25,16 @@
 
 @synthesize events;
 @synthesize searchResults;
+@synthesize imageCache, imageDownloadingQueue;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.imageDownloadingQueue = [[NSOperationQueue alloc] init];
+    self.imageDownloadingQueue.maxConcurrentOperationCount = 4; // many servers limit how many concurrent requests they'll accept from a device, so make sure to set this accordingly
+    
+    self.imageCache = [[NSCache alloc] init];
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     
@@ -198,9 +204,49 @@
     }
     
     CGSize newSize = CGSizeMake(64, 64);
-    NSURL *imageURL = [NSURL URLWithString:[event tableImage]];
-    NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
-    cell.imageView.image = [ImageScaler imageResize:[UIImage imageWithData:imageData] andResizeTo:newSize];
+    NSString *imageUrlString = [event tableImage];
+    
+    UIImage *cachedImage = [self.imageCache objectForKey:imageUrlString];
+    if (cachedImage) {
+        cell.imageView.image = cachedImage;
+    } else {
+        // you'll want to initialize the image with some blank image as a placeholder
+        
+        cell.imageView.image = [UIImage imageNamed:@"image1.jpg"];
+        
+        // now download in the image in the background
+        
+        [self.imageDownloadingQueue addOperationWithBlock:^{
+            
+            NSURL *imageUrl   = [NSURL URLWithString:imageUrlString];
+            NSData *imageData = [NSData dataWithContentsOfURL:imageUrl];
+            UIImage *image    = nil;
+            if (imageData)
+                image = [ImageScaler imageResize:[UIImage imageWithData:imageData] andResizeTo:newSize];
+            
+            if (image) {
+                // add the image to your cache
+                
+                [self.imageCache setObject:image forKey:imageUrlString];
+                
+                // finally, update the user interface in the main queue
+                
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    // Make sure the cell is still visible
+                    
+                    // Note, by using the same `indexPath`, this makes a fundamental
+                    // assumption that you did not insert any rows in the intervening
+                    // time. If this is not a valid assumption, make sure you go back
+                    // to your model to identify the correct `indexPath`/`updateCell`
+                    
+                    UITableViewCell *updateCell = [tableView cellForRowAtIndexPath:indexPath];
+                    if (updateCell)
+                        updateCell.imageView.image = image;
+                }];
+            }
+        }];
+    }
+
     
     cell.textLabel.text = [event tableTopic];
     cell.detailTextLabel.numberOfLines = 2000;

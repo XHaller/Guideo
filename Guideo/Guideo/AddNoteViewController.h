@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 #import "DoImagePickerController.h"
 
-@interface AddNoteViewController : UIViewController <DoImagePickerControllerDelegate>
+@interface AddNoteViewController : UIViewController <DoImagePickerControllerDelegate, UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView    *iv1;
 @property (strong, nonatomic)   NSArray             *aIVs;

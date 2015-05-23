@@ -1,9 +1,9 @@
 //
 //  ContentViewController.h
-//  ICViewPager
+//  Guideo
 //
-//  Created by Ilter Cengiz on 28/08/2013.
-//  Copyright (c) 2013 Ilter Cengiz. All rights reserved.
+//  Created by 亮亮 李 on 15/5/11.
+//  Copyright (c) 2015年 Guideo. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

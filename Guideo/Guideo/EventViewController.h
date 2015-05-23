@@ -12,5 +12,7 @@
 
 @property NSMutableArray *events;
 @property NSMutableArray * searchResults;
+@property (nonatomic, strong) NSOperationQueue *imageDownloadingQueue;
+@property (nonatomic, strong) NSCache *imageCache;
 
 @end

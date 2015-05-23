@@ -343,11 +343,8 @@
     if (cachedImage) {
         cell.imageView.image = cachedImage;
     } else {
-        // you'll want to initialize the image with some blank image as a placeholder
         
         cell.imageView.image = [UIImage imageNamed:@"image1.jpg"];
-        
-        // now download in the image in the background
         
         [self.imageDownloadingQueue addOperationWithBlock:^{
             
@@ -358,19 +355,11 @@
                 image = [ImageScaler imageResize:[UIImage imageWithData:imageData] andResizeTo:newSize];
             
             if (image) {
-                // add the image to your cache
                 
                 [self.imageCache setObject:image forKey:imageUrlString];
                 
-                // finally, update the user interface in the main queue
                 
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                    // Make sure the cell is still visible
-                    
-                    // Note, by using the same `indexPath`, this makes a fundamental
-                    // assumption that you did not insert any rows in the intervening
-                    // time. If this is not a valid assumption, make sure you go back
-                    // to your model to identify the correct `indexPath`/`updateCell`
                     
                     UITableViewCell *updateCell = [tableView cellForRowAtIndexPath:indexPath];
                     if (updateCell)
@@ -482,7 +471,10 @@
     {
         tableData *tempData = [interested objectAtIndex:i];
         [mapController.siteName addObject:[tempData tableTopic]];
-        [mapController.siteInfo addObject:[tempData tableTopic]];
+        if([[tempData tableContent] length] >= 100)
+            [mapController.siteInfo addObject:[[tempData tableContent] substringToIndex:100]];
+        else
+            [mapController.siteInfo addObject:[tempData tableContent]];
         [mapController.latitude addObject:[NSNumber numberWithDouble:[[tempData latitude] doubleValue]]];
         // NSLog(@"%d %f", i, [[tempData latitude] doubleValue]);
         [mapController.longitude addObject:[NSNumber numberWithDouble:[[tempData longitude] doubleValue]]];

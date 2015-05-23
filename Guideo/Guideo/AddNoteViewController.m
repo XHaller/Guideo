@@ -35,12 +35,32 @@
     _aIVs = @[_iv1];
     _sgColumnCount.selectedSegmentIndex = 1;
     _sgMaxCount.selectedSegmentIndex    = 1;
+    _textName.text = @"Text Here~";
+    _textName.textColor = [UIColor lightGrayColor];
+    _textName.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (BOOL) textViewShouldBeginEditing:(UITextView *)textView
+{
+    textView.text = @"";
+    textView.textColor = [UIColor blackColor];
+    return YES;
+}
+
+-(void) textViewDidChange:(UITextView *)textView
+{
+    
+    if(textView.text.length == 0){
+        textView.textColor = [UIColor lightGrayColor];
+        textView.text = @"Text Here~";
+        [textView resignFirstResponder];
+    }
 }
 
 - (IBAction)onShowImagePicker:(id)sender
