@@ -8,9 +8,13 @@
 
 #import "ViewController.h"
 #import "HomeViewController.h"
+#import "userData.h"
 #import "DataTransfer.h"
 
 @interface ViewController ()
+{
+    userData *user;
+}
 
 @end
 
@@ -22,7 +26,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    greetlabel1=[[UILabel alloc]initWithFrame:CGRectMake(70, 80, 200, 50)];
+    user = [userData sharedSingletonClass];
+    
+    greetlabel1=[[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2-120, 50, 200, 50)];
     [greetlabel1 setText:@"On My Way, "];
     [greetlabel1 setFont:[UIFont fontWithName:@"Cochin-BoldItalic" size:30.0f]];
     [greetlabel1 setTextColor:[UIColor whiteColor]];
@@ -33,7 +39,7 @@
     [greetlabel1 setClipsToBounds:YES];
     [self.view addSubview:greetlabel1];
     
-    greetlabel2=[[UILabel alloc]initWithFrame:CGRectMake(130, 120, 180, 50)];
+    greetlabel2=[[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2-60, 90, 180, 50)];
     [greetlabel2 setText:@"In My Way"];
     [greetlabel2 setFont:[UIFont fontWithName:@"Cochin-BoldItalic" size:30.0f]];
     [greetlabel2 setTextColor:[UIColor whiteColor]];
@@ -45,7 +51,7 @@
     [self.view addSubview:greetlabel2];
     
     
-    greetlabel3=[[UILabel alloc]initWithFrame:CGRectMake(65, 180, 250, 50)];
+    greetlabel3=[[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2-125, 140, 250, 50)];
     [greetlabel3 setText:@"Make your trip safe and fun!"];
     [greetlabel3 setFont:[UIFont fontWithName:@"DamascusBold" size:15.0f]];
     [greetlabel3 setTextColor:[UIColor whiteColor]];
@@ -58,7 +64,7 @@
     
     
     
-    usernameField = [[UITextField alloc]initWithFrame:CGRectMake(65, 250, 250, 45)];
+    usernameField = [[UITextField alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2-125, 200, 250, 45)];
     usernameField.borderStyle = UITextBorderStyleRoundedRect;
     usernameField.layer.cornerRadius = 15.0f;
     usernameField.layer.masksToBounds=YES;
@@ -76,7 +82,7 @@
     [self.view addSubview:usernameField];
     
     
-    emailField = [[UITextField alloc]initWithFrame:CGRectMake(65, 320, 250, 45)];
+    emailField = [[UITextField alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2-125, 270, 250, 45)];
     emailField.borderStyle = UITextBorderStyleRoundedRect;
     emailField.layer.cornerRadius = 15.0f;
     emailField.layer.masksToBounds=YES;
@@ -95,7 +101,7 @@
 
     
     
-    passwordField = [[UITextField alloc]initWithFrame:CGRectMake(65, 320, 250, 45)];
+    passwordField = [[UITextField alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2-125, 270, 250, 45)];
     passwordField.borderStyle = UITextBorderStyleRoundedRect;
     passwordField.layer.cornerRadius = 15.0f;
     passwordField.layer.masksToBounds=YES;
@@ -114,7 +120,7 @@
     [self.view addSubview:passwordField];
     
     
-    retypeField = [[UITextField alloc]initWithFrame:CGRectMake(65, 460, 250, 45)];
+    retypeField = [[UITextField alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2-125, 410, 250, 45)];
     retypeField.borderStyle = UITextBorderStyleRoundedRect;
     retypeField.layer.cornerRadius = 15.0f;
     retypeField.layer.masksToBounds=YES;
@@ -142,7 +148,7 @@
 
     
     signinButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    signinButton.frame = CGRectMake(115, 410, 150, 45);
+    signinButton.frame = CGRectMake(self.view.frame.size.width/2-75, 350, 150, 45);
     [signinButton setTitle:@"Sign In" forState:UIControlStateNormal];
     [signinButton.titleLabel setFont:[UIFont fontWithName:@"Arial" size:17.0f]];
     [signinButton setBackgroundColor: textColor];
@@ -154,7 +160,7 @@
     [self.view addSubview:self.signinButton];
     
     signup1Button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    signup1Button.frame = CGRectMake(115, 480, 150, 45);
+    signup1Button.frame = CGRectMake(self.view.frame.size.width/2-75, 420, 150, 45);
     [signup1Button setTitle:@"Sign Up" forState:UIControlStateNormal];
     [signup1Button.titleLabel setFont:[UIFont fontWithName:@"Arial" size:17.0f]];
     [signup1Button setBackgroundColor: [UIColor whiteColor]];
@@ -166,7 +172,7 @@
     [self.view addSubview:self.signup1Button];
     
     signup2Button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    signup2Button.frame = CGRectMake(80, 540, 100, 45);
+    signup2Button.frame = CGRectMake(self.view.frame.size.width/2-110, 470, 100, 45);
     [signup2Button setTitle:@"Sign Up" forState:UIControlStateNormal];
     [signup2Button.titleLabel setFont:[UIFont fontWithName:@"Arial" size:17.0f]];
     [signup2Button setBackgroundColor: textColor];
@@ -179,7 +185,7 @@
     
     
     backButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    backButton.frame = CGRectMake(200, 540, 100, 45);
+    backButton.frame = CGRectMake(self.view.frame.size.width/2+10, 470, 100, 45);
     [backButton setTitle:@"Back" forState:UIControlStateNormal];
     [backButton.titleLabel setFont:[UIFont fontWithName:@"Arial" size:17.0f]];
     [backButton setBackgroundColor: [UIColor whiteColor]];
@@ -193,7 +199,7 @@
     
     
     forgetButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    forgetButton.frame = CGRectMake(115, 550, 150, 45);
+    forgetButton.frame = CGRectMake(self.view.frame.size.width/2-75, 490, 150, 45);
     [forgetButton setTitle:@"Forget your password ?" forState:UIControlStateNormal];
     [forgetButton.titleLabel setFont:[UIFont fontWithName:@"Arial" size:14.0f]];
     [forgetButton setBackgroundColor: [UIColor clearColor]];
@@ -205,7 +211,7 @@
     
     
     sendButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    sendButton.frame = CGRectMake(80, 440, 100, 45);
+    sendButton.frame = CGRectMake(self.view.frame.size.width/2-110, 420, 100, 45);
     [sendButton setTitle:@"Send Email" forState:UIControlStateNormal];
     [sendButton.titleLabel setFont:[UIFont fontWithName:@"Arial" size:17.0f]];
     [sendButton setBackgroundColor: textColor];
@@ -293,10 +299,15 @@
         else
         {
             NSDictionary *keyPair = @{@"username" : [self.usernameField text], @"password" : [self.passwordField text]};
-            NSDictionary *jsonData = [DataTransfer requestWithURL:@"http://52.6.223.152:80/login" httpMethod:@"POST" params:keyPair];
+            NSDictionary *jsonData = [DataTransfer requestObjectWithURL:@"http://52.6.223.152:80/login" httpMethod:@"POST" params:keyPair];
             
             if(jsonData == NULL)
             {
+                user.userName = [self.usernameField text];
+                user.email = @"email";
+                user.userIntro = @"intro";
+                user.userImage = @"image";
+                NSLog(@"UserName: %@", user.userName);
                 [self alertStatus:@"Connection Failed" :@"Sign in Failed!" :0];
             }
             else
@@ -307,18 +318,33 @@
             
                 if(success == 1)
                 {
+                    user.userName = [self.usernameField text];
+                    user.email = jsonData[@"email"];
+                    user.userIntro = jsonData[@"intro"];
+                    user.userImage = jsonData[@"image"];
+                    NSLog(@"UserName: %@", user.userName);
                     NSLog(@"Login SUCCESS");
                 } else {
-            
+                    user.userName = [self.usernameField text];
+                    user.email = @"email";
+                    user.userIntro = @"intro";
+                    user.userImage = @"image";
+                    //NSLog(@"UserName: %@", user.userName);
                     NSString *error_msg = (NSString *) jsonData[@"error_message"];
+                    //NSLog(@"%@", jsonData);
                     [self alertStatus:error_msg :@"Sign in Failed!" :0];
                 }
            
             }
-            success = 1;
+           // success = 1;
         }
     }
     @catch (NSException * e) {
+        user.userName = [self.usernameField text];
+        user.email = @"email";
+        user.userIntro = @"intro";
+        user.userImage = @"image";
+        NSLog(@"UserName: %@", user.userName);
         NSLog(@"Exception: %@", e);
         [self alertStatus:@"Sign in Failed." :@"Error!" :0];
     }
@@ -334,17 +360,17 @@
 
 - (IBAction) signup1Clicked:(id)sender {
     emailField.hidden = NO;
-    emailField.frame = CGRectMake(65, 320, 250, 45);
+    emailField.frame = CGRectMake(self.view.frame.size.width/2-125, 270, 250, 45);
     retypeField.hidden = NO;
     usernameField.text = nil;
     passwordField.text = nil;
     usernameField.placeholder = @"  Create a username, please ;)";
-    passwordField.frame = CGRectMake(65, 390, 250, 45);
+    passwordField.frame = CGRectMake(self.view.frame.size.width/2-125, 340, 250, 45);
     passwordField.placeholder = @"  Create a password, please ;)";
     signinButton.hidden = YES;
     signup2Button.hidden = NO;
     signup1Button.hidden = YES;
-    backButton.frame = CGRectMake(200, 540, 100, 45);
+    backButton.frame = CGRectMake(self.view.frame.size.width/2+10, 470, 100, 45);
     backButton.hidden = NO;
     forgetButton.hidden = YES;
 }
@@ -386,7 +412,7 @@
         else
         {
             NSDictionary *keyPair = @{@"username" : [self.usernameField text], @"email" : [self.emailField text], @"password" : [self.passwordField text]};
-            NSDictionary *jsonData = [DataTransfer requestWithURL:@"http://52.6.223.152:80/signup" httpMethod:@"POST" params:keyPair];
+            NSDictionary *jsonData = [DataTransfer requestObjectWithURL:@"http://52.6.223.152:80/signup" httpMethod:@"POST" params:keyPair];
             
             if(jsonData == NULL)
             {
@@ -400,6 +426,11 @@
                 
                 if(success == 1)
                 {
+                    user.userName = [self.usernameField text];
+                    user.email = [self.emailField text];
+                    user.userIntro = @"";
+                    user.userImage = @"";
+                    
                     NSLog(@"Signup SUCCESS");
                 } else {
                     
@@ -408,7 +439,7 @@
                 }
                 
             }
-            success = 1;
+            //success = 1;
         }
     }
     @catch (NSException * e) {
@@ -431,7 +462,7 @@
     usernameField.hidden = NO;
     passwordField.hidden = NO;
     usernameField.placeholder = @"  Your username, please ;)";
-    passwordField.frame = CGRectMake(65, 320, 250, 45);
+    passwordField.frame = CGRectMake(self.view.frame.size.width/2-125, 270, 250, 45);
     passwordField.placeholder = @"  Your password, please ;)";
     
     sendButton.hidden = YES;
@@ -459,7 +490,7 @@
         else
         {
             NSDictionary *keyPair = @{@"email" : [self.emailField text]};
-            NSDictionary *jsonData = [DataTransfer requestWithURL:@"http://52.6.223.152:80/getPassword" httpMethod:@"POST" params:keyPair];
+            NSDictionary *jsonData = [DataTransfer requestObjectWithURL:@"http://52.6.223.152:80/getPassword" httpMethod:@"POST" params:keyPair];
             
             if(jsonData == NULL)
             {
@@ -497,10 +528,10 @@
 
 - (IBAction) forgetClicked:(id)sender {
     emailField.hidden = NO;
-    emailField.frame = CGRectMake(65, 300, 250, 45);
+    emailField.frame = CGRectMake(self.view.frame.size.width/2-125, 270, 250, 45);
     usernameField.hidden = YES;
     passwordField.hidden = YES;
-    backButton.frame = CGRectMake(200, 440, 100, 45);
+    backButton.frame = CGRectMake(self.view.frame.size.width/2+10, 420, 100, 45);
     backButton.hidden = NO;
     sendButton.hidden = NO;
     forgetButton.hidden = YES;

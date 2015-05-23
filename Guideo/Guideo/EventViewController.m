@@ -8,10 +8,15 @@
 
 #import "EventViewController.h"
 #import "EventDetailsViewController.h"
+#import "SearchDisplayController.h"
 #import "tableData.h"
+#import "DataTransfer.h"
+#import "ImageScaler.h"
 
 @interface EventViewController ()
-
+{
+    SearchDisplayController *search;
+}
 @end
 
 @implementation EventViewController{
@@ -42,53 +47,100 @@
     events = [[NSMutableArray alloc] init];
     searchResults = [[NSMutableArray alloc] init];
     
-    tableData *event1 = [tableData new];
-    event1.tableTopic = @"One day cruise";
-    event1.tableContent = @"The Statue of Liberty is a colossal neoclassical sculpture on Liberty Island in New York Harbor in New York City, in the United States. ";
-    event1.tableImage = @"image1.jpg";
+    NSDictionary *keyPair = @{@"latitude": @"0", @"longitude": @"0"};
+    NSArray *jsonData = [DataTransfer requestArrayWithURL:@"http://52.6.223.152:80/event" httpMethod:@"POST" params:keyPair];
     
-    [events addObject:event1];
+    //NSString *word = [jsonData objectAtIndex:0][@"topic"];
+    //NSLog(@"jsonData: %@\n\n",word);
     
-    tableData *event2 = [tableData new];
-    event2.tableTopic = @"Discount ticket!";
-    event2.tableContent = @"The Metropolitan Museum of Art (colloquially The Met), located in New York City, is the largest art museum in the United States and one of the ten largest in the world.";
-    event2.tableImage = @"image2.jpg";
+    NSUInteger eventNum = 0;
+    if(jsonData != NULL)
+    {
+        eventNum = [jsonData count];
+        
+        NSLog(@"Event Number: %lu", (unsigned long)eventNum);
+    }
+
+    for(int i = 0; i < eventNum; i++)
+    {
+        tableData *event = [tableData new];
+        event.tableTopic = [jsonData objectAtIndex:i][@"topic"];
+        event.tableContent = [jsonData objectAtIndex:i][@"content"];
+        event.tableImage = [jsonData objectAtIndex:i][@"image"];
+        
+        [events addObject:event];
+        
+    }
     
-    [events addObject:event2];
+//    tableData *event1 = [tableData new];
+//    event1.tableTopic = @"One day cruise";
+//    event1.tableContent = @"The Statue of Liberty is a colossal neoclassical sculpture on Liberty Island in New York Harbor in New York City, in the United States. ";
+//    event1.tableImage = @"image1.jpg";
+//    
+//    [events addObject:event1];
+//    
+//    tableData *event2 = [tableData new];
+//    event2.tableTopic = @"Discount ticket!";
+//    event2.tableContent = @"The Metropolitan Museum of Art (colloquially The Met), located in New York City, is the largest art museum in the United States and one of the ten largest in the world.";
+//    event2.tableImage = @"image2.jpg";
+//    
+//    [events addObject:event2];
+//    
+//    tableData *event3 = [tableData new];
+//    event3.tableTopic = @"Picnic at noon";
+//    event3.tableContent = @"Central Park is an urban park in the central part of the borough of Manhattan, New York City.";
+//    event3.tableImage = @"image3.jpg";
+//    
+//    [events addObject:event3];
+//    
+//    tableData *event4 = [tableData new];
+//    event4.tableTopic = @"Climb to the sky";
+//    event4.tableContent = @"The Empire State Building is a 102-story skyscraper located in Midtown Manhattan, New York City, on Fifth Avenue between West 33rd and 34th Streets.";
+//    event4.tableImage = @"image4.jpg";
+//    
+//    [events addObject:event4];
+//    
+//    tableData *event5 = [tableData new];
+//    event5.tableTopic = @"Island Sale!";
+//    event5.tableContent = @"Ellis Island is an island that is located in Upper New York Bay in the Port of New York and New Jersey, United States Of America.";
+//    event5.tableImage = @"image5.jpg";
+//    
+//    [events addObject:event5];
     
-    tableData *event3 = [tableData new];
-    event3.tableTopic = @"Picnic at noon";
-    event3.tableContent = @"Central Park is an urban park in the central part of the borough of Manhattan, New York City.";
-    event3.tableImage = @"image3.jpg";
+    self.navigationController.navigationBar.translucent = NO;
     
-    [events addObject:event3];
     
-    tableData *event4 = [tableData new];
-    event4.tableTopic = @"Climb to the sky";
-    event4.tableContent = @"The Empire State Building is a 102-story skyscraper located in Midtown Manhattan, New York City, on Fifth Avenue between West 33rd and 34th Streets.";
-    event4.tableImage = @"image4.jpg";
+    UISearchBar *mySearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 0)];
+    [self.view addSubview:mySearchBar];
     
-    [events addObject:event4];
+    mySearchBar.barTintColor = [UIColor colorWithRed:176/255.0 green:215/255.0 blue:255/255.0 alpha:1.0];
+    mySearchBar.tintColor = [UIColor whiteColor];
+    mySearchBar.placeholder = @"Search Events";
+    //mySearchBar.showsScopeBar = NO;
     
-    tableData *event5 = [tableData new];
-    event5.tableTopic = @"Island Sale!";
-    event5.tableContent = @"Ellis Island is an island that is located in Upper New York Bay in the Port of New York and New Jersey, United States Of America.";
-    event5.tableImage = @"image5.jpg";
-    
-    [events addObject:event5];
-    
-    self.searchDisplayController.searchBar.barTintColor = [UIColor colorWithRed:176/255.0 green:215/255.0 blue:255/255.0 alpha:1.0];
-    
-    self.searchDisplayController.searchBar.tintColor = [UIColor whiteColor];
-    for (UIView* subview in [[self.searchDisplayController.searchBar.subviews lastObject] subviews]) {
+    for (UIView* subview in [[mySearchBar.subviews lastObject] subviews]) {
         if ([subview isKindOfClass:[UITextField class]]) {
             UITextField *textField = (UITextField*)subview;
             [textField setBackgroundColor:[UIColor colorWithRed:96/255.0 green:215/255.0 blue:255/255.0 alpha:0.3]];
         }
     }
-
+    
+    // create the Search Display Controller with the above Search Bar
+    search = [[SearchDisplayController alloc]initWithSearchBar:mySearchBar contentsController:self];
+    search.searchResultsDataSource = self;
+    search.searchResultsDelegate = self;
     
     
+    
+//    search.searchBar.barTintColor = [UIColor colorWithRed:176/255.0 green:215/255.0 blue:255/255.0 alpha:1.0];
+//    
+//    search.searchBar.tintColor = [UIColor whiteColor];
+//    for (UIView* subview in [[search.searchBar.subviews lastObject] subviews]) {
+//        if ([subview isKindOfClass:[UITextField class]]) {
+//            UITextField *textField = (UITextField*)subview;
+//            [textField setBackgroundColor:[UIColor colorWithRed:96/255.0 green:215/255.0 blue:255/255.0 alpha:0.3]];
+//        }
+//    }
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -101,8 +153,8 @@
 -(void) viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     // check if searchDisplayController still active..
-    if ([self.searchDisplayController isActive]) {
-        [self.searchDisplayController setActive:NO];
+    if ([search isActive]) {
+        [search setActive:NO];
     }
 }
 
@@ -118,7 +170,9 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
+    if (tableView == search.searchResultsTableView) {
+        NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"tableTopic contains[c] %@", search.searchBar.text];
+        searchResults = [events filteredArrayUsingPredicate:resultPredicate];
         return [searchResults count];
         
     } else {
@@ -137,16 +191,23 @@
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     tableData *event;
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
+    if (tableView == search.searchResultsTableView) {
         event = [searchResults objectAtIndex:indexPath.row];
     } else {
         event = [events objectAtIndex:indexPath.row];
     }
     
-    cell.imageView.image = [UIImage imageNamed:[event tableImage]];
+    CGSize newSize = CGSizeMake(64, 64);
+    NSURL *imageURL = [NSURL URLWithString:[event tableImage]];
+    NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+    cell.imageView.image = [ImageScaler imageResize:[UIImage imageWithData:imageData] andResizeTo:newSize];
+    
     cell.textLabel.text = [event tableTopic];
     cell.detailTextLabel.numberOfLines = 2000;
-    cell.detailTextLabel.text = [event tableContent];
+    if([[event tableContent] length] >= 100)
+        cell.detailTextLabel.text = [[event tableContent] substringToIndex:100];
+    else
+        cell.detailTextLabel.text = [event tableContent];
     cell.tag = indexPath.row;
     return cell;
 }
@@ -172,7 +233,7 @@
     detailView.hidesBottomBarWhenPushed = YES;
     
     tableData *event;
-    if (self.searchDisplayController.active)
+    if (search.active)
     {
         event = [searchResults objectAtIndex:indexPath.row];
     }
@@ -186,21 +247,7 @@
     [[self navigationController] pushViewController:detailView animated:YES];
 }
 
--(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
-{
-    [self filterContentForSearchText:searchString
-                               scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
-                                      objectAtIndex:[self.searchDisplayController.searchBar
-                                                     selectedScopeButtonIndex]]];
-    
-    return YES;
-}
 
-- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
-{
-    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"tableTopic contains[c] %@", searchText];
-    searchResults = [events filteredArrayUsingPredicate:resultPredicate];
-}
 
 //- (void)tableView:(UITableView *)tableView prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 //{

@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GoogleMaps/GoogleMaps.h>
 
-@interface EventDetailsViewController : UIViewController
+@interface EventDetailsViewController : UIViewController <GMSMapViewDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property(strong, nonatomic) NSString *topicName;
+@property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, strong) UITableView *_tableView;
+@property (nonatomic, strong) GMSMapView * mapView;
 
 @end

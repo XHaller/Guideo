@@ -8,7 +8,7 @@
 
 #import "MJRootViewController.h"
 #import "MJCollectionViewCell.h"
-
+#import "DataTransfer.h"
 @interface MJRootViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *notesCollectionView;
 
@@ -37,8 +37,33 @@
     [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButtonImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(NSIntegerMin, NSIntegerMin) forBarMetrics:UIBarMetricsDefault];
 
+//    NSDictionary *keyPair = @{@"note": @"1"};
+//    NSArray *jsonData = [DataTransfer requestArrayWithURL:@"http://52.6.223.152:80/notes" httpMethod:@"POST" params:keyPair];
+//    
+//    NSUInteger noteNum = 0;
+//    if(jsonData != NULL)
+//    {
+//        noteNum = [jsonData count];
+//        
+//        NSLog(@"Event Number: %lu", (unsigned long)noteNum);
+//    }
+
     // Fill image array with images
     NSUInteger index;
+    
+//    for (index = 0; index < noteNum; ++index) {
+//        // Setup image name
+//        NSString *name = [jsonData objectAtIndex:index][@"note_name"];
+//        
+//
+//        //
+//        if(!self.images)
+//            self.images = [jsonData objectAtIndex:index][@"image"];
+//        [self.images addObject:name];
+//        
+//    }
+    
+
 
     for (index = 0; index < 14; ++index) {
         // Setup image name

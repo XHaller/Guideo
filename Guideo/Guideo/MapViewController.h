@@ -8,15 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import <GoogleMaps/GoogleMaps.h>
 
-@interface MapViewController : UIViewController <CLLocationManagerDelegate> {
+@interface MapViewController : UIViewController <GMSMapViewDelegate, CLLocationManagerDelegate>
 
-     CLLocationManager *locationManager;
-}
-@property (nonatomic, retain) CLLocationManager *locationManager;
-@property NSMutableArray *latitude;
-@property NSMutableArray *longitude;
-@property NSMutableArray *siteName;
-@property NSMutableArray *siteInfo;
+@property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic, strong) GMSMapView *mapView;
+@property (nonatomic, strong) NSMutableArray *latitude;
+@property (nonatomic, strong) NSMutableArray *longitude;
+@property (nonatomic, strong) NSMutableArray *siteName;
+@property (nonatomic, strong) NSMutableArray *siteInfo;
 
 @end

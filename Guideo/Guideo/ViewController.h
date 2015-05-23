@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface ViewController : UIViewController <UITextFieldDelegate>
 
 @property (strong, nonatomic) UILabel *greetlabel1;
@@ -23,6 +24,7 @@
 @property (strong, nonatomic)UIButton *signup1Button;
 @property (strong, nonatomic)UIButton *signup2Button;
 @property (strong, nonatomic)UIButton *forgetButton;
+
 
 - (IBAction)signinClicked:(id)sender;
 - (IBAction)signup1Clicked:(id)sender;
