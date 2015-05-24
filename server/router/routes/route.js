@@ -1,10 +1,22 @@
 var express = require('express');
 var router = express.Router();
+var mysql = require('mysql');
+var async = require('async');
 
 var PosInfo = require('./routing/posInfo.js');
 var TimeInfo = require('./routing/timeInfo.js');
 var TrafInfo = require('./routing/trafInfo.js');
 var SiteInfo = require('./routing/siteInfo.js');
+var connection = mysql.createConnection({
+	host     : 'e6998.c9qyq3xutthv.us-west-2.rds.amazonaws.com',
+	user     : 'xy2251',
+	database : 'e6998',
+	password : '19921110',
+	port     : '3306'
+});
+
+connection.connect();
+console.log("connected to db")
 
 var sites = [];
 var results = [];
@@ -14,7 +26,7 @@ var currentTime;
 var currentDay;
 var endTime;
 
-function initialize(siteData, lat, lon)
+function initialize(siteData, lat, lon, callbackA)
 {	
 
 	for(var i=0; i<siteData.length; i++)
@@ -30,12 +42,15 @@ function initialize(siteData, lat, lon)
 		
 	var date = new Date();
 	currentDay = date.getDay();
-	currentTime = date.getHours() + date.getMinutes()/60.0;
-	//currentTime = 9.0;
+//	currentTime = date.getHours() + date.getMinutes()/60.0;
+	currentTime = 9.0;
 	endTime = 18.5;
+	console.log("exiting initialize");
+//	reorder(true, true);
+	callbackA();
 };
 
-function reorder(isPopularity, isOpenTime)
+function reorder(isPopularity, isOpenTime, callbackB)
 {
 	while(true)
 	{
@@ -46,8 +61,9 @@ function reorder(isPopularity, isOpenTime)
 		for(var i = 0; i < sites.length; i++)
 		{
 			var tempSite = sites[i];
-			
-			if(tempSite.isVisited())
+			//console.dir(tempSite);
+			var b = tempSite.isVisited();			
+			if(b)
 				continue;
 			
 			var tempTraf = tempSite.computeDist(currentPosition, 1, 0);
@@ -98,6 +114,7 @@ function reorder(isPopularity, isOpenTime)
 		{
 			var selectedSite = sites[minSite];
 			results.push(selectedSite);
+			console.log("Selected Site: " + selectedSite);
 			selectedSite.setVisited(true);
 			currentPosition.setCoord(selectedSite.getCoord().getLatitude(), selectedSite.getCoord().getLongitude());
 			currentTime += (selectedSite.getTripTime() + minTime);
@@ -105,25 +122,38 @@ function reorder(isPopularity, isOpenTime)
 		else
 			break;
 	}
+	console.log("exiting reorder");
+	callbackB();
 };
 
 
 router.post('/', function(req, res){
 	var lat = req.body.latitude;
 	var lon = req.body.longitude;
-	var sites = req.body.sitename.split(",");
-	var result = [];
+	var siteNames = req.body.sitename.split(",");
+	var siteResult = [];
 
-	for (var i = 0; i < sites.length; i++) {
-		var name = sites[i];
+	for (var i = 0; i < siteNames.length; i++) {
+		var name = siteNames[i];
 		var queryString = 'Select * FROM Sites WHERE Sites.name = "' + name + '";';
 		console.log(queryString);
 		connection.query(queryString, function(err, rows, fields) {
-			var elem = [name: rows[0].name, latitude: rows[0].latitude, longitude:rows[0].longtitude];
-			result.push(elem);
-			console.dir("Current elem: " + elem + " And current result array: " + result + " and current i: " + i);
-			if (results.length == sites.length) {
-				initialize(result, lat, lon);				
+			var elem = {name: rows[0].name, latitude: rows[0].latitude, longitude:rows[0].longtitude};
+			siteResult.push(elem);
+			console.dir("Current elem: " + elem.name + " And current result array size: " + siteResult.length);
+			if (siteResult.length == siteNames.length) {
+				console.log(siteResult.length);
+				async.parallel([
+					function(callbackA) {
+						initialize(siteResult, lat, lon, callbackA);
+					},
+					function(callbackB) {
+						reorder(true, true, callbackB);
+					}
+					], function(err) {
+						//console.dir(results);
+						res.end(JSON.stringify(results));
+					});
 			}
 		});
 	}
@@ -131,9 +161,9 @@ router.post('/', function(req, res){
 //The args you should put into.
 
 
-reorder(true, true);
+//reorder(true, true);
 		
-var index = 0;
+/*var index = 0;
 for(var i = 0; i < results.length; i++)
 {
 	index++;
@@ -142,7 +172,7 @@ for(var i = 0; i < results.length; i++)
 	//results[i].getName();
 	//results[i].getCoord().getLatitude();
 	//results[i].getCoord().getLongitude();
-}
+}*/
 
 
 module.exports = router;
