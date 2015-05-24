@@ -31,11 +31,13 @@ router.post('/get', function(req, res){
 	connection.query(queryString, function(err, rows, fields){
 					if (err) console.log(err);
 					var str="";
-					if (typeof rows!== 'undefined' && rows) {
+					console.log(typeof rows + rows.length);
+					if (typeof rows!== 'undefined' && rows.length>0) {
 						var i;
 						str = "{\"name\":\"";
 						for (i=0; i<rows.length-1; i++) {
 							str = str + rows[i].name + ','
+							console.log(str);
 						}
 						str = str + rows[i].name + '\"}';
 					} else {

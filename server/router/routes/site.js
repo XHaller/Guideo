@@ -68,10 +68,10 @@ router.post('/detail', function(req, res){
 			if (rows.length > 0) {
 				var i=0;
 				for (i=0; i<rows.length; i++) {
-					a = "{ \"site\": \"1\", \"topic\": \""+rows[i].name+"\", \"content\": \""+rows[i].description.replace(/"/g, '\\"')+ "\", \"image\": \""+rows[i].photourl+ "\", \"latitude\": \""+rows[i].latitude +"\", \"longitude\": \""+rows[i].longtitude +   "\", \"trip_time\": \""+rows[i].visit_length +"\", \"fee\": \""+rows[i].has_fee +   "\", \"hours\": \""+rows[i].open_time +"\", \"phone\": \""+rows[i].phone +"\"}";
+					a = "{ \"site\": \"1\", \"topic\": \""+rows[i].name+"\", \"content\": \""+rows[i].description.replace(/"/g, '\\"')+ "\", \"image\": \""+rows[i].photourl+ "\", \"latitude\": \""+rows[i].latitude +"\", \"longitude\": \""+rows[i].longtitude +   "\", \"trip_time\": \""+rows[i].visit_length +"\", \"fee\": \""+rows[i].has_fee +   "\", \"hours\": \""+rows[i].open_time +"\", \"phone\": \""+rows[i].phone +"\", \"address\": \""+rows[i].address+"\"}";
 				}
 				//a = a + "{ \"site\": \"1\", \"topic\": \""+rows[i].name+"\", \"content\": \""+rows[i].description.replace(/"/g, '\\"')+ "\", \"image\": \""+rows[i].photourl+ "\", \"latitude\": \""+rows[i].latitude +"\", \"longitude\": \""+rows[i].longtitude +   "\", \"trip_time\": \""+rows[i].visit_length +"\", \"fee\": \""+rows[i].has_fee +   "\", \"hours\": \""+rows[i].open_time +"\", \"phone\": \""+rows[i].phone +"\"}]";
-				//console.log(a);
+				console.log(a);
 				var j = JSON.parse(a);
 				res.end(a);
 			} else {
