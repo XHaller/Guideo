@@ -36,7 +36,7 @@
 //        NSDictionary *jsonData = [DataTransfer requestObjectWithURL:@"http://52.6.223.152:80/usernotes" httpMethod:@"POST" params:keyPair];
     
     //    存放显示在单元格上的数据
-    NSArray *array = [NSArray arrayWithObjects:@"张三",@"张四",@"张五",@"李三",@"李四",@"李五",@"李六",@"王三",@"王四",@"王五",@"王六",@"王七",@"王八",@"王九",@"王十", nil];
+    NSArray *array = [NSArray arrayWithObjects:@"Post1",@"Post2",@"Post3",@"Post4",@"Post5", nil];
     self.listData = array;
     
 }
@@ -73,7 +73,7 @@
     //    获取当前行信息值
     NSUInteger row = [indexPath row];
     //    填充行的详细内容
-    cell.detailTextLabel.text = @"详细内容";
+    cell.detailTextLabel.text = @"Details";
     //    把数组中的值赋给单元格显示出来
     cell.textLabel.text=[self.listData objectAtIndex:row];
     
@@ -92,7 +92,7 @@
     //    设置单元格UILabel属性背景颜色
     cell.textLabel.backgroundColor=[UIColor clearColor];
     //    正常情况下现实的图片
-    UIImage *image = [UIImage imageNamed:@"2.png"];
+    UIImage *image = [UIImage imageNamed:@"00.jpg"];
     cell.imageView.image=image;
     
     //    被选中后高亮显示的照片
@@ -108,7 +108,7 @@
     NSInteger row = [indexPath row];
     //    从数组中取出当前行内容
     NSString *rowValue = [self.listData objectAtIndex:row];
-    NSString *message = [[NSString alloc]initWithFormat:@"You selected%@",rowValue];
+    NSString *message = [[NSString alloc]initWithFormat:@"You selected %@",rowValue];
     //    弹出警告信息
     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示"
                                                    message:message

@@ -92,8 +92,13 @@
         [locationManager startUpdatingLocation]; //Will update location immediately
     }
     
-    location = [locationManager location];
-    mapView = [GMSMapView mapWithFrame:CGRectZero camera:nil];
+    CLLocation *location = [locationManager location];
+    
+    
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:location.coordinate.latitude
+                                                            longitude:location.coordinate.longitude
+                                                                 zoom:6];
+    mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     
     mapView.myLocationEnabled = YES;
     mapView.delegate = self;
@@ -134,8 +139,9 @@
         [ifInterested addObject:[NSNumber numberWithBool:NO]];
     }
     
-    
-    NSDictionary *keyPair2 = @{@"username": @"High"};
+    NSString* username = user.userName;
+    //NSLog(@"UserName: %@", username);
+    NSDictionary *keyPair2 = @{@"username": username};
     NSDictionary *jsonData2 = [DataTransfer requestObjectWithURL:@"http://52.6.223.152:80/interest/get" httpMethod:@"POST" params:keyPair2];
     
     //NSString *word = [jsonData objectAtIndex:0][@"topic"];
@@ -265,6 +271,29 @@
     
 }
 
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+    UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"There was an error retrieving your location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [errorAlert show];
+    NSLog(@"Error: %@",error.description);
+}
+
+- (void)locationManager:(CLLocationManager *)manager
+     didUpdateLocations:(NSArray *)locations {
+    // If it's a relatively recent event, turn off updates to save power.
+    CLLocation* location = [locations lastObject];
+    
+    //NSLog(@"%.8f",location.coordinate.latitude);
+    //NSLog(@"%.8f",location.coordinate.longitude);
+    
+    NSDate* eventDate = location.timestamp;
+    NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
+    if (fabs(howRecent) < 15.0) {
+        CLLocationCoordinate2D target =
+        CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
+        [mapView animateToLocation:target];
+    }
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
@@ -314,11 +343,8 @@
     if (cachedImage) {
         cell.imageView.image = cachedImage;
     } else {
-        // you'll want to initialize the image with some blank image as a placeholder
         
         cell.imageView.image = [UIImage imageNamed:@"image1.jpg"];
-        
-        // now download in the image in the background
         
         [self.imageDownloadingQueue addOperationWithBlock:^{
             
@@ -329,19 +355,11 @@
                 image = [ImageScaler imageResize:[UIImage imageWithData:imageData] andResizeTo:newSize];
             
             if (image) {
-                // add the image to your cache
                 
                 [self.imageCache setObject:image forKey:imageUrlString];
                 
-                // finally, update the user interface in the main queue
                 
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                    // Make sure the cell is still visible
-                    
-                    // Note, by using the same `indexPath`, this makes a fundamental
-                    // assumption that you did not insert any rows in the intervening
-                    // time. If this is not a valid assumption, make sure you go back
-                    // to your model to identify the correct `indexPath`/`updateCell`
                     
                     UITableViewCell *updateCell = [tableView cellForRowAtIndexPath:indexPath];
                     if (updateCell)
@@ -365,7 +383,10 @@
     
     cell.textLabel.text = [site tableTopic];
     cell.detailTextLabel.numberOfLines = 2000;
-    cell.detailTextLabel.text = [site tableContent];
+    if([[site tableContent] length] >= 100)
+        cell.detailTextLabel.text = [[site tableContent] substringToIndex:100];
+    else
+        cell.detailTextLabel.text = [site tableContent];
     cell.tag = indexPath.row;
     
     if([[ifInterested objectAtIndex:indexPath.row] boolValue])
@@ -450,7 +471,10 @@
     {
         tableData *tempData = [interested objectAtIndex:i];
         [mapController.siteName addObject:[tempData tableTopic]];
-        [mapController.siteInfo addObject:[tempData tableTopic]];
+        if([[tempData tableContent] length] >= 100)
+            [mapController.siteInfo addObject:[[tempData tableContent] substringToIndex:100]];
+        else
+            [mapController.siteInfo addObject:[tempData tableContent]];
         [mapController.latitude addObject:[NSNumber numberWithDouble:[[tempData latitude] doubleValue]]];
         // NSLog(@"%d %f", i, [[tempData latitude] doubleValue]);
         [mapController.longitude addObject:[NSNumber numberWithDouble:[[tempData longitude] doubleValue]]];
@@ -471,6 +495,7 @@
     NSDictionary *keyPair;
     NSString *labelText;
     UIColor *labelColor;
+    NSString* username = user.userName;
     if([[ifInterested objectAtIndex:cell.tag] boolValue])
     {
         labelText = @"Bored";
@@ -479,7 +504,7 @@
         
         //NSArray *siteArray = [interestedSites allObjects];
         //NSLog(@"index: %@", [[siteArray objectAtIndex:0] tableTopic]);
-        keyPair = @{@"username": @"High", @"sitename": [[sites objectAtIndex:cell.tag] tableTopic], @"interested": @"1"};
+        keyPair = @{@"username": username, @"sitename": [[sites objectAtIndex:cell.tag] tableTopic], @"interested": @"1"};
     }
     else
     {
@@ -487,7 +512,7 @@
         labelColor = [UIColor orangeColor];
         [interestedSites removeObject:[sites objectAtIndex:cell.tag]];
        // NSLog(@"index: %lu", (unsigned long)[interestedSites count]);
-        keyPair = @{@"username": @"High", @"sitename": [[sites objectAtIndex:cell.tag] tableTopic], @"interested": @"0"};
+        keyPair = @{@"username": username, @"sitename": [[sites objectAtIndex:cell.tag] tableTopic], @"interested": @"0"};
     }
     [cell setRightUtilityButtons:[self rightButtons:labelText buttonColor:labelColor] WithButtonWidth:108.0f];
     

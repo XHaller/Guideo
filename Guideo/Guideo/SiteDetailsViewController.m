@@ -10,6 +10,7 @@
 #import "ContentViewController.h"
 #import "PicturesViewController.h"
 #import "siteData.h"
+#import "DataTransfer.h"
 
 
 @interface SiteDetailsViewController () <ViewPagerDataSource, ViewPagerDelegate>
@@ -33,6 +34,19 @@
 
     siteInfo = [[siteData alloc] init];
     siteInfo.siteName = topicName;
+    
+    
+    NSDictionary *keyPair = @{@"site_name": topicName};
+    NSDictionary *jsonData = [DataTransfer requestObjectWithURL:@"http://52.6.223.152:80/site/detail" httpMethod:@"POST" params:keyPair];
+    
+    siteInfo.sitePhone = jsonData[@"phone"];
+    siteInfo.siteAddress = jsonData[@"address"];
+    siteInfo.sitePopularity = [[NSNumber numberWithDouble:(arc4random() % 10)] stringValue];
+    siteInfo.siteLatitude = [jsonData[@"latitude"] doubleValue];
+    siteInfo.siteLongitude = [jsonData[@"longitude"] doubleValue];
+    siteInfo.sitePrice = jsonData[@"fee"];
+    siteInfo.siteOpen = jsonData[@"hours"];
+    siteInfo.siteTripTime = jsonData[@"trip_time"];
     
     siteInfo.siteItemsName = [[NSMutableArray alloc] init];
     [siteInfo.siteItemsName addObject:@"Info"];
@@ -119,10 +133,15 @@
     ContentViewController *cvc = [self.storyboard instantiateViewControllerWithIdentifier:@"contentViewController"];
     
     if([[siteInfo.siteItemsName objectAtIndex:index] isEqualToString:@"Info"])
+    {
+        [cvc setSiteInfo: siteInfo];
         cvc.isBase = YES;
+    }
     else
+    {
         cvc.isBase = NO;
-    cvc.siteInfo = siteInfo;
+    }
+    
     [cvc setContentString:[siteInfo.siteItemsContent objectAtIndex:index]];
     
     return cvc;

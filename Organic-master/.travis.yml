@@ -1,3 +1,0 @@
-language: objective-c
-script:
-  - xctool -project Organic.xcodeproj -sdk iphonesimulator -scheme Organic build

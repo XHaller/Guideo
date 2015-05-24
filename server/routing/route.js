@@ -114,4 +114,12 @@ for(var i = 0; i < results.length; i++)
 {
 	index++;
 	console.log("Site " + index + ": " + results[i].getName());
+
+	results[i].getName();
+	results[i].getCoord().getLatitude();
+	results[i].getCoord().getLongitude();
 }
+
+
+
+

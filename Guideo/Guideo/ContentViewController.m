@@ -1,9 +1,9 @@
 //
 //  ContentViewController.m
-//  ICViewPager
+//  Guideo
 //
-//  Created by Ilter Cengiz on 28/08/2013.
-//  Copyright (c) 2013 Ilter Cengiz. All rights reserved.
+//  Created by 亮亮 李 on 15/5/11.
+//  Copyright (c) 2015年 Guideo. All rights reserved.
 //
 
 #import "ContentViewController.h"
@@ -44,8 +44,8 @@
         
         mapView.myLocationEnabled = YES;
         mapView.delegate = self;
-        double latitude = 40.783333;
-        double longitude = -73.966667;
+        double latitude = siteInfo.siteLatitude;
+        double longitude = siteInfo.siteLongitude;
         GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:latitude
                                                                 longitude:longitude
                                                                      zoom:12];
@@ -54,8 +54,8 @@
         
         GMSMarker *marker = [[GMSMarker alloc] init];
         marker.position = CLLocationCoordinate2DMake(latitude, longitude);
-        marker.title = @"Central Park";
-        marker.snippet = @"The biggest park in the city.";
+        marker.title = siteInfo.siteName;
+        marker.snippet = [@"Recommendation Trip Time: " stringByAppendingString: siteInfo.siteTripTime];
         marker.map = mapView;
         [scrollView addSubview:mapView];
     }
@@ -94,6 +94,9 @@
         cell.textLabel.font = [UIFont fontWithName:@"ArialHebrew" size:15];
     }
     
+   // NSLog(@"%@", [@"Opening Time:" stringByAppendingString:siteInfo.siteOpen]);
+    
+    cell.detailTextLabel.numberOfLines = 200;
     switch(indexPath.row)
     {
         case 0:
@@ -101,28 +104,34 @@
             break;
         case 1:
             cell.textLabel.text = @"Address: ";
+            cell.detailTextLabel.text = siteInfo.siteAddress;
             break;
         case 2:
             cell.textLabel.text = @"Popularity: ";
+            cell.detailTextLabel.text = siteInfo.sitePopularity;
             break;
         case 3:
             cell.textLabel.text = @"Price: ";
+            cell.detailTextLabel.text = siteInfo.sitePrice;
             break;
         case 4:
-            cell.textLabel.text = @"Open Time:   Close Time: ";
+            cell.textLabel.text = @"Opening Time:";
+            cell.detailTextLabel.text = siteInfo.siteOpen;
             break;
         case 5:
             cell.textLabel.text = @"Recommending Trip Time: ";
+            cell.detailTextLabel.text = siteInfo.siteTripTime;
             break;
         case 6:
             cell.textLabel.text = @"Phone: ";
+            cell.detailTextLabel.text = siteInfo.sitePhone;
             break;
         default:
             cell.textLabel.text = @"";
+            cell.detailTextLabel.text = @"";
             break;
     }
-    cell.detailTextLabel.numberOfLines = 200;
-    cell.detailTextLabel.text = @"";
+    
     cell.tag = indexPath.row;
     cell.selectionStyle =UITableViewCellSelectionStyleNone;
     return cell;

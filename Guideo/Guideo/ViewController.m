@@ -303,6 +303,11 @@
             
             if(jsonData == NULL)
             {
+                user.userName = [self.usernameField text];
+                user.email = @"email";
+                user.userIntro = @"intro";
+                user.userImage = @"image";
+                NSLog(@"UserName: %@", user.userName);
                 [self alertStatus:@"Connection Failed" :@"Sign in Failed!" :0];
             }
             else
@@ -313,27 +318,33 @@
             
                 if(success == 1)
                 {
-                    user.userName = jsonData[@"name"];
+                    user.userName = [self.usernameField text];
                     user.email = jsonData[@"email"];
                     user.userIntro = jsonData[@"intro"];
                     user.userImage = jsonData[@"image"];
-
+                    NSLog(@"UserName: %@", user.userName);
                     NSLog(@"Login SUCCESS");
                 } else {
-                    user.userName = @"name";
+                    user.userName = [self.usernameField text];
                     user.email = @"email";
                     user.userIntro = @"intro";
                     user.userImage = @"image";
+                    //NSLog(@"UserName: %@", user.userName);
                     NSString *error_msg = (NSString *) jsonData[@"error_message"];
                     //NSLog(@"%@", jsonData);
                     [self alertStatus:error_msg :@"Sign in Failed!" :0];
                 }
            
             }
-            success = 1;
+           // success = 1;
         }
     }
     @catch (NSException * e) {
+        user.userName = [self.usernameField text];
+        user.email = @"email";
+        user.userIntro = @"intro";
+        user.userImage = @"image";
+        NSLog(@"UserName: %@", user.userName);
         NSLog(@"Exception: %@", e);
         [self alertStatus:@"Sign in Failed." :@"Error!" :0];
     }

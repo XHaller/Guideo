@@ -12,16 +12,17 @@
 
 @synthesize userName, email, userIntro, userImage;
 
-+ (id)sharedSingletonClass
+static userData *instance = nil;
+
++ (userData*)sharedSingletonClass
 {
-    static userData *instance = nil;
-    
+    if (nil != instance) {
+        return instance;
+    }
     static dispatch_once_t onceToken;
-    
     dispatch_once(&onceToken, ^{
         instance = [[self alloc] init];
     });
-    
     return instance;
 }
 
