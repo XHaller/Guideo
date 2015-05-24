@@ -132,7 +132,9 @@ router.post('/', function(req, res){
 	var lon = req.body.longitude;
 	var siteNames = req.body.sitename.split(",");
 	var siteResult = [];
-
+	results = [];
+	sites = [];
+	console.log(results.length);
 	for (var i = 0; i < siteNames.length; i++) {
 		var name = siteNames[i];
 		var queryString = 'Select * FROM Sites WHERE Sites.name = "' + name + '";';
