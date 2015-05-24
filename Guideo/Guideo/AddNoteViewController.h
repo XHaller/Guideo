@@ -18,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl     *sgColumnCount;
 @property (weak, nonatomic) IBOutlet UISegmentedControl     *sgMaxCount;
 
+- (IBAction)clearImage:(id)sender;
 - (IBAction)onShowImagePicker:(id)sender;
+- (IBAction)uploadImage:(id)sender;
 
 @end

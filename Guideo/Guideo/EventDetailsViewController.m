@@ -7,6 +7,8 @@
 //
 
 #import "EventDetailsViewController.h"
+#import "siteData.h"
+#import "DataTransfer.h"
 
 @interface EventDetailsViewController ()
 
@@ -15,7 +17,7 @@
 @implementation EventDetailsViewController
 
 @synthesize scrollView, _tableView, mapView;
-@synthesize topicName;
+@synthesize topicName,siteInfo;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -28,12 +30,28 @@
     _tableView.dataSource = self;
     [scrollView addSubview:_tableView];
     
+    siteInfo = [[siteData alloc] init];
+    siteInfo.siteName = topicName;
+    
+    
+    NSDictionary *keyPair = @{@"event_name": topicName};
+    NSDictionary *jsonData = [DataTransfer requestObjectWithURL:@"http://52.6.223.152:80/event/detail" httpMethod:@"POST" params:keyPair];
+    
+    siteInfo.sitePhone = jsonData[@"phone"];
+    siteInfo.sitePopularity = [[NSNumber numberWithDouble:(arc4random() % 10)] stringValue];
+    siteInfo.siteLatitude = [jsonData[@"latitude"] doubleValue];
+    siteInfo.siteLongitude = [jsonData[@"longitude"] doubleValue];
+    siteInfo.sitePrice = jsonData[@"fee"];
+    siteInfo.siteOpen = jsonData[@"hours"];
+    siteInfo.siteAddress = jsonData[@"address"];
+    siteInfo.siteIntro = jsonData[@"info"];
+    
     mapView = [GMSMapView mapWithFrame:CGRectMake(10,10,self.view.frame.size.width-20,200) camera:nil];
     
     mapView.myLocationEnabled = YES;
     mapView.delegate = self;
-    double latitude = 40.783333;
-    double longitude = -73.966667;
+    double latitude = siteInfo.siteLatitude;
+    double longitude = siteInfo.siteLongitude;
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:latitude
                                                             longitude:longitude
                                                                  zoom:12];
@@ -42,8 +60,8 @@
     
     GMSMarker *marker = [[GMSMarker alloc] init];
     marker.position = CLLocationCoordinate2DMake(latitude, longitude);
-    marker.title = @"Central Park";
-    marker.snippet = @"The biggest park in the city.";
+    marker.title = siteInfo.siteName;
+    marker.snippet = siteInfo.siteIntro;
     marker.map = mapView;
     [scrollView addSubview:mapView];
     scrollView.scrollEnabled = YES;
@@ -72,35 +90,53 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     }
     
+    if(indexPath.row == 0)
+    {
+        cell.textLabel.font = [UIFont fontWithName:@"Arial-BoldMT" size:20];
+    }
+    else
+    {
+        cell.textLabel.font = [UIFont fontWithName:@"ArialHebrew" size:15];
+    }
+    
+    // NSLog(@"%@", [@"Opening Time:" stringByAppendingString:siteInfo.siteOpen]);
+    
+    cell.detailTextLabel.numberOfLines = 200;
     switch(indexPath.row)
     {
         case 0:
-            cell.textLabel.text = @"Name:";
+            cell.textLabel.text = siteInfo.siteName;
             break;
         case 1:
-            cell.textLabel.text = @"Address:";
+            cell.textLabel.text = @"Address: ";
+            cell.detailTextLabel.text = siteInfo.siteAddress;
             break;
         case 2:
-            cell.textLabel.text = @"Popularity:";
+            cell.textLabel.text = @"Popularity: ";
+            cell.detailTextLabel.text = siteInfo.sitePopularity;
             break;
         case 3:
-            cell.textLabel.text = @"Price:";
+            cell.textLabel.text = @"Price: ";
+            cell.detailTextLabel.text = siteInfo.sitePrice;
             break;
         case 4:
-            cell.textLabel.text = @"Open Time:   Close Time:";
+            cell.textLabel.text = @"Time:";
+            cell.detailTextLabel.text = siteInfo.siteOpen;
             break;
         case 5:
-            cell.textLabel.text = @"Recommending Trip Time:";
+            cell.textLabel.text = @"Phone: ";
+            cell.detailTextLabel.text = siteInfo.sitePhone;
             break;
         case 6:
-            cell.textLabel.text = @"Phone:";
+            cell.textLabel.text = @"Introduction: ";
+            cell.detailTextLabel.text = siteInfo.siteIntro;
             break;
         default:
             cell.textLabel.text = @"";
+            cell.detailTextLabel.text = @"";
             break;
     }
-    cell.detailTextLabel.numberOfLines = 200;
-    cell.detailTextLabel.text = @"";
+    
     cell.tag = indexPath.row;
     cell.selectionStyle =UITableViewCellSelectionStyleNone;
     return cell;

@@ -104,7 +104,7 @@
             break;
         case 1:
             cell.textLabel.text = @"Address: ";
-            cell.detailTextLabel.text = siteInfo.siteName;
+            cell.detailTextLabel.text = siteInfo.siteAddress;
             break;
         case 2:
             cell.textLabel.text = @"Popularity: ";

@@ -40,6 +40,7 @@
     NSDictionary *jsonData = [DataTransfer requestObjectWithURL:@"http://52.6.223.152:80/site/detail" httpMethod:@"POST" params:keyPair];
     
     siteInfo.sitePhone = jsonData[@"phone"];
+    siteInfo.siteAddress = jsonData[@"address"];
     siteInfo.sitePopularity = [[NSNumber numberWithDouble:(arc4random() % 10)] stringValue];
     siteInfo.siteLatitude = [jsonData[@"latitude"] doubleValue];
     siteInfo.siteLongitude = [jsonData[@"longitude"] doubleValue];

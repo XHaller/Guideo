@@ -535,16 +535,38 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WzE-SM-b61">
-                                <rect key="frame" x="16" y="186" width="123" height="160"/>
+                                <rect key="frame" x="20" y="160" width="131" height="160"/>
+                                <color key="backgroundColor" red="1" green="0.99789534059999996" blue="0.96839165429999996" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fdv-We-Zw7">
-                                <rect key="frame" x="16" y="20" width="279" height="109"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="20" y="20" width="279" height="109"/>
+                                <color key="backgroundColor" red="1" green="0.99789534055778006" blue="0.9683916543287695" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RKM-RH-2Nm">
+                                <rect key="frame" x="100" y="362" width="120" height="45"/>
+                                <color key="backgroundColor" red="0.22115096579999999" green="0.82555964569999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="uploadImage:" destination="N3E-Vr-AKA" eventType="touchUpInside" id="eUX-gd-vwk"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dEP-re-LKd">
+                                <rect key="frame" x="179" y="275" width="120" height="45"/>
+                                <color key="backgroundColor" red="0.18431372549019609" green="0.59999999999999998" blue="0.89411764705882357" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Clear">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clearImage:" destination="N3E-Vr-AKA" eventType="touchUpInside" id="EfG-U7-8zA"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l9v-bR-DQr">
-                                <rect key="frame" x="172" y="186" width="123" height="45"/>
+                                <rect key="frame" x="179" y="204" width="120" height="45"/>
                                 <color key="backgroundColor" red="0.22352942819999999" green="0.7254902124" blue="0.93333339689999995" alpha="1" colorSpace="deviceRGB"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
                                 <state key="normal" title="Add Picture">
@@ -553,24 +575,6 @@
                                 </state>
                                 <connections>
                                     <action selector="onShowImagePicker:" destination="N3E-Vr-AKA" eventType="touchUpInside" id="frb-2B-Wbl"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RKM-RH-2Nm">
-                                <rect key="frame" x="131" y="375" width="49" height="30"/>
-                                <state key="normal" title="Submit">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="TPw-lH-ze6" kind="push" id="25C-Zx-xhS"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dEP-re-LKd">
-                                <rect key="frame" x="172" y="272" width="123" height="38"/>
-                                <state key="normal" title="Clear">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="clearImage:" destination="N3E-Vr-AKA" eventType="touchUpInside" id="EfG-U7-8zA"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -584,33 +588,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R4V-YI-Jgc" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2032" y="608"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="nAp-hs-GT7">
-            <objects>
-                <viewController id="TPw-lH-ze6" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="UIf-eP-dhP"/>
-                        <viewControllerLayoutGuide type="bottom" id="Ywp-K9-xW9"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="6di-kS-aEG">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="454"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Post Successfully!~" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PhY-ye-0kf">
-                                <rect key="frame" x="16" y="209" width="288" height="35"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="8Er-Yl-TIr"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EcD-fX-KCJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2501" y="608"/>
         </scene>
         <!--User View Controller-->
         <scene sceneID="nwu-mo-pcV">

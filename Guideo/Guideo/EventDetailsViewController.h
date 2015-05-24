@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "siteData.h"
 #import <GoogleMaps/GoogleMaps.h>
 
 @interface EventDetailsViewController : UIViewController <GMSMapViewDelegate, UITableViewDelegate, UITableViewDataSource>
@@ -15,5 +16,6 @@
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) UITableView *_tableView;
 @property (nonatomic, strong) GMSMapView * mapView;
+@property siteData *siteInfo;
 
 @end
