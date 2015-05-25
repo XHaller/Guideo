@@ -13,7 +13,13 @@ var connection = mysql.createConnection({
 connection.connect();
 console.log("connected to db")
 
+/*var queryString = 'UPDATE Notes SET image = "http://distancecities.com/wp-content/uploads/2014/11/new_york_hop.jpg" WHERE nid=2;';
 
+connection.query(queryString, function(err, rows, fields) {
+		    if (err) console.log(err);
+		    else console.log("added image");
+		});
+*/
 router.post('/', function(req, res){
 	console.log("Handler for /note called");
 		var id=req.body.id;
@@ -32,7 +38,7 @@ router.post('/', function(req, res){
 					(function(i) {
 						var b = "";
 						var uid = rows[i].uid;
-						a[i] = a[i] + "{ \"topic\": \""+rows[i].title +"\", \"nid\": \"" + rows[i].nid +"\", \"user\": \"";
+						a[i] = a[i] + "{ \"topic\": \""+rows[i].title +"\", \"nid\": \"" + rows[i].nid +"\", \"image\": \"" + rows[i].image +"\", \"user\": \"";
 						var qString = 'SELECT name FROM Users WHERE Users.uid ="' + uid + '";';
 						console.log("the query is: " + qString + " at index " + i);
 						connection.query(qString, function(err, row, fields){
@@ -41,8 +47,10 @@ router.post('/', function(req, res){
 							//console.log(c + "for index: "+ i);
 							if (i>=rows.length-1) {
 								var aa =  "[";
-								aa= aa+ a[0] + ',' + a[1];
-								//aa.slice(0,-1);
+								for (var j = rows.length-1; j >= 0; j--) {
+									aa= aa+ a[j] + ',';// + ',' + a[1];
+								}
+								aa=aa.slice(0,-1);
 								aa = aa+"]";
 								console.log("Returning:" +aa);
 								res.json(JSON.parse(aa));
