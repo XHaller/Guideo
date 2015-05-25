@@ -6,24 +6,24 @@
 //  Copyright (c) 2015年 Guideo. All rights reserved.
 //
 
-#import "EventViewController.h"
-#import "EventDetailsViewController.h"
+#import "NoteViewController.h"
+#import "NoteDetailViewController.h"
 #import "SearchDisplayController.h"
 #import "tableData.h"
 #import "DataTransfer.h"
 #import "ImageScaler.h"
 
-@interface EventViewController ()
+@interface NoteViewController ()
 {
     SearchDisplayController *search;
 }
 @end
 
-@implementation EventViewController{
+@implementation NoteViewController{
     __weak IBOutlet UITableView *_tableView;
 }
 
-@synthesize events;
+@synthesize notes;
 @synthesize searchResults;
 @synthesize imageCache, imageDownloadingQueue;
 
@@ -38,9 +38,9 @@
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     
-    self.title = @"Events";
+    self.title = @"Notes";
     
-   // [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    // [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:176/255.0 green:215/255.0 blue:255/255.0 alpha:1.0]];
     
@@ -50,68 +50,68 @@
     [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButtonImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(NSIntegerMin, NSIntegerMin) forBarMetrics:UIBarMetricsDefault];
     
-    events = [[NSMutableArray alloc] init];
+    notes = [[NSMutableArray alloc] init];
     searchResults = [[NSMutableArray alloc] init];
     
-    NSDictionary *keyPair = @{@"latitude": @"0", @"longitude": @"0"};
-    NSArray *jsonData = [DataTransfer requestArrayWithURL:@"http://52.6.223.152:80/event" httpMethod:@"POST" params:keyPair];
+    NSDictionary *keyPair = @{@"note": @"1"};
+    NSArray *jsonData = [DataTransfer requestArrayWithURL:@"http://52.6.223.152:80/note" httpMethod:@"POST" params:keyPair];
     
     //NSString *word = [jsonData objectAtIndex:0][@"topic"];
     //NSLog(@"jsonData: %@\n\n",word);
     
-    NSUInteger eventNum = 0;
+    NSUInteger noteNum = 0;
     if(jsonData != NULL)
     {
-        eventNum = [jsonData count];
+        noteNum = [jsonData count];
         
-        NSLog(@"Event Number: %lu", (unsigned long)eventNum);
+        NSLog(@"Note Number: %lu", (unsigned long)noteNum);
     }
-
-    for(int i = 0; i < eventNum; i++)
+    
+    for(int i = 0; i < noteNum; i++)
     {
-        tableData *event = [tableData new];
-        event.tableTopic = [jsonData objectAtIndex:i][@"topic"];
-        event.tableContent = [jsonData objectAtIndex:i][@"content"];
-        event.tableImage = [jsonData objectAtIndex:i][@"image"];
+        tableData *note = [tableData new];
+        note.tableTopic = [jsonData objectAtIndex:i][@"user"];
+        note.tableContent = [jsonData objectAtIndex:i][@"topic"];
+        note.tableImage = [jsonData objectAtIndex:i][@"image"];
         
-        [events addObject:event];
+        [notes addObject:note];
         
     }
     
-//    tableData *event1 = [tableData new];
-//    event1.tableTopic = @"One day cruise";
-//    event1.tableContent = @"The Statue of Liberty is a colossal neoclassical sculpture on Liberty Island in New York Harbor in New York City, in the United States. ";
-//    event1.tableImage = @"image1.jpg";
-//    
-//    [events addObject:event1];
-//    
-//    tableData *event2 = [tableData new];
-//    event2.tableTopic = @"Discount ticket!";
-//    event2.tableContent = @"The Metropolitan Museum of Art (colloquially The Met), located in New York City, is the largest art museum in the United States and one of the ten largest in the world.";
-//    event2.tableImage = @"image2.jpg";
-//    
-//    [events addObject:event2];
-//    
-//    tableData *event3 = [tableData new];
-//    event3.tableTopic = @"Picnic at noon";
-//    event3.tableContent = @"Central Park is an urban park in the central part of the borough of Manhattan, New York City.";
-//    event3.tableImage = @"image3.jpg";
-//    
-//    [events addObject:event3];
-//    
-//    tableData *event4 = [tableData new];
-//    event4.tableTopic = @"Climb to the sky";
-//    event4.tableContent = @"The Empire State Building is a 102-story skyscraper located in Midtown Manhattan, New York City, on Fifth Avenue between West 33rd and 34th Streets.";
-//    event4.tableImage = @"image4.jpg";
-//    
-//    [events addObject:event4];
-//    
-//    tableData *event5 = [tableData new];
-//    event5.tableTopic = @"Island Sale!";
-//    event5.tableContent = @"Ellis Island is an island that is located in Upper New York Bay in the Port of New York and New Jersey, United States Of America.";
-//    event5.tableImage = @"image5.jpg";
-//    
-//    [events addObject:event5];
+    //    tableData *event1 = [tableData new];
+    //    event1.tableTopic = @"One day cruise";
+    //    event1.tableContent = @"The Statue of Liberty is a colossal neoclassical sculpture on Liberty Island in New York Harbor in New York City, in the United States. ";
+    //    event1.tableImage = @"image1.jpg";
+    //
+    //    [events addObject:event1];
+    //
+    //    tableData *event2 = [tableData new];
+    //    event2.tableTopic = @"Discount ticket!";
+    //    event2.tableContent = @"The Metropolitan Museum of Art (colloquially The Met), located in New York City, is the largest art museum in the United States and one of the ten largest in the world.";
+    //    event2.tableImage = @"image2.jpg";
+    //
+    //    [events addObject:event2];
+    //
+    //    tableData *event3 = [tableData new];
+    //    event3.tableTopic = @"Picnic at noon";
+    //    event3.tableContent = @"Central Park is an urban park in the central part of the borough of Manhattan, New York City.";
+    //    event3.tableImage = @"image3.jpg";
+    //
+    //    [events addObject:event3];
+    //
+    //    tableData *event4 = [tableData new];
+    //    event4.tableTopic = @"Climb to the sky";
+    //    event4.tableContent = @"The Empire State Building is a 102-story skyscraper located in Midtown Manhattan, New York City, on Fifth Avenue between West 33rd and 34th Streets.";
+    //    event4.tableImage = @"image4.jpg";
+    //
+    //    [events addObject:event4];
+    //
+    //    tableData *event5 = [tableData new];
+    //    event5.tableTopic = @"Island Sale!";
+    //    event5.tableContent = @"Ellis Island is an island that is located in Upper New York Bay in the Port of New York and New Jersey, United States Of America.";
+    //    event5.tableImage = @"image5.jpg";
+    //
+    //    [events addObject:event5];
     
     self.navigationController.navigationBar.translucent = NO;
     
@@ -135,29 +135,46 @@
     search = [[SearchDisplayController alloc]initWithSearchBar:mySearchBar contentsController:self];
     search.searchResultsDataSource = self;
     search.searchResultsDelegate = self;
-    
-    
-    
-//    search.searchBar.barTintColor = [UIColor colorWithRed:176/255.0 green:215/255.0 blue:255/255.0 alpha:1.0];
-//    
-//    search.searchBar.tintColor = [UIColor whiteColor];
-//    for (UIView* subview in [[search.searchBar.subviews lastObject] subviews]) {
-//        if ([subview isKindOfClass:[UITextField class]]) {
-//            UITextField *textField = (UITextField*)subview;
-//            [textField setBackgroundColor:[UIColor colorWithRed:96/255.0 green:215/255.0 blue:255/255.0 alpha:0.3]];
-//        }
-//    }
-    // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void) viewWillAppear:(BOOL)animated
 {
     [self.navigationController setNavigationBarHidden:NO animated:animated];
+    self.navigationController.navigationBar.translucent = NO;
+    
+    [notes removeAllObjects];
+    NSDictionary *keyPair = @{@"note": @"1"};
+    NSArray *jsonData = [DataTransfer requestArrayWithURL:@"http://52.6.223.152:80/note" httpMethod:@"POST" params:keyPair];
+    
+    //NSString *word = [jsonData objectAtIndex:0][@"topic"];
+    //NSLog(@"jsonData: %@\n\n",word);
+    
+    NSUInteger noteNum = 0;
+    if(jsonData != NULL)
+    {
+        noteNum = [jsonData count];
+        
+        NSLog(@"Note Number: %lu", (unsigned long)noteNum);
+    }
+    
+    for(int i = 0; i < noteNum; i++)
+    {
+        tableData *note = [tableData new];
+        note.tableTopic = [jsonData objectAtIndex:i][@"user"];
+        note.tableContent = [jsonData objectAtIndex:i][@"topic"];
+        note.tableImage = [jsonData objectAtIndex:i][@"image"];
+        
+        [notes addObject:note];
+        
+    }
+    
     [super viewWillAppear:animated];
+
 }
 
 -(void) viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.translucent = YES;
     // check if searchDisplayController still active..
     if ([search isActive]) {
         [search setActive:NO];
@@ -177,12 +194,12 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (tableView == search.searchResultsTableView) {
-        NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"tableTopic contains[c] %@", search.searchBar.text];
-        searchResults = [events filteredArrayUsingPredicate:resultPredicate];
+        NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"tableContent or tableTopic contains[c] %@", search.searchBar.text];
+        searchResults = [notes filteredArrayUsingPredicate:resultPredicate];
         return [searchResults count];
         
     } else {
-        return [events count];
+        return [notes count];
     }
 }
 
@@ -196,15 +213,15 @@
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
-    tableData *event;
+    tableData *note;
     if (tableView == search.searchResultsTableView) {
-        event = [searchResults objectAtIndex:indexPath.row];
+        note = [searchResults objectAtIndex:indexPath.row];
     } else {
-        event = [events objectAtIndex:indexPath.row];
+        note = [notes objectAtIndex:indexPath.row];
     }
     
     CGSize newSize = CGSizeMake(64, 64);
-    NSString *imageUrlString = [event tableImage];
+    NSString *imageUrlString = [note tableImage];
     
     UIImage *cachedImage = [self.imageCache objectForKey:imageUrlString];
     if (cachedImage) {
@@ -223,21 +240,14 @@
             UIImage *image    = nil;
             if (imageData)
                 image = [ImageScaler imageResize:[UIImage imageWithData:imageData] andResizeTo:newSize];
+            else
+                image = [ImageScaler imageResize:[UIImage imageNamed:@"default.jpg"] andResizeTo:newSize];
             
             if (image) {
-                // add the image to your cache
                 
                 [self.imageCache setObject:image forKey:imageUrlString];
                 
-                // finally, update the user interface in the main queue
-                
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                    // Make sure the cell is still visible
-                    
-                    // Note, by using the same `indexPath`, this makes a fundamental
-                    // assumption that you did not insert any rows in the intervening
-                    // time. If this is not a valid assumption, make sure you go back
-                    // to your model to identify the correct `indexPath`/`updateCell`
                     
                     UITableViewCell *updateCell = [tableView cellForRowAtIndexPath:indexPath];
                     if (updateCell)
@@ -246,26 +256,18 @@
             }
         }];
     }
-
     
-    cell.textLabel.text = [event tableTopic];
+    
+    cell.textLabel.text = [note tableTopic];
     cell.detailTextLabel.numberOfLines = 2000;
-    if([[event tableContent] length] >= 100)
-        cell.detailTextLabel.text = [[event tableContent] substringToIndex:100];
+    if([[note tableContent] length] >= 100)
+        cell.detailTextLabel.text = [[note tableContent] substringToIndex:100];
     else
-        cell.detailTextLabel.text = [event tableContent];
+        cell.detailTextLabel.text = [note tableContent];
     cell.tag = indexPath.row;
     return cell;
 }
 
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-//    if (!cell) {
-//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-//    }
-//    [cell.textLabel setText:[NSString  stringWithFormat:@"this is row :%ld",(long)indexPath.row]];
-//    return cell;
-//}
 
 - (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 99.0f;
@@ -274,35 +276,25 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
-    EventDetailsViewController *detailView = [self.storyboard instantiateViewControllerWithIdentifier:@"EventDetailsViewController"];
+    NoteDetailViewController *detailView = [self.storyboard instantiateViewControllerWithIdentifier:@"NoteDetailViewController"];
     
     detailView.hidesBottomBarWhenPushed = YES;
     
-    tableData *event;
+    tableData *note;
     if (search.active)
     {
-        event = [searchResults objectAtIndex:indexPath.row];
+        note = [searchResults objectAtIndex:indexPath.row];
     }
     else
     {
-        event = [events objectAtIndex:indexPath.row];
+        note = [notes objectAtIndex:indexPath.row];
     }
     
-    detailView.topicName = [event tableTopic];
+    detailView.text = [note tableContent];
+    detailView.image = [note tableImage];
     
     [[self navigationController] pushViewController:detailView animated:YES];
 }
 
-
-
-//- (void)tableView:(UITableView *)tableView prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-//{
-//    eventDetailsViewController *detailView = [[eventDetailsViewController alloc]init];
-//    detailView = [segue destinationViewController];
-//    NSIndexPath *path = [tableView indexPathForSelectedRow];
-//    NSString *topic = [tableTopic objectAtIndex:path.row];
-//    detailView.topicName = topic;
-//
-//}
 
 @end

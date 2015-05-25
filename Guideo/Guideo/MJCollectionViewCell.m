@@ -46,7 +46,7 @@
     self.clipsToBounds = YES;
     
     // Add image subview
-    self.MJImageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.bounds.origin.x, self.bounds.origin.y, 360, IMAGE_HEIGHT)];
+    self.MJImageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.bounds.origin.x, self.bounds.origin.y, 300, IMAGE_HEIGHT)];
 //    NSLog(@"%f", self.bounds.size.width);
     self.MJImageView.backgroundColor = [UIColor redColor];
     self.MJImageView.contentMode = UIViewContentModeScaleAspectFill;

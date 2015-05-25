@@ -101,29 +101,30 @@
     {
         case 0:
             cell.textLabel.text = siteInfo.siteName;
+            cell.detailTextLabel.text = @"";
             break;
         case 1:
-            cell.textLabel.text = @"Address: ";
-            cell.detailTextLabel.text = siteInfo.siteAddress;
-            break;
-        case 2:
             cell.textLabel.text = @"Popularity: ";
             cell.detailTextLabel.text = siteInfo.sitePopularity;
             break;
-        case 3:
-            cell.textLabel.text = @"Price: ";
-            cell.detailTextLabel.text = siteInfo.sitePrice;
-            break;
-        case 4:
+        case 2:
             cell.textLabel.text = @"Opening Time:";
             cell.detailTextLabel.text = siteInfo.siteOpen;
+            break;
+        case 3:
+            cell.textLabel.text = @"Address: ";
+            cell.detailTextLabel.text = siteInfo.siteAddress;
+            break;
+        case 4:
+            cell.textLabel.text = @"Price: ";
+            cell.detailTextLabel.text = siteInfo.sitePrice;
             break;
         case 5:
             cell.textLabel.text = @"Recommending Trip Time: ";
             cell.detailTextLabel.text = siteInfo.siteTripTime;
             break;
         case 6:
-            cell.textLabel.text = @"Phone: ";
+            cell.textLabel.text = @"Contact: ";
             cell.detailTextLabel.text = siteInfo.sitePhone;
             break;
         default:

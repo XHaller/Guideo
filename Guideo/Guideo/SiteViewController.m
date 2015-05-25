@@ -35,7 +35,7 @@
 }
 
 @synthesize sites;
-@synthesize searchResults;
+@synthesize searchResults, finalShowSites;
 @synthesize interestedSites, imageCache, imageDownloadingQueue;
 @synthesize locationManager, mapView;
 
@@ -111,7 +111,7 @@
     searchResults = [[NSMutableArray alloc] init];
     interestedSites = [[NSMutableSet alloc] init];
     ifInterested = [[NSMutableArray alloc] init];
-    
+    finalShowSites = [[NSMutableArray alloc] init];
     
     NSDictionary *keyPair = @{@"latitude": [[NSNumber numberWithDouble:location.coordinate.latitude]  stringValue], @"longitude": [[NSNumber numberWithDouble:location.coordinate.longitude]  stringValue]};
     NSArray *jsonData = [DataTransfer requestArrayWithURL:@"http://52.6.223.152:80/site" httpMethod:@"POST" params:keyPair];
@@ -344,7 +344,7 @@
         cell.imageView.image = cachedImage;
     } else {
         
-        cell.imageView.image = [UIImage imageNamed:@"image1.jpg"];
+        cell.imageView.image = [ImageScaler imageResize:[UIImage imageNamed:@"image1.jpg"] andResizeTo:newSize];
         
         [self.imageDownloadingQueue addOperationWithBlock:^{
             
@@ -377,6 +377,7 @@
         NSString * labelText = @"Bored";
         UIColor *labelColor = [UIColor greenColor];
         [cell setRightUtilityButtons:[self rightButtons:labelText buttonColor:labelColor] WithButtonWidth:108.0f];
+        [interestedSites addObject:[site tableTopic]];
         [tempset removeObject:[site tableTopic]];
     }
     
@@ -466,18 +467,54 @@
     mapController.latitude = [[NSMutableArray alloc] init];
     mapController.longitude = [[NSMutableArray alloc] init];
     
+    NSMutableString *sitelist = [NSMutableString stringWithString:@""];
+    
     NSArray *interested = [interestedSites allObjects];
+    
+    //NSLog(@"interest sites: %@", [interested objectAtIndex:0]);
     for(int i = 0; i < [interested count]; i++)
     {
-        tableData *tempData = [interested objectAtIndex:i];
-        [mapController.siteName addObject:[tempData tableTopic]];
-        if([[tempData tableContent] length] >= 100)
-            [mapController.siteInfo addObject:[[tempData tableContent] substringToIndex:100]];
+        [sitelist appendString:[interested objectAtIndex:i]];
+        [sitelist appendString:@","];
+        //NSLog(@"interest sites: %@", sitelist);
+    }
+    
+     if ([sitelist length] > 0)
+     {
+         [sitelist deleteCharactersInRange:NSMakeRange([sitelist length]-1, 1)];
+     }
+    
+    //NSLog(@"interest sites: %@", sitelist);
+    
+    CLLocation* location = mapView.myLocation;
+    
+    NSLog(@"%.8f",location.coordinate.latitude);
+    NSLog(@"%.8f",location.coordinate.longitude);
+    
+    NSDictionary *keyPair = @{@"sitename": sitelist, @"latitude": [[NSNumber numberWithDouble:location.coordinate.latitude]  stringValue], @"longitude": [[NSNumber numberWithDouble:location.coordinate.longitude]  stringValue]};
+    NSArray *jsonData = [DataTransfer requestArrayWithURL:@"http://52.6.223.152:80/site/map" httpMethod:@"POST" params:keyPair];
+    
+    //NSString *word = [jsonData objectAtIndex:0][@"topic"];
+    //NSLog(@"jsonData: %@\n\n",word);
+    
+    NSUInteger siteNum = 0;
+    if(jsonData != NULL)
+    {
+        siteNum = [jsonData count];
+        
+        NSLog(@"Site Number: %lu", (unsigned long)siteNum);
+    }
+    
+    for(int i = 0; i < siteNum; i++)
+    {
+        [mapController.siteName addObject:[jsonData objectAtIndex:i][@"topic"]];
+        if([[jsonData objectAtIndex:i][@"content"] length] >= 100)
+            [mapController.siteInfo addObject:[[jsonData objectAtIndex:i][@"content"] substringToIndex:100]];
         else
-            [mapController.siteInfo addObject:[tempData tableContent]];
-        [mapController.latitude addObject:[NSNumber numberWithDouble:[[tempData latitude] doubleValue]]];
+            [mapController.siteInfo addObject:[jsonData objectAtIndex:i][@"content"]];
+        [mapController.latitude addObject:[NSNumber numberWithDouble:[[jsonData objectAtIndex:i][@"latitude"] doubleValue]]];
         // NSLog(@"%d %f", i, [[tempData latitude] doubleValue]);
-        [mapController.longitude addObject:[NSNumber numberWithDouble:[[tempData longitude] doubleValue]]];
+        [mapController.longitude addObject:[NSNumber numberWithDouble:[[jsonData objectAtIndex:i][@"longitude"] doubleValue]]];
         // NSLog(@"%d %f", i, [[tempData longitude] doubleValue]);
     }
     
@@ -500,7 +537,7 @@
     {
         labelText = @"Bored";
         labelColor = [UIColor greenColor];
-        [interestedSites addObject:[sites objectAtIndex:cell.tag]];
+        [interestedSites addObject:[[sites objectAtIndex:cell.tag] tableTopic]];
         
         //NSArray *siteArray = [interestedSites allObjects];
         //NSLog(@"index: %@", [[siteArray objectAtIndex:0] tableTopic]);
@@ -510,7 +547,7 @@
     {
         labelText = @"Interested";
         labelColor = [UIColor orangeColor];
-        [interestedSites removeObject:[sites objectAtIndex:cell.tag]];
+        [interestedSites removeObject:[[sites objectAtIndex:cell.tag] tableTopic]];
        // NSLog(@"index: %lu", (unsigned long)[interestedSites count]);
         keyPair = @{@"username": username, @"sitename": [[sites objectAtIndex:cell.tag] tableTopic], @"interested": @"0"};
     }
