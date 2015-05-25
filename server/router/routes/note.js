@@ -13,11 +13,11 @@ var connection = mysql.createConnection({
 connection.connect();
 console.log("connected to db")
 
-/*var queryString = 'UPDATE Notes SET image = "http://distancecities.com/wp-content/uploads/2014/11/new_york_hop.jpg" WHERE nid=2;';
+/*var queryString = 'DELETE FROM Notes WHERE nid = 5';
 
 connection.query(queryString, function(err, rows, fields) {
 		    if (err) console.log(err);
-		    else console.log("added image");
+		    else console.log("deleted note");
 		});
 */
 router.post('/upload', function(req, res){
@@ -86,8 +86,9 @@ router.post('/', function(req, res){
 		connection.query(queryString, function(err, rows, fields) {
 		    if (err) console.log(err);
 			var a = [];
-			a.push("");
-			a.push("");
+			for (var k = 0; k<rows.length; k++) {
+				a.push("");
+			}
 			if (rows.length > 0) {
 				console.log(rows.length + " is the number of notes");
 				for (var i = 0; i < rows.length; i++) {
@@ -104,6 +105,7 @@ router.post('/', function(req, res){
 							if (i>=rows.length-1) {
 								var aa =  "[";
 								for (var j = rows.length-1; j >= 0; j--) {
+									console.log("appending note " + j);
 									aa= aa+ a[j] + ',';// + ',' + a[1];
 								}
 								aa=aa.slice(0,-1);

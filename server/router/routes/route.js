@@ -130,13 +130,21 @@ function reorder(isPopularity, isOpenTime, callbackB)
 router.post('/', function(req, res){
 	var lat = req.body.latitude;
 	var lon = req.body.longitude;
+	if (req.body.sitename.length == 0 ) {
+		var t = "[{ \"topic\": \"\", \"content\": \"\", \"latitude\": \"\", \"longitude\": \"\"}]";
+		console.log(t);
+		res.json(JSON.parse(t));
+		return;
+	}		
 	var siteNames = req.body.sitename.split(",");
+	console.log("site names are: " + req.body.sitename.length);
 	var siteResult = [];
 	results = [];
 	sites = [];
-	console.log(results.length);
+//	console.log(results.length);
 	for (var i = 0; i < siteNames.length; i++) {
 		var name = siteNames[i];
+		console.log(siteNames.length);
 		var queryString = 'Select * FROM Sites WHERE Sites.name = "' + name + '";';
 		console.log(queryString);
 		connection.query(queryString, function(err, rows, fields) {
