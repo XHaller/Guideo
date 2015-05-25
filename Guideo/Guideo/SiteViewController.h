@@ -16,6 +16,7 @@
 @property NSMutableArray *sites;
 @property NSMutableSet* sitesSet;
 @property NSMutableArray *searchResults;
+@property NSMutableArray *finalShowSites;
 @property NSMutableSet *interestedSites;
 @property (nonatomic, strong) NSOperationQueue *imageDownloadingQueue;
 @property (nonatomic, strong) NSCache *imageCache;

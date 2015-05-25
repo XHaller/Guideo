@@ -31,20 +31,22 @@
     [scrollView addSubview:_tableView];
     
     siteInfo = [[siteData alloc] init];
-    siteInfo.siteName = topicName;
+    
     
     
     NSDictionary *keyPair = @{@"event_name": topicName};
     NSDictionary *jsonData = [DataTransfer requestObjectWithURL:@"http://52.6.223.152:80/event/detail" httpMethod:@"POST" params:keyPair];
     
+    siteInfo.siteName = jsonData[@"topic"];
     siteInfo.sitePhone = jsonData[@"phone"];
     siteInfo.sitePopularity = [[NSNumber numberWithDouble:(arc4random() % 10)] stringValue];
     siteInfo.siteLatitude = [jsonData[@"latitude"] doubleValue];
     siteInfo.siteLongitude = [jsonData[@"longitude"] doubleValue];
-    siteInfo.sitePrice = jsonData[@"fee"];
-    siteInfo.siteOpen = jsonData[@"hours"];
+    siteInfo.sitePrice = [[NSNumber numberWithDouble:(arc4random() % 100)] stringValue];
+    siteInfo.siteOpen = jsonData[@"date"];
     siteInfo.siteAddress = jsonData[@"address"];
-    siteInfo.siteIntro = jsonData[@"info"];
+    siteInfo.siteIntro = jsonData[@"content"];
+    siteInfo.siteTripTime = jsonData[@"website"];
     
     mapView = [GMSMapView mapWithFrame:CGRectMake(10,10,self.view.frame.size.width-20,200) camera:nil];
     
@@ -106,30 +108,34 @@
     {
         case 0:
             cell.textLabel.text = siteInfo.siteName;
+            cell.detailTextLabel.text = @"";
             break;
         case 1:
-            cell.textLabel.text = @"Address: ";
-            cell.detailTextLabel.text = siteInfo.siteAddress;
+            cell.textLabel.text = @"Introduction: ";
+            if([siteInfo.siteIntro length] >= 100)
+                cell.detailTextLabel.text = [siteInfo.siteIntro substringToIndex:100];
+            else
+                cell.detailTextLabel.text = siteInfo.siteIntro;
             break;
         case 2:
             cell.textLabel.text = @"Popularity: ";
             cell.detailTextLabel.text = siteInfo.sitePopularity;
             break;
         case 3:
-            cell.textLabel.text = @"Price: ";
-            cell.detailTextLabel.text = siteInfo.sitePrice;
-            break;
-        case 4:
             cell.textLabel.text = @"Time:";
             cell.detailTextLabel.text = siteInfo.siteOpen;
             break;
+        case 4:
+            cell.textLabel.text = @"Address: ";
+            cell.detailTextLabel.text = siteInfo.siteAddress;
+            break;
         case 5:
-            cell.textLabel.text = @"Phone: ";
-            cell.detailTextLabel.text = siteInfo.sitePhone;
+            cell.textLabel.text = @"Contact: ";
+            cell.detailTextLabel.text = [siteInfo.sitePhone stringByAppendingString:[@"\n" stringByAppendingString:siteInfo.siteTripTime]];
             break;
         case 6:
-            cell.textLabel.text = @"Introduction: ";
-            cell.detailTextLabel.text = siteInfo.siteIntro;
+            cell.textLabel.text = @"Price: ";
+            cell.detailTextLabel.text = siteInfo.sitePrice;
             break;
         default:
             cell.textLabel.text = @"";

@@ -10,4 +10,9 @@
 
 @interface NoteDetailViewController : UIViewController
 
+@property(strong, nonatomic) NSString *text;
+@property(strong, nonatomic) NSString *image;
+@property (nonatomic, strong) NSOperationQueue *imageDownloadingQueue;
+@property (nonatomic, strong) NSCache *imageCache;
+
 @end

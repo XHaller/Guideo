@@ -9,10 +9,12 @@
 #import "AddNoteViewController.h"
 #import "AssetHelper.h"
 #import "DataTransfer.h"
+#import "userData.h"
 
 @interface AddNoteViewController ()
 {
     BOOL flag;
+    userData *user;
 }
 @property (strong, nonatomic) IBOutlet UITextView *textName;
 
@@ -31,6 +33,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    user = [userData sharedSingletonClass];
     
     flag = NO;
     aIVs = @[iv1];
@@ -126,11 +130,14 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [self.textName resignFirstResponder];
-
 }
 
 - (IBAction)uploadImage:(id)sender
 {
+    NSInteger success = 0;
+    NSString* username = user.userName;
+    NSDictionary *keyPair = @{@"username": username, @"text": textName.text};
+    NSDictionary *jsonData = [DataTransfer requestObjectWithURL:@"http://52.6.223.152:80/note/upload" httpMethod:@"POST" params:keyPair];
     /*
     NSData *imageData = UIImagePNGRepresentation(iv1.image);
     
@@ -140,7 +147,7 @@
     [request setURL:[NSURL URLWithString:urlString]];
     [request setHTTPMethod:@"POST"];
     
-    NSString *boundary = @"14737809831466499882746641449";
+    NSString *boundary = @"---------------------------14737809831464368775746641449";
     NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
     [request addValue:contentType forHTTPHeaderField: @"Content-Type"];
     
@@ -182,8 +189,19 @@
             [self alertStatus:@"Notes are Updated" :@"Upload Successfully!" :0];
         }
     }*/
+    success = [jsonData[@"upload"] integerValue];
     
-    [self alertStatus:@"Notes are Updated" :@"Upload Successfully!" :0];
+    NSLog(@"Success: %ld",(long)success);
+    
+    if(success == 1)
+    {
+        [self alertStatus:@"Notes are Updated" :@"Upload Successfully!" :0];
+    }
+    else
+    {
+        [self alertStatus:@"Notes are Discarded" :@"Upload Failed!" :0];
+    }
+    
     textName.textColor = [UIColor lightGrayColor];
     textName.text = @"Text Here~";
     [textName resignFirstResponder];

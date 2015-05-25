@@ -1,17 +1,17 @@
 //
-//  UserNoteViewController.h
+//  NoteViewController.h
 //  Guideo
 //
-//  Created by wei on 15/5/22.
+//  Created by 亮亮 李 on 15/5/24.
 //  Copyright (c) 2015年 Guideo. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface UserNoteViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
+@interface NoteViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property NSMutableArray *notes;
+@property NSMutableArray * searchResults;
 @property (nonatomic, strong) NSOperationQueue *imageDownloadingQueue;
 @property (nonatomic, strong) NSCache *imageCache;
 
